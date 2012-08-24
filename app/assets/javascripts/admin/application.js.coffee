@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require bootstrap
+//= require jquery/jquery.selected
+//= require jquery/jquery.fileupload-all
+//= require jquery/jquery.ad-gallery
+//= require jquery/jquery.redactor
+//= require jquery/jquery.redactor.zh_cn
+//= require jquery/jquery.smartWizard-2.0
