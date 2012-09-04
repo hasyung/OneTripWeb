@@ -8,3 +8,13 @@
 //= require jquery/jquery.redactor
 //= require jquery/jquery.redactor.zh_cn
 //= require jquery/jquery.smartWizard-2.0
+
+$ -> 
+	$("table .actions").tooltip
+		selector: "[rel*=tooltip]"
+
+	$("table #select_all").select_all()
+
+	$(".destroy-multiple").click(
+		-> $("form.search-form").submit();
+	)

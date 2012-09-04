@@ -8,3 +8,119 @@
 
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+
+body {
+	background-image: image-url("admin/bg-2.jpeg");
+	padding-top: 60px;
+}
+
+textarea {
+	resize: none;
+}
+
+abbr {
+	color: #9d261d;
+}
+
+.span-full {
+	width: 99%;
+}
+
+.help-block {
+	color: #ccc;
+}
+
+/* 按钮 */
+.btn {
+	.icon-large::before {
+		vertical-align: middle;
+	}
+	b {
+		padding-left: 3px;
+		font-weight: normal;
+	}
+}
+
+/* 顶部导航条 */
+.navbar { 
+	.brand {
+		padding: 0 20px 0 20px;
+	}
+	.nav > li {
+		margin-right: 4px;
+	}
+	.nav > li > a {
+		padding-top: 10px;
+	}
+}
+
+/* 工具栏 */
+#toolbar {
+	margin-top: 0;
+	.search {
+		form {
+			margin-bottom: 0;
+		}
+	}
+}
+
+/* 后置组合输入框修正 */
+.input-prepend.input-append {
+	.add-on:first-child, .btn:first-child {
+		margin-right: -5px;
+	}
+	.add-on:last-child, .btn:last-child {
+		margin-left: -5px;
+	}
+}
+.input-append {
+	.add-on, .btn {
+		margin-left: -5px;
+	}
+}
+
+#main {
+	.form-frame {
+		width: 70%;
+		.form-actions {
+			margin-bottom: 0;
+		}
+	}
+	.form-sidebar {
+		width: 28%;
+	}
+}
+
+/* 表格 */
+.table-bordered {
+	th, td {
+		border-left: none;
+		&:first-child {
+			border-left: 1px solid $tableBorder;
+			text-align: center;
+			width: 40px;
+		}
+		&.actions {
+			text-align: center;
+			width: 150px;
+			a {
+				display: inline-block;
+				padding: 0 3px;
+				color: #333;
+				text-decoration: none;
+				&:hover {
+					color: #9d261d;
+				}
+			}
+		}
+	}
+	th:first-child {
+		padding: 6px 8px 7px 8px;
+	}
+	td:first-child {
+		padding: 7px 8px 6px 8px;
+	}
+	td.actions {
+		padding: 11px 8px 4px 8px;
+	}
+}

@@ -80,6 +80,11 @@
         <div class="row">
           <div id="main" class="<%= content_for?(:sidebar) ? "span9" : "span12" %>">
             <div class="well white-bg">
+              <% if content_for? :toolbar -%>
+                <div id="toolbar" class="btn-toolbar clearfix">
+                  <%= yield :toolbar %>
+                </div>
+              <% end -%>
               <%= bootstrap_flash %>
               <div class="well-inner">
                 <%= yield %>

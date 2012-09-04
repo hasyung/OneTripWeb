@@ -224,9 +224,13 @@ zh_CN:
       template:
         <<: *errors_template
     models:
-      
+      province: "省份"
     attributes:
-      
+      province:
+        name: "名字"
+        key: "关键字"
+        places_count: "景点数"
+        created_at: "创建时间"
     enums:
       
   helpers:
@@ -246,9 +250,43 @@ zh_CN:
       more_pages:
         display_entries: "显示数据 <b>%{first}&nbsp;-&nbsp;%{last}</b> 共 <b>%{total}</b> 条"
     links:
-      
+      home: "首页"
+      setting: "设置"
+      helper: "帮助"
+      login: "登录"
+      logout: "退出"
+      new: "添加"
+      edit: "修改"
+      destroy: "删除"
+      delete_all: "批量删除"
+      cancel: "取消"
+      list: "列表"
+      upload: "上传"
+      select: "请选择%{model_name}"
+      search: "搜索"
+      action: "操作"
+      log: "日志"
+      all: "所有"
+      more: "更多"
+      close: "关闭"
+      save: "保存"
+      list_mode: "列表模式"
+      gallery_mode: "幻灯模式"
+      back_album: "回到相册"
+      continue: "继续上传"
+      media_cover: "上传封面"
+      back_list: "返回列表"
+    placeholder:
+      search: "搜索%{model}"
     messages:
-
+      new: "恭喜你，已成功创建新的%{model_name}！"
+      edit: "恭喜你，已成功修改%{model_name}！"
+      destroy: "恭喜你，已成功删除%{model_name}！"
+      destroy_multiple: "恭喜你，你已经成功删除了%{count}个%{model_name}!"
+      error: "操作失败了，请联系管理员！"
+      confirm: "你确定这样做吗？"
+      search_error: "你没有提供任何要搜索的数据！"
+      selected_error: "操作失败，你没有选择任何项！"
   views:
     pagination:
       first: "第一页"
@@ -269,9 +307,9 @@ zh_CN:
       defaults:
         username: ''
         password: ''
-      category:
-        name: "20个字符以内，名字必须唯一。"
-        url: "50个字符以内，只能是A-Z，0-9和空格字符组成， 名字必须唯一。"
+      province:
+        name: "30个字符以内，名字必须唯一。"
+        key: "30个字符以内，只能是A-Z，0-9和空格字符组成，名字必须唯一。"
         order: "大于0小于999，只能是数字。"
       album:
         name: "30个字符以内，名字必须唯一。"

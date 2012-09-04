@@ -17,4 +17,4 @@ database.yml
 database.yml.default
 .DS_store
 .redcar
-public/upload
+public/uploads
