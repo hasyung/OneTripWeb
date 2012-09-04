@@ -1,6 +1,9 @@
 class Province < ActiveRecord::Base
   attr_accessible :name, :key
 
+  # Associations
+  has_many :places, :order => "created_at DESC"
+
   # Validates
   validates :name, :key, :presence => true
 	with_options :if => :name? do |name|

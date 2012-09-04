@@ -26,8 +26,14 @@ abbr {
 	width: 99%;
 }
 
-.help-block {
-	color: #ccc;
+/* 表单 */
+.simple_form {
+  .help-block {
+  	color: #ccc;
+  }
+  label abbr {
+  	color: $errorText;
+  }
 }
 
 /* 按钮 */
@@ -122,5 +128,21 @@ abbr {
 	}
 	td.actions {
 		padding: 11px 8px 4px 8px;
+	}
+}
+
+/* 表格页脚 */
+.table-footer {
+	.paginates-info {
+		width: 29%;
+		float: left;
+		height:36px;
+		line-height:36px;
+	}
+	.pagination {
+		width: 70%;
+		float:right;
+		margin:0;
+		text-align:right;
 	}
 }
