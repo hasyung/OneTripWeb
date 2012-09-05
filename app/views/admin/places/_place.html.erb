@@ -1,0 +1,18 @@
+<li class="span3 place_<%= place.id %>">
+	<a href="<%=  %>" class="thumbnail" rel="popover" data-content="<%= "<h4>#{place.name}</h4><p class='description'>#{place.description}</p>" %>">
+		<%= image_tag place.map_url(:thumb) %>
+		<span class="name"><%= place.name %></span>
+	</a>
+	<div class="other">
+		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.edit", :model_name => place.name),
+      :rel => :tooltip %>
+		<%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+      admin_place_path(place),
+      :method => :delete,
+      :title => t("helpers.links.destroy", :model_name => place.name),
+      :data => { :confirm => t("helpers.messages.confirm") },
+      :rel => :tooltip %>
+	</div>
+</li>

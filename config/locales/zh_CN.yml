@@ -202,6 +202,10 @@ zh_CN:
       even: "必须为双数"
       taken: "已经被使用"
       record_invalid: "验证失败: %{errors}"
+      extension_white_list_error: "文件格式不正确"
+      wrong_size: "错误的大小 (应该是 %{file_size})"
+      size_too_small: "必须大于 %{file_size}"
+      size_too_big: "必须小于 %{file_size}"
     template: &errors_template
       header:
         one: "有 1 个错误发生导致「%{model}」无法被保存。"
@@ -224,13 +228,22 @@ zh_CN:
       template:
         <<: *errors_template
     models:
-      province: "省份"
+      province: "省市"
+      place: "景点"
     attributes:
       province:
         name: "名字"
         key: "关键字"
         places_count: "景点数"
         created_at: "创建时间"
+      place:
+        name: "名字"
+        province_id: "省市"
+        province: "省市"
+        key: "url"
+        keywords: "关键词"
+        description: "描述"
+        map: "地图"
     enums:
       
   helpers:
@@ -294,6 +307,16 @@ zh_CN:
       previous: "上一页"
       next: "下一页"
       truncate: "..."
+  fileupload:
+    links:
+      add: "添加文件"
+      start_all: "开始上传"
+      cancel_all: "取消上传"
+      delete: "删除选中"
+      start: "上传"
+      cancel: "取消"
+      reset: "返回"
+      add_cover: "添加封面文件"
 
   simple_form:
     "yes": 'Yes'
@@ -308,14 +331,16 @@ zh_CN:
         username: ''
         password: ''
       province:
-        name: "30个字符以内，名字必须唯一。"
-        key: "30个字符以内，只能是A-Z，0-9和空格字符组成，名字必须唯一。"
+        name: "必填，30个字符以内，名字必须唯一。"
+        key: "必填，生成唯一网址，30个字符以内，只能是A-Z，0-9和空格字符组成，名字必须唯一。"
         order: "大于0小于999，只能是数字。"
-      album:
-        name: "30个字符以内，名字必须唯一。"
-        description: "100个字符以内。"
-        permission_cd: "请选择相册的访问权限。"
-        password: "只有当访问权限设置为‘保密的’才有效。"
+      place:
+        name: "必填，30个字符以内，名字必须唯一。"
+        key: "必填，生成唯一网址，30个字符以内，只能是A-Z，0-9和空格字符组成，名字必须唯一。"
+        province: "必选，选择隶属于的省市。"
+        keywords: "选填，SEO优化，100个字符以内。"
+        description: "选填，SEO优化，100个字符以内。"
+        map: "必填，上传一张图片。"
       blog:
         title: "100个字符以内。"
         description: "100个字符以内。"

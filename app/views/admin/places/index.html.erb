@@ -1,0 +1,19 @@
+<%= render "base" %>
+<div id="places">
+	<div class="row">
+		<div class="span12">
+			<ul class="thumbnails">
+				<% @places.each do |place| -%>
+				<%= render :partial => place %>
+				<% end -%>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="ajax-form" class="modal hide fade in">
+	<form></form>
+</div>
+<div class="table-footer clearfix">
+  <div class="paginates-info"><%= page_entries_info @places %></div>
+  <%= paginate @places, :theme => "admin" %>
+</div>

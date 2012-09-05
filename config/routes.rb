@@ -15,6 +15,11 @@ OneTripWeb::Application.routes.draw do
       post 'destroy_multiple', :on => :collection
       get 'page/:page', :action => :index, :on => :collection
     end
+    resources :places do
+      post 'search', :on => :collection
+      post 'destroy_multiple', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
+    end
   end
   
 end
