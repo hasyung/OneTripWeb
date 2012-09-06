@@ -1,18 +1,39 @@
 <li class="span3 place_<%= place.id %>">
-	<a href="<%=  %>" class="thumbnail" rel="popover" data-content="<%= "<h4>#{place.name}</h4><p class='description'>#{place.description}</p>" %>">
-		<%= image_tag place.map_url(:thumb) %>
+	<a href="javascript:(void);" class="thumbnail">
+		<%= image_tag place.map.url(:thumb) %>
 		<span class="name"><%= place.name %></span>
 	</a>
 	<div class="other">
 		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
       edit_admin_place_path(place), 
-      :title => t("helpers.links.edit", :model_name => place.name),
+      :title => t("helpers.links.edit"),
+      :remote => true,
       :rel => :tooltip %>
-		<%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+    <%= link_to raw("<i class=\"icon-picture icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.map"),
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-film icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.map"),
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-volume-up icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.map"),
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-file icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.map"),
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
       admin_place_path(place),
       :method => :delete,
-      :title => t("helpers.links.destroy", :model_name => place.name),
+      :title => t("helpers.links.destroy"),
       :data => { :confirm => t("helpers.messages.confirm") },
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-eye-close icon-large\"></i>"), 
+      edit_admin_place_path(place), 
+      :title => t("helpers.links.map"),
       :rel => :tooltip %>
 	</div>
 </li>

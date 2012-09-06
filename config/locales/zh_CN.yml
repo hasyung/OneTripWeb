@@ -244,6 +244,8 @@ zh_CN:
         keywords: "关键词"
         description: "描述"
         map: "地图"
+        map_content_type: "地图类型"
+        map_file_size: "地图大小"
     enums:
       
   helpers:
@@ -271,6 +273,7 @@ zh_CN:
       new: "添加"
       edit: "修改"
       destroy: "删除"
+      map: "地图"
       delete_all: "批量删除"
       cancel: "取消"
       list: "列表"

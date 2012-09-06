@@ -11,6 +11,16 @@ module ApplicationHelper
 	  content_for(:title) { page_title }
 	end
 
+  def icon_link_to(icon_name, path, options = {})
+    name = content_tag(:i, "", :class => "icon-#{icon_name} icon-large")
+    rel = options[:rel].blank? ? nil : :tooltip
+    title = options[:title].blank? ? nil : options[:title]
+    remote = options[:remote].blank? ? nil : true
+    confirm = options[:confirm].blank? ? nil : {:confirm => t("helpers.messages.confirm")}
+    method = options[:method].blank? ? nil : options[:method]
+    link_to(name, path, :rel => rel, :title => title, :remote => remote, :data => confirm, :method => method)
+  end
+
   def bootstrap_flash
     flash_messages = []
     flash.each do |type, message|
@@ -20,6 +30,14 @@ module ApplicationHelper
       flash_messages << text if message
     end
     flash_messages.join("\n").html_safe
+  end
+
+  def alert_html(message, type = :success)
+    text = ""
+    text = content_tag(:div, 
+      link_to(raw("&times;"), "#", :class => "close", "data-dismiss" => :alert) + message, 
+      :class => "alert fade in alert-#{type}") if message
+    text.html_safe
   end
 
 	def error_messages_for(*params)

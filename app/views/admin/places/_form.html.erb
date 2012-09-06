@@ -1,51 +1,13 @@
 <%- model_class = Place -%>
 
-<%= simple_form_for [:admin, @place], :html => { :class => "special-form" } do |f| %>
+<%= simple_form_for [:admin, @place], :remote => true do |f| %>
   <fieldset>
-  	<% if %w(new create).include?(action_name) %>
-	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
-  	<% end -%>
-  	<% if %w(edit update).include?(action_name) %>
-	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
-  	<% end -%>
-  	<div class="control-group clearfix">
-	  	<div class="form-frame pull-left">
-	  		<%= error_messages_for @place, :class => "control-group alert alert-error fade in", :close => :true %>
-			  <%= f.input :name, :input_html => { :class => "span7" } %>
-			  <% if %w(new create).include?(action_name) %>
-				  <%= f.input :key, :input_html => { :class => "span7" } %>
-			  <% end -%>
-			  <% if %w(edit update).include?(action_name) %>
-				  <%= f.input :key, :input_html => { :class => "span7 disabled", :disabled => true } %>
-			  <% end -%>
-			  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
-			  <%= f.input :map, :as => :file_upload %>
-			  <%= image_tag @place.map_url(:thumb), :class => :thumb if @place.map? %>
-			  <%= f.input :keywords, :input_html => { :class => "span7" } %>
-			  <%= f.input :description, :input_html => { :class => "span7" } %>
-			  <div class="form-actions">
-			    <button type="submit" class="btn btn-primary">
-			    	<i class="icon-save icon-large"></i>
-			    	<% if %w(new create).include?(action_name) %>
-				    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
-			    	<% end -%>
-			    	<% if %w(edit update).include?(action_name) %>
-			    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
-			    	<% end -%>
-			    </button>
-			    <a href="<%= admin_places_path %>" class="btn">
-			    	<i class="icon-ban-circle icon-large"></i>
-			    	<b><%= t("helpers.links.cancel") %></b>
-			    </a>
-			  </div>
-		  </div>
-		  <div class="form-sidebar pull-right">
-		  	<div class="alert alert-info">
-				  <strong>注意！</strong>
-				  <%= model_class.human_attribute_name(:name) %>和<%= model_class.human_attribute_name(:key) %>必须唯一。
-				</div>
-		  </div>
-		</div>
+		<%= error_messages_for @place, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.input :name, :input_html => { :class => "span-full" } %>
+	  <%= f.input :key, :input_html => { :class => "span-full" }, :disabled => @place.new_record? ? nil : true %>
+	  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
+	  <%= f.input :keywords, :input_html => { :class => "span-full" } %>
+	  <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
   </fieldset>
 <% end %>
 

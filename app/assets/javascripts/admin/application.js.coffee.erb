@@ -13,15 +13,15 @@ $ ->
 	$("table .actions").tooltip
 		selector: "[rel*=tooltip]"
 
+	$("#places").tooltip
+		selector: "[rel*=tooltip]"
+
 	$("table #select_all").select_all()
 
 	$(".destroy-multiple").click(
 		-> $("form.search-form").submit();
 	)
 
-$ ->
-	$(".simple_form .file_upload").change(
-		(e)=> window.loadImage(e.target.files[0],
-			(img)=> console.log img
-		)
+	$("#ajax-form .modal-footer button[type=submit]").click(
+		()=> $("#ajax-form form").submit()
 	)

@@ -41,7 +41,7 @@
 <%= content_for :toolbar do -%>
 	<% if %w(index).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_place_path %>" class="btn">
+			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
 				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
 			</a>
 			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @places.blank? %>>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903065247) do
+ActiveRecord::Schema.define(:version => 20120905052703) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -71,13 +71,13 @@ ActiveRecord::Schema.define(:version => 20120903065247) do
     t.integer  "infos_count",                     :default => 0
     t.string   "keywords",         :limit => 100
     t.string   "description",      :limit => 100
-    t.string   "map",                                            :null => false
-    t.string   "map_name",                                       :null => false
-    t.integer  "map_size",                        :default => 0
-    t.string   "map_content_type"
     t.integer  "order",                           :default => 0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.string   "map_file_name"
+    t.string   "map_content_type"
+    t.integer  "map_file_size"
+    t.datetime "map_updated_at"
   end
 
   create_table "provinces", :force => true do |t|

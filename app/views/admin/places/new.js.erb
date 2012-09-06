@@ -1,0 +1,11 @@
+<%- model_class = Place -%>
+
+$("#ajax-form.modal")
+	.find(".modal-body")
+		.empty()
+		.append('<%= j(render("form")) %>')
+		.end()
+	.find(".modal-header h3")
+		.empty()
+		.append("<%= t("helpers.submit.create", :model => model_class.model_name.human) %>")
+.end().modal("show");
