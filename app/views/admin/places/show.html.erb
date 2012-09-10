@@ -1,0 +1,41 @@
+<%= render "base" %>
+<fieldset id="map">
+	<legend><%= t("helpers.links.map") %></legend>
+	<div class="control-group">
+		<%= image_tag @place.map.url(:thumb) %>
+	</div>
+</fieldset>
+<fieldset id="video">
+	<legend><%= t("helpers.links.video") %></legend>
+</fieldset>
+<fieldset id="audio">
+	<legend><%= t("helpers.links.audio") %></legend>
+</fieldset>
+<fieldset id="article">
+	<legend><%= t("helpers.links.article") %></legend>
+</fieldset>
+<fieldset id="info">
+	<legend><%= t("helpers.links.info") %></legend>
+    <ul class="control-group unstyled">
+      <% if @infos.blank? -%>
+      <% else -%>
+        <% @infos.each do |info| %>
+          <%= render :partial => "admin/infos/info", :object => info %>
+        <% end -%>
+      <% end -%>
+    </ul>
+</fieldset>
+<div id="ajax-form" class="modal hide fade in">
+	<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3></h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">
+    	<i class="icon-save icon-large"></i>
+    	<b><%= t("helpers.links.save") %></b>
+    </button>
+    <a href="#" class="btn" data-dismiss="modal"><%= t("helpers.links.cancel") %></a>
+  </div>
+</div>

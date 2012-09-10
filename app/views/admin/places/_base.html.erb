@@ -13,6 +13,10 @@
 		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
 	<% end -%>
 
+	<% if %w(show).include?(action_name) -%>
+		<%= @place.name %>
+	<% end -%>
+
 	<% if %w(search).include?(action_name) -%>
 		<%= t("helpers.links.search") %>
 	<% end -%>
@@ -23,6 +27,10 @@
 	<span class="divider">/</span>
 	<% if %w(index).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.list") %></span>
+	<% end -%>
+
+	<% if %w(show).include?(action_name) -%>
+		<span class="active"><%= @place.name %></span>
 	<% end -%>
 
 	<% if %w(new create).include?(action_name) -%>
@@ -36,6 +44,12 @@
 	<% if %w(search).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.search") %></span>
 	<% end -%>
+
+	<% if %w(edit_map update_map).include?(action_name) -%>
+		<a href="<%= admin_place_path(@place) %>"><%= @place.name %></a>
+		<span class="divider">/</span>
+		<span class="active"><%= t("helpers.links.add_map") %></span>
+	<% end -%>
 <% end -%>
 
 <%= content_for :toolbar do -%>
@@ -47,6 +61,41 @@
 			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @places.blank? %>>
 				<i class="icon-trash icon-large"></i>
 				<b><%= t("helpers.links.delete_all") %></b>
+			</a>
+		</div>
+	<% end -%>
+	<% if %w(show).include?(action_name) -%>
+		<div class="btn-group">
+			<a href="<%= edit_admin_place_path %>" class="btn" data-remote="true">
+				<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+			</a>
+			<a href="<%= edit_map_admin_place_path %>" class="btn" data-remote="true">
+				<i class="icon-picture icon-large"></i><b><%= t("helpers.links.add_map") %></b>
+			</a>
+			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+				<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
+			</a>
+			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+				<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
+			</a>
+			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+				<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
+			</a>
+			<a href="<%= new_admin_place_info_path(@place) %>" class="btn" data-remote="true">
+				<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
+			</a>
+			<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
+				<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
+			</a>
+		</div>
+	<% end -%>
+	<% if %w(edit_map update_map).include?(action_name) -%>
+		<div class="btn-group">
+			<a href="<%= admin_places_path %>" class="btn">
+				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+			</a>
+			<a href="<%= admin_place_path(@place) %>" class="btn">
+				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
 			</a>
 		</div>
 	<% end -%>
@@ -71,7 +120,7 @@
 		<div class="controls pagination-right search">
 	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
 	      <div class="input-append">
-	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
+	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
 	        <button type="submit" class="btn"><i class="icon-search"></i></button>
 	      </div>
 	    <% end -%>
@@ -79,4 +128,15 @@
 	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
+	<% if %w(edit_map update_map).include?(action_name) -%>
+		<div class="well white-bg">
+			<div class="alert alert-info">
+				<h4 class="alert-heading">小贴士</h4>
+				<ul>
+					<li>只能上传 PNG, JPG, GIF等格式的图片。</li>
+					<li>图片最大限制为：10M。</li>
+				</ul>
+			</div>
+		</div>
+	<% end -%>
 <% end -%>

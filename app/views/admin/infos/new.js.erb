@@ -1,4 +1,4 @@
-<%- model_class = Place -%>
+<%- model_class = Info -%>
 
 $("#ajax-form.modal")
 	.find(".modal-body")
@@ -7,9 +7,9 @@ $("#ajax-form.modal")
 	.end()
 	.find(".modal-header h3")
 		.empty()
-		.append("<%= t("helpers.submit.update", :model => model_class.model_name.human) %>")
+		.append("<%= t("helpers.links.add_info") %>")
 	.end()
-		.find(".modal-footer button[type=submit]")
-			.show()
+	.find(".modal-footer button[type=submit]")
+		.show()
 	.end()
 .modal("show");

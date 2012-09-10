@@ -1,8 +1,12 @@
 class Place < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   attr_accessible :name, :key, :keywords, :description, :map, :order, :province_id
 
   # Associations
   belongs_to :province, :counter_cache => true
+  has_many :infos, :dependent => :destroy
+  has_many :audios, :dependent => :destroy
 
   # Validates
   validates :name, :key, :province_id, :presence => true
@@ -33,5 +37,17 @@ class Place < ActiveRecord::Base
     :path => "#{APP_CONFIG["upload_path"]}/:class/:attachment/:hashed_path/:id/:style_:hash_name.:extension",
     :default_url => "default/:class/:style.jpg",
     :whiny => false
+
+  # Methods
+  def to_jq_upload
+    {
+      "id" => read_attribute(:id),
+      "name" => read_attribute(:name),
+      "size" => read_attribute(:map_file_size),
+      "thumbnail_url" => map.url(:thumb),
+      "edit_map_path" => edit_map_admin_place_path(:id => id),
+      "place_path" => admin_place_path(:id => id)
+    }
+  end
 
 end

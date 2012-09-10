@@ -1,0 +1,11 @@
+<%- model_class = Info -%>
+
+<%= simple_form_for [:admin, @place, @info], :remote => true do |f| %>
+  <fieldset>
+		<%= error_messages_for @info, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.input :var, :input_html => { :class => "span-full" } %>
+	  <%= f.input :value, :as => :text, :input_html => { :class => "span-full" } %>
+	  <%= f.input :order, :input_html => { :class => "span1" } %>
+  </fieldset>
+<% end %>
+

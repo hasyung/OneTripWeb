@@ -5,9 +5,15 @@
 		.prepend("<%= j(error_messages_for(@place, :class => 'control-group alert alert-error fade in', :close => :true)) %>");
 <% else -%>
 	$("#ajax-form")
-		.find(":input:not(input[type=submit])").val("")
+		.find(":input:not(input[type=submit])")
+			.val("")
 		.end()
-	.modal('hide');
+		.find(".modal-body")
+			.empty()
+			.append("<div class=\"control-group success-image\"><%= j(image_tag 'admin/success.png') %></div>")
+		.end()
+		.find(".modal-footer button[type=submit]")
+			.hide();
 
 	if ($("#places .thumbnails li").size() > <%= Setting.admin_PlacePageSize %>) {
 		$("#places .thumbnails li").last().remove();

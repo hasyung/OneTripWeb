@@ -1,5 +1,5 @@
 <li class="span3 place_<%= place.id %>">
-	<a href="javascript:(void);" class="thumbnail">
+	<a href="<%= admin_place_path(place) %>" class="thumbnail">
 		<%= image_tag place.map.url(:thumb) %>
 		<span class="name"><%= place.name %></span>
 	</a>

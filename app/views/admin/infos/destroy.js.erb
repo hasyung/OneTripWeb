@@ -1,8 +1,8 @@
-<% if @place.errors.any? -%>
+<% if @info.errors.any? -%>
 	$("#ajax-form .modal-body")
 		.find("#errorExplanation").remove()
 		.end()
-		.prepend("<%= j(error_messages_for(@place, :class => 'control-group alert alert-error fade in', :close => :true)) %>");
+		.prepend("<%= j(error_messages_for(@info, :class => 'control-group alert alert-error fade in', :close => :true)) %>");
 <% else -%>
 	$("#ajax-form")
 		.find(":input:not(input[type=submit])").val("")
@@ -13,8 +13,7 @@
 		.end()
 		.find(".modal-footer button[type=submit]")
 			.hide();
-
-	$("#places .thumbnails li.place_<%= @place.id %>")
-		.replaceWith("<%= j(render :partial => @place) %>");
-
+	$("#info ul")
+		.find(".info_<%= @info.id %>")
+			.remove();
 <% end -%>

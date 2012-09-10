@@ -1,0 +1,17 @@
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+  <div class="box template-download fade">
+    {% if (file.error) { %}
+      <div class="control-group error">
+        <span class="label label-important">
+          {%=locale.fileupload.errors[file.error] || file.error%}
+        </span>
+      </div>
+    {% } else { %}
+      <div class="control-group success-image">
+        <%= image_tag "admin/success.png" %>
+      </div>
+    {% } %}
+  </div>
+{% } %}
+</script>

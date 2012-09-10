@@ -230,6 +230,7 @@ zh_CN:
     models:
       province: "省市"
       place: "景点"
+      info: "信息"
     attributes:
       province:
         name: "名字"
@@ -246,6 +247,10 @@ zh_CN:
         map: "地图"
         map_content_type: "地图类型"
         map_file_size: "地图大小"
+      info:
+        var: "名字"
+        value: "内容"
+        order: "排序"
     enums:
       
   helpers:
@@ -274,6 +279,10 @@ zh_CN:
       edit: "修改"
       destroy: "删除"
       map: "地图"
+      video: "视频"
+      audio: "音频"
+      article: "文章"
+      info: "信息"
       delete_all: "批量删除"
       cancel: "取消"
       list: "列表"
@@ -292,6 +301,14 @@ zh_CN:
       continue: "继续上传"
       media_cover: "上传封面"
       back_list: "返回列表"
+      add_map: "上传地图"
+      add_video: "添加视频"
+      add_audio: "添加音频"
+      add_article: "添加文章"
+      add_info: "添加信息"
+      edit_info: "修改信息"
+      back_place: "返回%{place_name}"
+      reset_map: "重新上传地图"
     placeholder:
       search: "搜索%{model}"
     messages:
@@ -344,12 +361,10 @@ zh_CN:
         keywords: "选填，SEO优化，100个字符以内。"
         description: "选填，SEO优化，100个字符以内。"
         map: "必填，上传一张图片。"
-      blog:
-        title: "100个字符以内。"
-        description: "100个字符以内。"
-        body: "10000字以内。"
-        keywords: "100个字符以内。"
-        category: "该文章所属分类。"
+      info:
+        var: "必填，200个字符以内，并且在同一个景点内必须唯一。"
+        value: "必填，100个字符以内。"
+        order: "选填，数字越大排序越高，默认为0。"
     placeholders:
       user:
         login: "用户名"

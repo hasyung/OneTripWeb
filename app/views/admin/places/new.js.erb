@@ -8,4 +8,8 @@ $("#ajax-form.modal")
 	.find(".modal-header h3")
 		.empty()
 		.append("<%= t("helpers.submit.create", :model => model_class.model_name.human) %>")
-.end().modal("show");
+	.end()
+		.find(".modal-footer button[type=submit]")
+			.show()
+	.end()
+.modal("show");

@@ -4,6 +4,11 @@ class Admin::PlacesController < Admin::ApplicationController
 		@places = Place.page(params[:page]).per(Setting.admin_AlbumPageSize).created_desc
 	end
 
+	def show
+		@place = Place.find params[:id]
+		@infos = @place.infos.order_desc.created_desc
+	end
+
 	def new
 		@place = Place.new
 	end
@@ -49,6 +54,21 @@ class Admin::PlacesController < Admin::ApplicationController
     else
       redirect_to :admin_places, :alert => t("helpers.messages.error")
     end
+	end
+
+	def edit_map
+		@place = Place.find params[:id]
+	end
+
+	def update_map
+		@place = Place.find params[:id]
+		if @place.update_attributes params[:place]
+			respond_to do |format|
+				format.json { render :json => [@place.to_jq_upload].to_json }
+			end
+		else
+			render :json => [{ :error => "emptyAlbum" }]
+		end
 	end
 
 end

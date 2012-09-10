@@ -1,0 +1,34 @@
+<%- model_class = Place -%>
+
+$("#ajax-form.modal")
+	.find(".modal-body")
+		.empty()
+		.append('<%= j(render("map_form")) %>')
+		.end()
+	.find(".modal-header h3")
+		.empty()
+		.append("<%= t('helpers.links.map') %>")
+		.end()
+	.find(".modal-footer button[type=submit]")
+		.hide()
+.end().modal("show");
+
+$('#map-fileupload').fileupload({
+	previewMaxWidth: 400,
+	previewMaxHeight: 300,
+	maxFileSize: 10000000,
+	maxNumberOfFiles: 1,
+	acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+}).bind("fileuploadadded", function() {
+	$(this).find(".fileupload-buttonbar").hide();
+}).bind("fileuploadfailed", function() {
+	$(this).find(".fileupload-buttonbar").show();
+}).bind("fileuploadcompleted", function(e, data) {
+	$("#map img").attr("src", data.result[0].thumbnail_url);
+});
+
+$("#ajax-form.modal .modal-footer").find("button[type=submit]")
+	.click(function(e) {
+		e.preventDefault();
+		$("#map-fileupload").find("div.start button").click();
+	})
