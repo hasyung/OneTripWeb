@@ -10,6 +10,10 @@
 </fieldset>
 <fieldset id="audio">
 	<legend><%= t("helpers.links.audio") %></legend>
+  <% if @narrates.blank? %>
+  <% else -%>
+    <%= render :partial => "admin/audios/audio", :object => @narrates %>
+  <% end -%>
 </fieldset>
 <fieldset id="article">
 	<legend><%= t("helpers.links.article") %></legend>
@@ -32,7 +36,7 @@
   </div>
   <div class="modal-body"></div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" data-remote="true">
     	<i class="icon-save icon-large"></i>
     	<b><%= t("helpers.links.save") %></b>
     </button>

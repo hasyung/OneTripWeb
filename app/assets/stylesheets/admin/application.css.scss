@@ -3,6 +3,7 @@
  *= require jquery.fileupload-ui
  *= require jquery/jquery.ad-gallery
  *= require jquery/jquery.redactor
+ *= require jplayer/jplayer.blue.monday
  *= require_self
  */
 
@@ -251,6 +252,7 @@ abbr {
 		}
 		img {
 			min-height: 141px;
+			max-height: 141px;
 			min-width: 250px;
 		}
 	}
@@ -317,7 +319,7 @@ abbr {
 	}
 }
 
-#map-fileupload {
+#map-fileupload, #audio-fileupload {
 	margin: 0;
 	.fileupload-buttonbar {
 		margin-top: 20px;
@@ -408,6 +410,21 @@ abbr {
 		}
 		li:first-child {
 			margin-top: 0;
+		}
+	}
+}
+
+#sidebar {
+	.well {
+		padding: 8px;
+		.nav {
+			padding: 0;
+			.nav-header {
+				color: #999;
+			}
+			li {
+				color: #9d261d;
+			}
 		}
 	}
 }

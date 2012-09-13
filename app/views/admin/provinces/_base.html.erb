@@ -78,4 +78,12 @@
 	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="well warning-bg">
+			<ul class="nav nav-list">
+			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+			  <li>关键字是用来生成唯一url的。</li>
+			</ul>
+		</div>
+	<% end -%>
 <% end -%>

@@ -22,6 +22,34 @@
 	<% end -%>
 <% end -%>
 
+<%= content_for :scripts do -%>
+	<% if %w(show).include?(action_name) -%>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				new jPlayerPlaylist({
+					jPlayer: "#jquery_jplayer_narrate",
+					cssSelectorAncestor: "#jp_container_narrate",
+					supplied: "mp3",
+					playlistOptions: {
+						enableRemoveControls: false
+					}
+				},[
+						<% if !@narrates.blank? -%>
+							<% @narrates.each_with_index do |audio, i| -%>
+								{
+								<%= "title: '#{audio.name}'," %>
+								<%= "artist: '#{audio.duration}'," %>
+								<%= "mp3: '#{audio.attachment.url}'" %>
+								}<%= "," if i != @narrates.count - 1 %>
+							<% end -%>
+						<% end -%>
+					]
+				);
+			});
+		</script>
+	<% end -%>
+<% end -%>
+
 <%= content_for :sitemaps do -%>
 	<a href="<%= admin_places_path %>"><%= model_class.model_name.human %></a>
 	<span class="divider">/</span>
@@ -34,7 +62,7 @@
 	<% end -%>
 
 	<% if %w(new create).include?(action_name) -%>
-		<span class="active"><%= t("helpers.links.new") %></span>
+		<span class="active"><%= t("helpers.submit.create", :model => model_class.model_name.human) %></span>
 	<% end -%>
 
 	<% if %w(edit update).include?(action_name) -%>
@@ -55,7 +83,7 @@
 <%= content_for :toolbar do -%>
 	<% if %w(index).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+			<a href="<%= new_admin_place_path %>" class="btn">
 				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
 			</a>
 			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @places.blank? %>>
@@ -66,36 +94,23 @@
 	<% end -%>
 	<% if %w(show).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= edit_admin_place_path %>" class="btn" data-remote="true">
+			<a href="<%= edit_admin_place_path %>" class="btn">
 				<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
 			</a>
-			<a href="<%= edit_map_admin_place_path %>" class="btn" data-remote="true">
-				<i class="icon-picture icon-large"></i><b><%= t("helpers.links.add_map") %></b>
-			</a>
-			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+			<a href="<%= new_admin_place_path %>" class="btn">
 				<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
 			</a>
-			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+			<a href="<%= new_admin_place_audio_path(@place) %>" class="btn">
 				<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
 			</a>
-			<a href="<%= new_admin_place_path %>" class="btn" data-remote="true">
+			<a href="<%= new_admin_place_path %>" class="btn">
 				<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
 			</a>
-			<a href="<%= new_admin_place_info_path(@place) %>" class="btn" data-remote="true">
+			<a href="<%= new_admin_place_info_path(@place) %>" class="btn">
 				<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
 			</a>
 			<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
 				<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
-			</a>
-		</div>
-	<% end -%>
-	<% if %w(edit_map update_map).include?(action_name) -%>
-		<div class="btn-group">
-			<a href="<%= admin_places_path %>" class="btn">
-				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-			</a>
-			<a href="<%= admin_place_path(@place) %>" class="btn">
-				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
 			</a>
 		</div>
 	<% end -%>
@@ -108,8 +123,8 @@
 	<% end -%>
 	<% if %w(edit update search).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_place_path %>" class="btn">
-				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+			<a href="<%= admin_place_path(@place) %>" class="btn">
+				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
 			</a>
 			<a href="<%= admin_places_path %>" class="btn">
 				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
@@ -128,15 +143,13 @@
 	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
-	<% if %w(edit_map update_map).include?(action_name) -%>
-		<div class="well white-bg">
-			<div class="alert alert-info">
-				<h4 class="alert-heading">小贴士</h4>
-				<ul>
-					<li>只能上传 PNG, JPG, GIF等格式的图片。</li>
-					<li>图片最大限制为：10M。</li>
-				</ul>
-			</div>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="well warning-bg">
+			<ul class="nav nav-list">
+			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+			  <li>地图只能是（jpg，png，gif）等格式的图片。</li>
+			  <li>地图最大小于10M。</li>
+			</ul>
 		</div>
 	<% end -%>
 <% end -%>

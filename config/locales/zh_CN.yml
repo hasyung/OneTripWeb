@@ -184,6 +184,7 @@ zh_CN:
       inclusion: "不包含于列表中"
       exclusion: "是保留关键字"
       invalid: "是无效的"
+      format_invalid: "格式错误"
       confirmation: "与确认值不匹配"
       accepted: "必须是可被接受的"
       empty: "不能留空"
@@ -231,6 +232,7 @@ zh_CN:
       province: "省市"
       place: "景点"
       info: "信息"
+      audio: "音频"
     attributes:
       province:
         name: "名字"
@@ -251,7 +253,21 @@ zh_CN:
         var: "名字"
         value: "内容"
         order: "排序"
+        place_id: "景点"
+        place: "景点"
+      audio:
+        name: "名字"
+        order: "排序"
+        attachment: "文件"
+        category_cd: "类别"
+        place_id: "景点"
+        place: "景点"
+        duration: "时长"
     enums:
+      audio:
+        categories:
+          narrate: "景点解说"
+          story: "有声故事"
       
   helpers:
     select:
@@ -309,6 +325,7 @@ zh_CN:
       edit_info: "修改信息"
       back_place: "返回%{place_name}"
       reset_map: "重新上传地图"
+      tips: "小贴士"
     placeholder:
       search: "搜索%{model}"
     messages:
@@ -365,6 +382,12 @@ zh_CN:
         var: "必填，200个字符以内，并且在同一个景点内必须唯一。"
         value: "必填，100个字符以内。"
         order: "选填，数字越大排序越高，默认为0。"
+      audio:
+        name: "必填，30个字符以内，名字必须唯一。"
+        duration: "必填，格式：00:00:00，中间以半角':'分割。"
+        order: "选填，数字越大排序越高，默认为0。"
+        attachment: "必选，只能选择后缀为mp3格式的音频文件。"
+        category_cd: "必选，选择音频文件的类别。"
     placeholders:
       user:
         login: "用户名"

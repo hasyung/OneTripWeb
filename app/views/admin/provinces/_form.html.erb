@@ -8,39 +8,29 @@
   	<% if %w(edit update).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
-  	<div class="control-group clearfix">
-	  	<div class="form-frame pull-left">
-	  		<%= error_messages_for @province, :class => "control-group alert alert-error fade in", :close => :true %>
-			  <%= f.input :name, :input_html => { :class => "span7" } %>
-			  <% if %w(new create).include?(action_name) %>
-				  <%= f.input :key, :input_html => { :class => "span7" } %>
-			  <% end -%>
-			  <% if %w(edit update).include?(action_name) %>
-				  <%= f.input :key, :input_html => { :class => "span7 disabled", :disabled => true } %>
-			  <% end -%>
-			  <div class="form-actions">
-			    <button type="submit" class="btn btn-primary">
-			    	<i class="icon-save icon-large"></i>
-			    	<% if %w(new create).include?(action_name) %>
-				    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
-			    	<% end -%>
-			    	<% if %w(edit update).include?(action_name) %>
-			    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
-			    	<% end -%>
-			    </button>
-			    <a href="<%= admin_provinces_path %>" class="btn">
-			    	<i class="icon-ban-circle icon-large"></i>
-			    	<b><%= t("helpers.links.cancel") %></b>
-			    </a>
-			  </div>
-		  </div>
-		  <div class="form-sidebar pull-right">
-		  	<div class="alert alert-info">
-				  <strong>注意！</strong>
-				  <%= model_class.human_attribute_name(:name) %>和<%= model_class.human_attribute_name(:key) %>必须唯一。
-				</div>
-		  </div>
-		</div>
+		<%= error_messages_for @province, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.input :name, :input_html => { :class => "span-full" } %>
+	  <% if %w(new create).include?(action_name) %>
+		  <%= f.input :key, :input_html => { :class => "span-full" } %>
+	  <% end -%>
+	  <% if %w(edit update).include?(action_name) %>
+		  <%= f.input :key, :input_html => { :class => "span-full disabled", :disabled => true } %>
+	  <% end -%>
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary">
+	    	<i class="icon-save icon-large"></i>
+	    	<% if %w(new create).include?(action_name) %>
+		    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    	<% if %w(edit update).include?(action_name) %>
+	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    </button>
+	    <a href="<%= admin_provinces_path %>" class="btn">
+	    	<i class="icon-ban-circle icon-large"></i>
+	    	<b><%= t("helpers.links.cancel") %></b>
+	    </a>
+	  </div>
   </fieldset>
 <% end %>
 

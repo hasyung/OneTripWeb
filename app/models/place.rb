@@ -1,7 +1,8 @@
 class Place < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
+  attr_accessible :name, :key, :keywords, :description, :map, :order, :province_id, :map_cache
 
-  attr_accessible :name, :key, :keywords, :description, :map, :order, :province_id
+  # Callbacks
+  before_save :update_map_attributes
 
   # Associations
   belongs_to :province, :counter_cache => true
@@ -9,7 +10,7 @@ class Place < ActiveRecord::Base
   has_many :audios, :dependent => :destroy
 
   # Validates
-  validates :name, :key, :province_id, :presence => true
+  validates :name, :key, :province_id, :map, :presence => true
 	with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
@@ -19,35 +20,32 @@ class Place < ActiveRecord::Base
   	key.validates :key, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   	key.validates :key, :length => { :within => 2..30 }
   end
-  validates_attachment :map, 
-    :size => { :in => 0..5.megabytes.to_i },
-    :content_type => { :content_type => %w(image/jpg image/png image/jpeg image/pjpeg image/gif) }
+  with_options :if => :map? do |map|
+    map.validates :map, :file_size => { :maximum => 10.megabytes.to_i }
+  end
+  with_options :if => :keywords? do |keywords|
+    keywords.validates :keywords, :length => { :within => 2..100 }
+  end
+  with_options :if => :description? do |description|
+    description.validates :description, :length => { :within => 2..1000 }
+  end
+  with_options :if => :order? do |order|
+    order.validates :order, :numericality => 
+      { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 999 }
+  end
 
   # Scopes
   scope :created_desc, order("created_at DESC")
 
-  # Paperclips
-  has_attached_file :map,
-    :styles => {
-      :thumb => "250x141",
-      :small => "400>",
-      :normal => "600>" },
-    :default_style => :normal,
-    :url => "#{APP_CONFIG["upload_url"]}/:class/:attachment/:hashed_path/:id/:style_:hash_name.:extension",
-    :path => "#{APP_CONFIG["upload_path"]}/:class/:attachment/:hashed_path/:id/:style_:hash_name.:extension",
-    :default_url => "default/:class/:style.jpg",
-    :whiny => false
-
+  # Carrierwave
+  mount_uploader :map, MapUploader
+  
   # Methods
-  def to_jq_upload
-    {
-      "id" => read_attribute(:id),
-      "name" => read_attribute(:name),
-      "size" => read_attribute(:map_file_size),
-      "thumbnail_url" => map.url(:thumb),
-      "edit_map_path" => edit_map_admin_place_path(:id => id),
-      "place_path" => admin_place_path(:id => id)
-    }
+  def update_map_attributes
+    if map.present? && map_changed?
+      self.map_size = map.file.size
+      self.map_content_type = map.file.content_type
+    end
   end
 
 end

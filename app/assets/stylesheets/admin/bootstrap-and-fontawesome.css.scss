@@ -7,6 +7,9 @@ $bodyBackground:#EEE;
 .white-bg {
 	@include translucent-background();
 }
+.warning-bg {
+	@include translucent-background($warningBackground);
+}
 .warning {
 	color: $yellow;
 }

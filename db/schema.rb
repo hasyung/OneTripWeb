@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905052703) do
+ActiveRecord::Schema.define(:version => 20120903065247) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -30,9 +30,8 @@ ActiveRecord::Schema.define(:version => 20120905052703) do
     t.integer  "place_id",                               :null => false
     t.string   "name",                                   :null => false
     t.integer  "category_cd",             :default => 0, :null => false
-    t.integer  "duration",                :default => 0
+    t.string   "duration"
     t.string   "attachment"
-    t.string   "attachment_name"
     t.integer  "attachment_size",         :default => 0
     t.string   "attachment_content_type"
     t.integer  "order",                   :default => 0
@@ -54,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20120905052703) do
   create_table "pictures", :force => true do |t|
     t.string   "name",                              :null => false
     t.string   "image"
-    t.string   "image_name"
     t.integer  "image_size",         :default => 0
     t.string   "image_content_type"
     t.datetime "created_at",                        :null => false
@@ -62,23 +60,25 @@ ActiveRecord::Schema.define(:version => 20120905052703) do
   end
 
   create_table "places", :force => true do |t|
-    t.integer  "province_id",                                    :null => false
-    t.string   "name",             :limit => 50,                 :null => false
-    t.string   "key",              :limit => 30,                 :null => false
-    t.integer  "videos_count",                    :default => 0
-    t.integer  "audios_count",                    :default => 0
-    t.integer  "articles_count",                  :default => 0
-    t.integer  "infos_count",                     :default => 0
+    t.integer  "province_id",                                     :null => false
+    t.string   "name",             :limit => 50,                  :null => false
+    t.string   "key",              :limit => 30,                  :null => false
+    t.integer  "videos_count",                     :default => 0
+    t.integer  "audios_count",                     :default => 0
+    t.integer  "articles_count",                   :default => 0
+    t.integer  "infos_count",                      :default => 0
     t.string   "keywords",         :limit => 100
-    t.string   "description",      :limit => 100
-    t.integer  "order",                           :default => 0
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "map_file_name"
+    t.string   "description",      :limit => 1000
+    t.string   "map",                                             :null => false
+    t.integer  "map_size",                         :default => 0
     t.string   "map_content_type"
-    t.integer  "map_file_size"
-    t.datetime "map_updated_at"
+    t.integer  "order",                            :default => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
+
+  add_index "places", ["key"], :name => "index_places_on_key", :unique => true
+  add_index "places", ["name"], :name => "index_places_on_name", :unique => true
 
   create_table "provinces", :force => true do |t|
     t.string   "name",         :limit => 30,                :null => false
@@ -124,13 +124,11 @@ ActiveRecord::Schema.define(:version => 20120905052703) do
     t.integer  "place_id",                               :null => false
     t.string   "name",                                   :null => false
     t.integer  "category_cd",             :default => 0, :null => false
-    t.integer  "duration",                :default => 0
+    t.string   "duration"
     t.string   "attachment"
-    t.string   "attachment_name"
     t.integer  "attachment_size",         :default => 0
     t.string   "attachment_content_type"
     t.string   "cover"
-    t.string   "cover_name"
     t.integer  "cover_size",              :default => 0
     t.string   "cover_content_type"
     t.integer  "order",                   :default => 0
