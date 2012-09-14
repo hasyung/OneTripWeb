@@ -218,10 +218,25 @@
 			var self = this;
 
 			// Wrap the <li> contents in a <div>
-			var listItem = "<li><div>";
+			var listItem = "<li><div class=\"jp-playlist-item-frame\">";
 
 			// Create remove control
 			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.removeItemClass + "'>&times;</a>";
+
+			if(media.edit_url || media.delete_url) {
+				listItem += "<span class='" + this.options.playlistOptions.freeGroupClass + "'>";
+				if (media.edit_url) {
+					listItem += "<a href='" + media.edit_url + "'>";
+					listItem += "<i class='icon-edit icon-large'></i>";
+					listItem += "</a>";
+				}
+				if (media.delete_url) {
+					listItem += "<a href='" + media.delete_url + "' data-method='delete' data-confirm='你确定要删除吗？'>";
+					listItem += "<i class='icon-trash icon-large'></i>";
+					listItem += "</a>";
+				}
+				listItem += "</span>";
+			}
 
 			// Create links to free media
 			if(media.free) {

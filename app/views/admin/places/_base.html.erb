@@ -39,7 +39,9 @@
 								{
 								<%= "title: '#{audio.name}'," %>
 								<%= "artist: '#{audio.duration}'," %>
-								<%= "mp3: '#{audio.attachment.url}'" %>
+								<%= "mp3: '#{audio.attachment.url}'," %>
+								<%= "delete_url: '#{admin_place_audio_path(audio.place_id, audio)}'," %>
+								<%= "edit_url: '#{edit_admin_place_audio_path(audio.place_id, audio)}'" %>
 								}<%= "," if i != @narrates.count - 1 %>
 							<% end -%>
 						<% end -%>
