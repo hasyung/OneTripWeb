@@ -1,5 +1,5 @@
 <li class="span3 video_<%= video.id %>">
-	<a href="<%= admin_place_video_path(video.place_id, video) %>" class="thumbnail">
+	<a href="<%= edit_admin_place_video_path(video.place_id, video) %>" class="thumbnail">
 		<%= image_tag video.cover.url(:thumb) %>
 		<span class="name"><%= video.name %></span>
 	</a>
