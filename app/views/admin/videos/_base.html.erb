@@ -1,4 +1,4 @@
-<%- model_class = Audio -%>
+<%- model_class = Video -%>
 
 <%= content_for :title do -%>
 	<% if %w(new create).include?(action_name) -%>
@@ -51,8 +51,10 @@
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-			  <li>音频文件只能是（mp3）等格式的。</li>
-			  <li>音频文件不得大于10M。</li>
+			  <li>视频文件只能是（mp4）格式的。</li>
+			  <li>视频文件不得大于100M。</li>
+     <li>视频封面只能是（jpg，png，gif）等格式的图片。</li>
+			  <li>视频封面不得大于10M。</li>
 			</ul>
 		</div>
 	<% end -%>

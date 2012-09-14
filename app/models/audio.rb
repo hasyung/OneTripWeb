@@ -4,6 +4,9 @@ class Audio < ActiveRecord::Base
   # Associations
   belongs_to :place, :counter_cache => true
 
+  # Callbacks
+  before_save :update_audio_attributes
+  
   #SimpleEnum
   as_enum :category, { :narrate => 0, :story => 1 }
 
@@ -31,4 +34,10 @@ class Audio < ActiveRecord::Base
   # Scopes
   scope :narrates, where(:category_cd => :narrate).order("`order` DESC")
 
+  def update_audio_attributes
+    if attachment.present? && attachment_changed?
+      self.attachment_size = attachment.file.size
+      self.attachment_content_type = attachment.file.content_type
+    end
+  end
 end

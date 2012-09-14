@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class VideoUploader < CarrierWave::Uploader::Base
+class VideoCoverUploader < CarrierWave::Uploader::Base
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   
   include CarrierWave::MiniMagick
@@ -11,11 +11,22 @@ class VideoUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}"
   end
+  
+   def default_url
+    asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  end
 
   process :set_content_type
 
+  version :default do
+  end
+  
+  version :thumb do
+    process :resize_to_limit => [250, 150]
+  end
+
   def extension_white_list
-    %w(mp4)
+    %w(jpg jpeg gif png)
   end
 
   def filename

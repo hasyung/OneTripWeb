@@ -6,7 +6,13 @@
 	</div>
 </fieldset>
 <fieldset id="video">
-	<legend><%= t("helpers.links.video") %></legend>
+<legend><%= t("helpers.links.video") %></legend>
+  <% if @videos.blank? -%>
+  <% else -%>
+    <% @videos.each do |video| -%>
+      <%= render :partial => video %>
+    <% end -%>
+  <% end -%>
 </fieldset>
 <fieldset id="audio">
 	<legend><%= t("helpers.links.audio") %></legend>

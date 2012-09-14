@@ -233,6 +233,7 @@ zh_CN:
       place: "景点"
       info: "信息"
       audio: "音频"
+      video: "视频"
     attributes:
       province:
         name: "名字"
@@ -263,6 +264,15 @@ zh_CN:
         place_id: "景点"
         place: "景点"
         duration: "时长"
+      video:
+        name: "名字 "
+        order: "排序"
+        attachment: "文件"
+        category_cd: "类别"
+        place_id: "景点"
+        place: "景点"
+        duration: "时长"
+        cover: "封面"
     enums:
       audio:
         categories:

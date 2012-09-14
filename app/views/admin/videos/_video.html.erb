@@ -1,0 +1,18 @@
+<li class="span3 video_<%= video.id %>">
+	<a href="<%= admin_place_video_path(video.place_id, video) %>" class="thumbnail">
+		<%= image_tag video.cover.url(:thumb) %>
+		<span class="name"><%= video.name %></span>
+	</a>
+	<div class="other">
+		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+      edit_admin_place_video_path(video.place_id, video), 
+      :title => t("helpers.links.edit"),
+      :rel => :tooltip %>
+    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+      admin_place_video_path(video.place_id, video),
+      :method => :delete,
+      :title => t("helpers.links.destroy"),
+      :data => { :confirm => t("helpers.messages.confirm") },
+      :rel => :tooltip %>
+	</div>
+</li>

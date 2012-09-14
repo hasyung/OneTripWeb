@@ -8,10 +8,11 @@ class Place < ActiveRecord::Base
   belongs_to :province, :counter_cache => true
   has_many :infos, :dependent => :destroy
   has_many :audios, :dependent => :destroy
+  has_many :videos, :dependent => :destroy
 
   # Validates
   validates :name, :key, :province_id, :map, :presence => true
-	with_options :if => :name? do |name|
+	 with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
   end
