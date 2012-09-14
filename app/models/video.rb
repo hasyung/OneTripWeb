@@ -4,6 +4,9 @@ class Video < ActiveRecord::Base
   # Associations
   belongs_to :place, :counter_cache => true
 
+   #SimpleEnum
+  as_enum :category, { :impression => 0, :route => 1 }
+  
   # Validates
   validates :name, :place_id, :category_cd, :attachment, :duration, :presence => true
 	with_options :if => :name? do |name|
@@ -27,9 +30,10 @@ class Video < ActiveRecord::Base
   end
 
   # Carrierwave
-  mount_uploader :attachment, AudioUploader
+  mount_uploader :attachment, VideoUploader
 
   # Scopes
-  scope :order_desc, order("`order` DESC")
+  scope :impressions, where(:category_cd => :impression).order("`order` DESC")
+  scope :routes, where(:category_cd => :route).order("`order` DESC")
 
 end

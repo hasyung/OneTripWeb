@@ -268,6 +268,10 @@ zh_CN:
         categories:
           narrate: "景点解说"
           story: "有声故事"
+      video:
+        categories:
+          impression: "初识映像"
+          route: "旅游线路"
       
   helpers:
     select:
