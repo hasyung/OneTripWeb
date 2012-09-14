@@ -1,11 +1,32 @@
 <%- model_class = Info -%>
 
-<%= simple_form_for [:admin, @place, @info], :remote => true do |f| %>
-  <fieldset>
-		<%= error_messages_for @info, :class => "control-group alert alert-error fade in", :close => :true %>
+<%= simple_form_for [:admin, @place, @info] do |f| %>
+  	<fieldset>
+  	<% if %w(new create).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+  	<% if %w(edit update).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+  	<%= error_messages_for @info, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :var, :input_html => { :class => "span-full" } %>
 	  <%= f.input :value, :as => :text, :input_html => { :class => "span-full" } %>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
-  </fieldset>
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary">
+	    	<i class="icon-save icon-large"></i>
+	    	<% if %w(new create).include?(action_name) %>
+		    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    	<% if %w(edit update).include?(action_name) %>
+	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    </button>
+	    <a href="<%= admin_places_path %>" class="btn">
+	    	<i class="icon-ban-circle icon-large"></i>
+	    	<b><%= t("helpers.links.cancel") %></b>
+	    </a>
+	  </div>
+	</fieldset>
 <% end %>
 

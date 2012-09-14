@@ -5,12 +5,10 @@
 		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
       edit_admin_place_info_path(info.place_id, info), 
       :title => t("helpers.links.edit"),
-      :remote => true,
       :rel => :tooltip %>
     <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
       admin_place_info_path(info.place_id, info),
       :method => :delete,
-      :remote => true,
       :title => t("helpers.links.destroy"),
       :data => { :confirm => t("helpers.messages.confirm") },
       :rel => :tooltip %>

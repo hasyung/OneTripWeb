@@ -3,48 +3,42 @@ class Admin::InfosController < Admin::ApplicationController
 	before_filter :get_place
 
 	def new
-		@info = Info.new
+		 @info = Info.new
 	end
 
 	def create
-		@info = Info.new params[:info]
-		@info.place = @place
-		if @info.save
-			respond_to do |format|
-				format.js
-			end
-		else
-			respond_to do |format|
-				format.js
-			end
-		end
+			@info = @place.infos.new params[:info]
+		 if @info.save
+			  redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Info.model_name.human)
+		 else
+			  render :new
+		 end
 	end
 
 	def edit
-		@info = Info.find params[:id]
+		 @info = @place.infos.find params[:id]
 	end
 
 	def update
-		@info = Info.find params[:id]
-    if @info.update_attributes params[:info]
-    	respond_to do |format|
-	      format.js
-	    end
-    else
-    	respond_to do |format|
-	      format.js
-	    end
-    end
+	  @info = @place.infos.find params[:id]
+   if @info.update_attributes params[:place]
+     redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Info.model_name.human)
+   else
+     render :edit
+   end
 	end
 
 	def destroy
-		@info = Info.find params[:id]
-    @info.destroy
+		 @info = @place.infos.find params[:id]
+		 if @info.destroy
+			  redirect_to admin_place_url(@place), :notice => t("helpers.messages.destroy", :model_name => Info.model_name.human)
+		 else
+			  redirect_to admin_place_url(@place), :alert => t("helpers.messages.error")
+		 end
 	end
 
 	private
 	def get_place
-		@place = Place.find params[:place_id]
+		 @place = Place.find params[:place_id]
 	end
-
 end

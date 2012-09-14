@@ -1,0 +1,48 @@
+<%- model_class = Info -%>
+
+<%= content_for :title do -%>
+	<% if %w(new create).include?(action_name) -%>
+		<%= t("helpers.submit.create", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
+	<% end -%>
+<% end -%>
+
+<%= content_for :sitemaps do -%>
+	<a href="<%= admin_places_path %>"><%= model_class.model_name.human %></a>
+	<span class="divider">/</span>
+	<a href="<%= admin_place_path(@place) %>"><%= @place.name %></a>
+	<span class="divider">/</span>
+	<% if %w(new create).include?(action_name) -%>
+		<span class="active"><%= t("helpers.submit.create", :model => model_class.model_name.human) %></span>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.edit") %></span>
+	<% end -%>
+<% end -%>
+
+<%= content_for :toolbar do -%>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="btn-group">
+			<a href="<%= admin_place_path(@place) %>" class="btn">
+				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
+			</a>
+			<a href="<%= admin_places_path %>" class="btn">
+				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+			</a>
+		</div>
+	<% end -%>
+	<div class="btn-group pull-right">
+		<div class="controls pagination-right search">
+	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
+	      <div class="input-append">
+	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => Place.model_name.human) %>
+	        <button type="submit" class="btn"><i class="icon-search"></i></button>
+	      </div>
+	    <% end -%>
+	  </div>
+	</div>
+<% end -%>

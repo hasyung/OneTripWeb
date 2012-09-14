@@ -10,6 +10,9 @@ class Info < ActiveRecord::Base
     var.validates :var, :length => { :within => 2..30 }
     var.validates :var, :uniqueness => { :scope => :place_id }
   end
+  with_options :if => :value? do |value|
+    value.validates :value, :length => { :within => 2..1000 }
+  end
   with_options :if => :order? do |order|
   	order.validates :order, :numericality => 
   		{ :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 999 }

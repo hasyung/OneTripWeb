@@ -15,8 +15,8 @@ development:
   database: OneTripWeb_development
   pool: 5
   username: root
-  password: '123123'
-  socket: /tmp/mysql.sock
+  password: 'yhQ7871465'
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,8 +28,8 @@ test:
   database: OneTripWeb_test
   pool: 5
   username: root
-  password: '123123'
-  socket: /tmp/mysql.sock
+  password: 'yhQ7871465'
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
@@ -38,5 +38,5 @@ production:
   database: OneTripWeb_production
   pool: 5
   username: root
-  password: '123123'
-  socket: /tmp/mysql.sock
+  password: 'yhQ7871465'
+  socket: /var/run/mysqld/mysqld.sock
