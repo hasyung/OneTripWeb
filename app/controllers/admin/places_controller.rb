@@ -7,7 +7,7 @@ class Admin::PlacesController < Admin::ApplicationController
 	def show
 		@place = Place.find params[:id]
 		@infos = @place.infos.order_desc.created_desc
-		@narrates = @place.audios.narrates
+		@narrates = @place.audios.narrates.created_desc
   @videos = @place.videos.order_desc
 	end
 

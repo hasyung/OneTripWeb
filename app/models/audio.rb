@@ -33,6 +33,7 @@ class Audio < ActiveRecord::Base
 
   # Scopes
   scope :narrates, where(:category_cd => :narrate).order("`order` DESC")
+  scope :created_desc, order("created_at DESC")
 
   def update_audio_attributes
     if attachment.present? && attachment_changed?
