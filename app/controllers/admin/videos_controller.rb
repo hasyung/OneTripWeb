@@ -21,7 +21,7 @@ class Admin::VideosController < Admin::ApplicationController
 
 	def update
 	  @video = @place.videos.find params[:id]
-   if @video.update_attributes params[:place]
+   if @video.update_attributes params[:video]
      redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Video.model_name.human)
    else
      render :edit

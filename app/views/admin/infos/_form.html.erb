@@ -1,6 +1,6 @@
 <%- model_class = Info -%>
 
-<%= simple_form_for [:admin, @place, @video] do |f| %>
+<%= simple_form_for [:admin, @place, @info] do |f| %>
   	<fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>

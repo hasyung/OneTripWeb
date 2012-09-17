@@ -21,7 +21,7 @@ class Admin::AudiosController < Admin::ApplicationController
 
 	def update
 		@audio = @place.audios.find params[:id]
-    if @audio.update_attributes params[:place]
+    if @audio.update_attributes params[:audio]
     	redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Audio.model_name.human)
     else
     	render :edit

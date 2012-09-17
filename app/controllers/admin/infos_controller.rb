@@ -21,7 +21,7 @@ class Admin::InfosController < Admin::ApplicationController
 
 	def update
 	  @info = @place.infos.find params[:id]
-   if @info.update_attributes params[:place]
+   if @info.update_attributes params[:info]
      redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Info.model_name.human)
    else
      render :edit
