@@ -45,5 +45,15 @@ class Admin::PlacesController < Admin::ApplicationController
       redirect_to :admin_places, :alert => t("helpers.messages.error")
     end
 	end
+  
+ def search
+		 if params[:place][:name].blank?
+			  redirect_to :admin_places, :alert => t("helpers.messages.search_error")
+			  return
+		 else
+		   @places = Place.search_name(params[:place][:name]).page(params[:page]).per(Setting.admin_PageSize)
+		 end
+   render :index
+	end
 
 end

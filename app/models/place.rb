@@ -37,6 +37,7 @@ class Place < ActiveRecord::Base
 
   # Scopes
   scope :created_desc, order("created_at DESC")
+  scope :search_name, lambda { |name| where("ucase(`places`.`name`) like concat('%',ucase(?),'%')", name) }
 
   # Carrierwave
   mount_uploader :map, MapUploader

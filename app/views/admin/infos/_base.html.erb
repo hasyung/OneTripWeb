@@ -35,14 +35,4 @@
 			</a>
 		</div>
 	<% end -%>
-	<div class="btn-group pull-right">
-		<div class="controls pagination-right search">
-	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
-	      <div class="input-append">
-	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => Place.model_name.human) %>
-	        <button type="submit" class="btn"><i class="icon-search"></i></button>
-	      </div>
-	    <% end -%>
-	  </div>
-	</div>
 <% end -%>

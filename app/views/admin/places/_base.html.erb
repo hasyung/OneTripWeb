@@ -18,7 +18,7 @@
 	<% end -%>
 
 	<% if %w(search).include?(action_name) -%>
-		<%= t("helpers.links.search") %>
+		<%= t("helpers.links.search", :model => model_class.model_name.human) %>
 	<% end -%>
 <% end -%>
 
@@ -72,7 +72,7 @@
 	<% end -%>
 
 	<% if %w(search).include?(action_name) -%>
-		<span class="active"><%= t("helpers.links.search") %></span>
+		<span class="active"><%= t("helpers.links.search", :model => model_class.model_name.human) %></span>
 	<% end -%>
 
 	<% if %w(edit_map update_map).include?(action_name) -%>
@@ -83,7 +83,7 @@
 <% end -%>
 
 <%= content_for :toolbar do -%>
-	<% if %w(index).include?(action_name) -%>
+	<% if %w(index search).include?(action_name) -%>
 		<div class="btn-group">
 			<a href="<%= new_admin_place_path %>" class="btn">
 				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
@@ -123,7 +123,7 @@
 			</a>
 		</div>
 	<% end -%>
-	<% if %w(edit update search).include?(action_name) -%>
+	<% if %w(edit update).include?(action_name) -%>
 		<div class="btn-group">
 			<a href="<%= admin_place_path(@place) %>" class="btn">
 				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
@@ -137,7 +137,7 @@
 		<div class="controls pagination-right search">
 	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
 	      <div class="input-append">
-	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
+	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
 	        <button type="submit" class="btn"><i class="icon-search"></i></button>
 	      </div>
 	    <% end -%>
