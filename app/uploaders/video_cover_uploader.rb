@@ -17,9 +17,6 @@ class VideoCoverUploader < CarrierWave::Uploader::Base
   end
 
   process :set_content_type
-
-  version :default do
-  end
   
   version :thumb do
     process :resize_to_limit => [250, 150]
