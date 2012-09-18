@@ -26,6 +26,7 @@ OneTripWeb::Application.routes.draw do
       resources :audios
       resources :articles
     end
+    resources :pictures
   end
   
 end

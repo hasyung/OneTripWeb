@@ -98,6 +98,9 @@ abbr {
   textarea {
   	height: 80px;
   }
+  textarea[name*="body"] {
+		height: 400px;
+	}
 }
 
 /* 按钮 */
@@ -426,5 +429,151 @@ abbr {
 				color: #9d261d;
 			}
 		}
+	}
+}
+
+#upload-modal {
+	.fileupload-buttonbar {
+		margin-left: 0;
+		.span7 {
+			margin-left: 0;
+			width: 100%;
+			float: none;
+		}
+		.fileupload-progress {
+			display: none;
+		}
+	}
+	#picture-files {
+		margin-top: 20px;
+		@media (min-width: 1200px) {
+			.thumbnails {
+				margin-left: -20px;
+				& > li {
+					margin-left: 20px;
+				}
+			}
+		}
+		li {
+			width: 163px;
+			position: relative;
+			.preview {
+				border: 1px solid #ccc;
+				padding: 2px;
+				width: 157px;
+				height: 115px;
+				position: relative;
+				span {
+					display: block;
+					height: 115px;
+					text-align: center;
+					line-height: 115px;
+				}
+				canvas {
+					max-height: 115px;
+					max-width: 157px;
+					margin-left: auto;
+					margin-right: auto;
+					vertical-align:middle;
+				}
+				.progress {
+					position: absolute;
+					width: 150px;
+					margin-bottom: 0;
+					top: 51.5px;
+					left: 6.5px;
+				}
+			}
+			.size {
+				display: block;
+				text-align: center;
+				margin-top: 5px;
+			}
+			.error, .error-alert, .success {
+				position: absolute;
+				text-align: center;
+				top: 51.5px;
+				width: 163px;
+			}
+			.error-alert {
+				color: #9d261d;
+				top: 39px;
+				i {
+					font-size: 90px;
+				}
+			}
+			.success {
+				top: 39px;
+				i {
+					font-size: 90px;
+				}
+			}
+		}
+	}
+}
+
+#pictures-files {
+	@media (min-width: 1200px) {
+		.thumbnails {
+			margin-left: -20px;
+			& > li {
+				margin-left: 20px;
+			}
+		}
+	}
+	li {
+		width: 163px;
+	}
+	.image-box {
+		width: 151px;
+	}
+	.selected {
+		border: 1px solid #049cdb;
+  	background: #d9edf7;
+  	box-shadow: 0 1px 5px rgba(217, 237, 247, 0.5), 0 0 50px rgba(0, 0, 0, 0.1) inset;
+	}
+	.name {
+		display: block;
+		overflow: hidden;
+		margin-top: 5px;
+		text-align: center;
+	}
+}
+fieldset#info {
+	.actions {
+		padding-left: 5px;
+		display: inline-block;
+		height: 18px;
+		line-height: 15px;
+		a {
+			color: #ccc;
+			text-decoration: none;
+			i {
+				font-size: 10px;
+			}
+		}
+	}
+}
+fieldset#article {
+	h4 {
+		color: #999;
+	}
+	.actions {
+		padding-left: 5px;
+		display: inline-block;
+		height: 18px;
+		line-height: 15px;
+		a {
+			color: #ccc;
+			text-decoration: none;
+			i {
+				font-size: 10px;
+			}
+		}
+	}
+}
+fieldset {
+	.control-group {
+		padding: 0 10px;
 	}
 }

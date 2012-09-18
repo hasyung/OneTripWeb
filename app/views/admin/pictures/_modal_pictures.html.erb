@@ -1,0 +1,22 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active">
+    	<a href="javascript:void(null);" data-toggle="tab" data-target="#pictures">
+	    	<%= t("helpers.links.list") %>
+	    </a>
+	  </li>
+    <li>
+    	<a href="javascript:void(null);" data-toggle="tab" data-target="#upload">
+    		<%= t("helpers.links.upload") %>
+    	</a>
+    </li>
+  </ul>
+  <div class="tab-content form-horizontal">
+    <div class="tab-pane active" id="pictures">
+      <%= render "admin/pictures/pictures" %>
+    </div>
+    <div class="tab-pane" id="upload">
+    	<%= render "admin/pictures/form" %>
+    </div>
+  </div>
+</div>

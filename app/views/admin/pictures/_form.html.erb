@@ -1,0 +1,33 @@
+
+<%= simple_form_for [:admin, @picture], 
+  :html => { :multipart => true, :id => "pictures-fileupload", :class => "form-horizontal"  } do |f| %>
+  <div class="alert alert-info">
+    <a class="close" data-dismiss="alert">×</a>
+    只能上传(jpg，png，gif)等格式的图片，最大不能超过10M。
+  </div>
+  <div class="row fileupload-buttonbar">
+    <div class="span7">
+      <span class="btn btn-success fileinput-button">
+        <i class="icon-plus icon-white icon-large"></i>
+        <b><%= t("fileupload.links.add") %></b>
+        <%= f.file_field :image %>
+      </span>
+      <button type="submit" class="btn btn-primary start">
+        <i class="icon-upload icon-white icon-large"></i>
+        <b><%= t("fileupload.links.start_all") %></b>
+      </button>
+    </div>
+    <div class="span5 fileupload-progress fade">
+      <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <div class="bar" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fileupload-loading"></div>
+  <div id="picture-files">
+    <ul class="files thumbnails"></ul>
+  </div>
+<% end %>
+
+<%= render "template-upload" %>
+<%= render "template-download" %>
