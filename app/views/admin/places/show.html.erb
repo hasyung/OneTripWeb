@@ -7,17 +7,19 @@
 </fieldset>
 <fieldset id="video">
 <legend><%= t("helpers.links.video") %></legend>
-  <% if @videos.blank? -%>
-  <% else -%>
-    <%= render :partial => "admin/videos/video", :object => @videos %>
-  <% end -%>
+  <div class="control-group">
+    <% if !@videos.blank? -%>
+      <%= render :partial => "admin/videos/videos", :object => @videos %>
+    <% end -%>
+  </div>
 </fieldset>
 <fieldset id="audio">
 	<legend><%= t("helpers.links.audio") %></legend>
-  <% if @narrates.blank? %>
-  <% else -%>
-    <%= render :partial => "admin/audios/audio", :object => @narrates %>
-  <% end -%>
+  <div class="control-group">
+    <% if !@narrates.blank? %>
+      <%= render :partial => "admin/audios/audio", :object => @narrates %>
+    <% end -%>
+  </div>
 </fieldset>
 <fieldset id="article">
 	<legend><%= t("helpers.links.article") %></legend>

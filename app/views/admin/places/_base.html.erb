@@ -26,30 +26,28 @@
 	<% if %w(show).include?(action_name) -%>
 		<script type="text/javascript">
 			$(document).ready(function() {
-        
-    <% if !@videos.blank? -%>
-					 <% @videos.each do |video| -%>
-       $("#jquery_jplayer_video_<%= video.id %>").jPlayer({
-				     ready: function () {
+    		<% if !@videos.blank? -%>
+					<% @videos.each do |video| -%>
+       			$("#jquery_jplayer_video_<%= video.id %>").jPlayer({
+				     	ready: function () {
 				  	    $(this).jPlayer("setMedia", {
-            <%= " m4v: '#{video.attachment.url}'," %>
-            <%= "poster:'#{video.cover.url(:thumb)}'," %>
-            <%= "artist:'#{video.duration}'" %>
-				             	});
-				         },
-			    	swfPath: "/assets/admin",
-			    	supplied: "m4v,ogv",
-			    	preload:"none",
-			    	solution:"flash,html",
-			    	wmode:"window",
-			    	size: {
-			    		width: "250px",
-			    		height: "150px"
-			        	},
-			    	cssSelectorAncestor: "#jp_container_video_<%= video.id %>"
-			     });
-   <% end -%>
-  <% end -%>
+            			<%= "m4v: '#{video.attachment.url}'," %>
+            			<%= "poster:'#{video.cover.url(:thumb)}'" %>
+				        });
+				      },
+			    		swfPath: "/assets/jPlayer",
+			    		supplied: "m4v,ogv",
+			    		preload:"none",
+			    		solution:"flash, html",
+			    		wmode:"window",
+			    		size: {
+			    			width: "250px",
+			    			height: "150px"
+			        },
+			    		cssSelectorAncestor: "#jp_container_video_<%= video.id %>"
+			     	});
+			    <% end -%>
+			  <% end -%>
 				new jPlayerPlaylist({
 					jPlayer: "#jquery_jplayer_narrate",
 					cssSelectorAncestor: "#jp_container_narrate",
