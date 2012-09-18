@@ -1,0 +1,49 @@
+<%- model_class = Article -%>
+
+<%= simple_form_for [:admin, @place, @article] do |f| %>
+	<fieldset>
+  	<% if %w(new create).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+  	<% if %w(edit update).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+  	<%= error_messages_for @article, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.input :title, :input_html => { :class => "span-full" } %>
+	  <%= f.input :category_cd do %>
+	  	<%= f.select :category_cd, model_class.categories_for_select(:value) %>
+	  <% end -%>
+	  <%= f.input :author, :input_html => { :class => "span3" } %>
+	  <%= f.input :body, :as => :text, :input_html => { :class => "span-full" } %>
+	  <%= f.input :keywords, :input_html => { :class => "span-full" } %>
+	   <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
+	  <%= f.input :order, :input_html => { :class => "span1" } %>
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary">
+	    	<i class="icon-save icon-large"></i>
+	    	<% if %w(new create).include?(action_name) %>
+		    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    	<% if %w(edit update).include?(action_name) %>
+	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    </button>
+	    <a href="<%= admin_place_path(@place) %>" class="btn">
+	    	<i class="icon-ban-circle icon-large"></i>
+	    	<b><%= t("helpers.links.cancel") %></b>
+	    </a>
+	  </div>
+	</fieldset>
+<% end %>
+<div id="upload-modal" class="modal fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3></h3>
+	</div>
+	<div class="modal-body">
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(null);" class="btn" data-dismiss="modal"><%= t("helpers.links.close") %></a>
+	</div>
+</div>
+

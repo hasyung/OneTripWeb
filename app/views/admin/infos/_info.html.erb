@@ -1,16 +1,17 @@
 <li class="info_<%= info.id %>">
-	<div class="var"><%= info.var %></div>
-	<div class="value"><%= info.value %></div>
-	<span class="actions">
-		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-      edit_admin_place_info_path(info.place_id, info), 
-      :title => t("helpers.links.edit"),
-      :rel => :tooltip %>
-    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-      admin_place_info_path(info.place_id, info),
-      :method => :delete,
-      :title => t("helpers.links.destroy"),
-      :data => { :confirm => t("helpers.messages.confirm") },
-      :rel => :tooltip %>
-	</span>
+	<div class="var"><%= info.var %>
+  	<span class="actions">
+  		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+        edit_admin_place_info_path(info.place_id, info), 
+        :title => t("helpers.links.edit"),
+        :rel => :tooltip %>
+      <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+        admin_place_info_path(info.place_id, info),
+        :method => :delete,
+        :title => t("helpers.links.destroy"),
+        :data => { :confirm => t("helpers.messages.confirm") },
+        :rel => :tooltip %>
+  	</span>
+  </div>
+  <div class="value"><%= info.value %></div>
 </li>

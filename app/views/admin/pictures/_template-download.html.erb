@@ -1,0 +1,24 @@
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+  <li class="box template-download fade">
+    <div class="preview">
+      {% if (file.thumbnail_url) { %}
+        <img src="{%=file.thumbnail_url%}">
+      {% } %}
+      {% if (file.url) { %}
+        <input id="photo_" name="photo" type="hidden" value="{%=file.url%}" />
+      {% } %}
+    </div>
+    <span class="size">{%=o.formatFileSize(file.size)%}</span>
+    {% if (file.error) { %}
+      <div class="error-alert">
+        <i class="icon-remove"></i>
+      </div>
+    {% } else { %}
+      <div class="success">
+        <i class="icon-ok"></i>
+      </div>
+    {% } %}
+  </li>
+{% } %}
+</script>

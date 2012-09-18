@@ -234,6 +234,8 @@ zh_CN:
       info: "信息"
       audio: "音频"
       video: "视频"
+      article: "文章"
+      picture: "图片"
     attributes:
       province:
         name: "名字"
@@ -273,6 +275,14 @@ zh_CN:
         place: "景点"
         duration: "时长"
         cover: "封面"
+      article:
+        title: "标题"
+        body: "内容"
+        keywords: "关键字"
+        description: "描述"
+        author: "作者"
+        category_cd: "类别"
+        order: "排序"
     enums:
       audio:
         categories:
@@ -282,6 +292,10 @@ zh_CN:
         categories:
           impression: "初识映像"
           route: "旅游线路"
+      article:
+        categories:
+          travels: "游记攻略"
+          recommend: "壹推荐"
       
   helpers:
     select:
@@ -390,7 +404,7 @@ zh_CN:
         key: "必填，生成唯一网址，30个字符以内，只能是A-Z，0-9和空格字符组成，名字必须唯一。"
         province: "必选，选择隶属于的省市。"
         keywords: "选填，SEO优化，100个字符以内。"
-        description: "选填，SEO优化，100个字符以内。"
+        description: "选填，1000个字符以内。"
         map: "必填，上传一张图片。"
       info:
         var: "必填，200个字符以内，并且在同一个景点内必须唯一。"
@@ -402,6 +416,14 @@ zh_CN:
         order: "选填，数字越大排序越高，默认为0。"
         attachment: "必选，只能选择后缀为mp3格式的音频文件。"
         category_cd: "必选，选择音频文件的类别。"
+      article:
+        title: "必填，200个字符以内，名字必须唯一。"
+        body: "必填，5000个字符以内。"
+        keywords: "选填，SEO优化，100个字符以内。"
+        description: "选填，1000个字符以内。"
+        author: "必填，500个字符以内。"
+        category_cd: "必选，选择文章的类别。"
+        order: "选填，数字越大排序越高，默认为0。"
     placeholders:
       user:
         login: "用户名"

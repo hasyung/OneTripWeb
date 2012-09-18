@@ -1,0 +1,16 @@
+<div id="pictures-files">
+	<ul class="files thumbnails">
+		<% @pictures.each do |picture| -%>
+			<li class="box">
+			  <div class="image-box">
+			    <div class="preview">
+			        <%= image_tag picture.image.thumb_small %>
+			        <input class="image-thumb" type="hidden" value="<%= picture.image.default.url %>" />
+			    </div>
+			  </div>
+			  <span class="name"><%= picture.name %></span>
+			</li>
+		<% end -%>
+	</ul>
+</div>
+<%= paginate @pictures, :theme => "admin", :remote => true %>

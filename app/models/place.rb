@@ -9,6 +9,8 @@ class Place < ActiveRecord::Base
   has_many :infos, :dependent => :destroy
   has_many :audios, :dependent => :destroy
   has_many :videos, :dependent => :destroy
+  has_many :articles, :dependent => :destroy
+
 
   # Validates
   validates :name, :key, :province_id, :map, :presence => true

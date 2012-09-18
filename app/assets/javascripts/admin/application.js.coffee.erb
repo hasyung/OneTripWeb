@@ -28,3 +28,34 @@ $ ->
 		()=> $("#ajax-form form").submit()
 	)
 
+	$("form textarea[name*=body]").redactor
+		autoresize: false
+		lang: 'zh_cn'
+		buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',
+							'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+							'image', 'table', 'link', '|',
+							'fontcolor', 'backcolor', '|', 
+							'alignleft', 'aligncenter', 'alignright', 'justify', '|',
+							'horizontalrule'
+						]
+		buttonsCustom: 
+			image: 
+				title: '图片'
+				callback: (obj, event, key)->
+					$.get("/admin/pictures/new")
+					return
+
+	$("#upload-modal")
+		.find("#pictures")
+			.find("li.box .image-box").live "click",
+				()-> $(this).toggleClass("selected")
+			.end()
+		.end()
+		.find(".modal-footer a.insert").live "click",
+			()->
+				$.utility.insertImageToTextarea($("#article_body")) 
+				$("#upload-modal").modal("hide")
+				return
+
+	return
+

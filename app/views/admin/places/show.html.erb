@@ -21,6 +21,22 @@
 </fieldset>
 <fieldset id="article">
 	<legend><%= t("helpers.links.article") %></legend>
+  <% if !@article_travels.blank? %>
+    <div class="control-group">
+      <h4><%= t("activerecord.enums.article.categories.travels") %></h4>
+      <% @article_travels.each do |article| -%>
+        <%= render :partial => "admin/articles/article", :object => article %>
+      <% end -%>
+    </div>
+  <% end -%>
+  <% if !@article_recommends.blank? %>
+    <div class="control-group">
+      <h4><%= t("activerecord.enums.article.categories.recommend") %></h4>
+      <% @article_recommends.each do |article| -%>
+        <%= render :partial => "admin/articles/article", :object => article %>
+      <% end -%>
+    </div>
+  <% end -%>
 </fieldset>
 <fieldset id="info">
 	<legend><%= t("helpers.links.info") %></legend>

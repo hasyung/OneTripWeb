@@ -1,0 +1,27 @@
+$("#upload-modal")
+	.find(".modal-header h3")
+		.empty()
+		.append('<%= t("helpers.submit.create", :model => Picture.model_name.human) %>')
+	.end()
+	.find(".modal-body")
+		.empty()
+		.append('<%= j(render("admin/pictures/modal_pictures")) %>')
+	.end()
+	.find(".modal-footer")
+		.find("a.insert")
+			.remove()
+		.end()
+		.append("<a href='javascript:void(null);' class='btn btn-primary insert'>插入</a>")
+	.end()
+.modal("show");
+
+$('#pictures-fileupload').fileupload({
+	previewMaxWidth: 157,
+	previewMaxHeight: 157,
+	maxFileSize: 10000000,
+	maxNumberOfFiles: 50,
+	acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+}).bind("fileuploadstop", function() {
+	$.get("<%= admin_pictures_path %>", null, null, "script");
+	$("a[data-target='#pictures']").click();
+});
