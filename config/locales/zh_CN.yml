@@ -233,12 +233,9 @@ zh_CN:
       place: "景点"
       info: "信息"
       audio: "音频"
-<<<<<<< HEAD
       video: "视频"
-=======
       article: "文章"
       picture: "图片"
->>>>>>> 完成文章模块的功能
     attributes:
       province:
         name: "名字"
@@ -269,7 +266,6 @@ zh_CN:
         place_id: "景点"
         place: "景点"
         duration: "时长"
-<<<<<<< HEAD
       video:
         name: "名字 "
         order: "排序"
@@ -279,7 +275,6 @@ zh_CN:
         place: "景点"
         duration: "时长"
         cover: "封面"
-=======
       article:
         title: "标题"
         body: "内容"
@@ -288,7 +283,6 @@ zh_CN:
         author: "作者"
         category_cd: "类别"
         order: "排序"
->>>>>>> 完成文章模块的功能
     enums:
       audio:
         categories:

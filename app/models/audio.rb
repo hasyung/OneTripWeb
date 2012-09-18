@@ -32,14 +32,9 @@ class Audio < ActiveRecord::Base
   mount_uploader :attachment, AudioUploader
 
   # Scopes
-<<<<<<< HEAD
-  scope :narrates, where(:category_cd => :narrate).order("`order` DESC")
-  scope :created_desc, order("created_at DESC")
-=======
   scope :created_desc, order("created_at DESC")
   scope :order_desc, order("`order` DESC")
   scope :narrates, where(:category_cd => Audio.narrate)
->>>>>>> 完成文章模块的功能
 
   def update_audio_attributes
     if attachment.present? && attachment_changed?

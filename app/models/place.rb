@@ -8,11 +8,9 @@ class Place < ActiveRecord::Base
   belongs_to :province, :counter_cache => true
   has_many :infos, :dependent => :destroy
   has_many :audios, :dependent => :destroy
-<<<<<<< HEAD
   has_many :videos, :dependent => :destroy
-=======
   has_many :articles, :dependent => :destroy
->>>>>>> 完成文章模块的功能
+
 
   # Validates
   validates :name, :key, :province_id, :map, :presence => true
