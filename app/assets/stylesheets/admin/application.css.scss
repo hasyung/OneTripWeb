@@ -428,3 +428,44 @@ abbr {
 		}
 	}
 }
+
+/* jplayer */
+div.jp-video.jp-video-360p.jp-video-270p{
+  width:250px;
+  height:231px;
+  margin-bottom:10px;
+  .jp-type-single{
+    height:150px;
+    img,object{
+      margin-top:-20px;
+    }
+    }
+  .jp-interface{
+    padding-bottom:-15px;
+    .jp-current-time,.jp-duration,.jp-title{
+      height:22px;
+      text-align:center;
+      vertical-align:middle;
+      margin:0 auto;
+      li{
+        height:22px;
+      }
+    }
+    .jp-controls-holder{
+    margin-top:10px;
+    margin-bottom:-10px;
+    width:250px;
+    .jp-controls{
+      margin-left:105px
+         }
+      }
+  }
+  .jp-gui{
+    margin-top:30px;
+    text-align:center;
+    margin:0 auto;
+    .jp-video-play{
+      height:150px;
+    }
+  }
+}

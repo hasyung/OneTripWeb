@@ -9,9 +9,7 @@
 <legend><%= t("helpers.links.video") %></legend>
   <% if @videos.blank? -%>
   <% else -%>
-    <% @videos.each do |video| -%>
-      <%= render :partial => video %>
-    <% end -%>
+    <%= render :partial => "admin/videos/video", :object => @videos %>
   <% end -%>
 </fieldset>
 <fieldset id="audio">
