@@ -13,7 +13,7 @@ module OneTripWeb
     config.time_zone = 'Chongqing'
     
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :zh_CN
+    config.i18n.default_locale = "zh_CN"
     
     config.encoding = "utf-8"
 
