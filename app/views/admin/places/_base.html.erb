@@ -22,58 +22,6 @@
 	<% end -%>
 <% end -%>
 
-<%= content_for :scripts do -%>
-	<% if %w(show).include?(action_name) -%>
-		<script type="text/javascript">
-			$(document).ready(function() {
-    		<% if !@videos.blank? -%>
-					<% @videos.each do |video| -%>
-       			$("#jquery_jplayer_video_<%= video.id %>").jPlayer({
-				     	ready: function () {
-				  	    $(this).jPlayer("setMedia", {
-            			<%= "m4v: '#{video.attachment.url}'," %>
-            			<%= "poster:'#{video.cover.url(:thumb)}'" %>
-				        });
-				      },
-			    		swfPath: "/assets/jplayer",
-			    		supplied: "m4v,ogv",
-			    		preload:"none",
-			    		solution:"flash, html",
-			    		wmode:"window",
-			    		size: {
-			    			width: "510px",
-			    			height: "300px"
-			        },
-			    		cssSelectorAncestor: "#jp_container_video_<%= video.id %>"
-			     	});
-			    <% end -%>
-			  <% end -%>
-				new jPlayerPlaylist({
-					jPlayer: "#jquery_jplayer_narrate",
-					cssSelectorAncestor: "#jp_container_narrate",
-					supplied: "mp3",
-					playlistOptions: {
-						enableRemoveControls: false
-					}
-				},[
-						<% if !@narrates.blank? -%>
-							<% @narrates.each_with_index do |audio, i| -%>
-								{
-								<%= "title: '#{audio.name}'," %>
-								<%= "artist: '#{audio.duration}'," %>
-								<%= "mp3: '#{audio.attachment.url}'," %>
-								<%= "delete_url: '#{admin_place_audio_path(audio.place_id, audio)}'," %>
-								<%= "edit_url: '#{edit_admin_place_audio_path(audio.place_id, audio)}'" %>
-								}<%= "," if i != @narrates.count - 1 %>
-							<% end -%>
-						<% end -%>
-					]
-				);
-			});
-		</script>
-	<% end -%>
-<% end -%>
-
 <%= content_for :sitemaps do -%>
 	<a href="<%= admin_places_path %>"><%= model_class.model_name.human %></a>
 	<span class="divider">/</span>

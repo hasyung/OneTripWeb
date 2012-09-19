@@ -10,15 +10,15 @@
   	<% end -%>
   	<%= error_messages_for @video, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :name, :input_html => { :class => "span-full" } %>
-	  <%= f.input :category_cd do %>
-	  	<%= f.select :category_cd, model_class.categories_for_select(:value) %>
-	  <% end -%>
 	  <%= f.input :attachment, :as => :file %>
 	  <%= f.input :duration, :as => :string %>
-   <%= f.input :cover, :as => :file %>
+   	<%= f.input :cover, :as => :file %>
   	<% if %w(edit update).include?(action_name) %>
-    	<%= image_tag @video.cover.url(:thumb) %>
-   <% end -%>
+    	<div class="control-group map">
+		  	<%= image_tag @video.cover.thumb.url %>
+		  	<%= f.input :cover_cache, :as => :hidden %>
+		  </div>
+   	<% end -%>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">

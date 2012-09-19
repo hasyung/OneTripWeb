@@ -5,6 +5,8 @@ class VideoCoverUploader < CarrierWave::Uploader::Base
   
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
 
   storage :file
 
@@ -13,13 +15,17 @@ class VideoCoverUploader < CarrierWave::Uploader::Base
   end
   
    def default_url
-    asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    asset_path("default/#{model.class.to_s.underscore}/" + [version_name, "default.png"].compact.join('_'))
   end
 
   process :set_content_type
   
   version :thumb do
     process :resize_to_limit => [250, 150]
+  end
+
+  version :thumb_middle do
+    process :resize_to_limit => [480, 270]
   end
 
   def extension_white_list

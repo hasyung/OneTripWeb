@@ -104,6 +104,18 @@ abbr {
   img{
     margin-bottom:10px;
   }
+  .map {
+  	img {
+  		border: 1px solid #ccc;
+  		padding: 1px;
+  	}
+  }
+  .control-group.alert {
+  	.close {
+  		top: 4px;
+  		right: -1px;
+  	}
+  }
 }
 
 /* 按钮 */
@@ -435,73 +447,6 @@ abbr {
 	}
 }
 
-/* jplayer */
-fieldset#video{
-  margin-bottom:30px;
-}
-.span3 .other{
-  padding-bottom:10px;
-}
-div.mp4.jp-video-270p, li.span3{
-  width:510px;
-  height:380px;
-  margin-bottom:10px;
-  .jp-type-single {
-    width:510px;
-    height:300px;
-    img, object{
-    }
-  }
-  .jp-interface{
-    width:510px;
-    padding-bottom:-15px;
-    .jp-current-time,.jp-duration,.jp-title {
-      height:22px;
-      text-align:center;
-      vertical-align:middle;
-      margin:0 auto;
-      li {
-        height:22px;
-      }
-    }
-    .jp-controls-holder {
-	    margin-top:10px;
-	    margin-bottom:-10px;
-	    width:510px;
-     height:50px;
-	    .jp-controls{
-	      margin-left:230px;
-        a.jp-mute,a.jp-unmute,a.jp-volume-max {
-	        position: absolute;
-        	top:12px;
-	        margin-top:0;
-         left: 50px;
-                  }
-        a.jp-volume-max{
-         left: 134px;
-        }
-	    }
-      div.jp-volume-bar {
-	      top:17px;
-      	left:72px;
-      }
-	  }
-    ul.jp-toggles {
-	    margin-top:-30px;
-	    width:100px;
-     margin-left:350px;
-    }
-  }
-  .jp-gui {
-    margin-top:30px;
-    text-align:center;
-    margin:0 auto;
-    .jp-video-play {
-      height:300px;
-    }
-  }
-}
-
 #upload-modal {
 	.fileupload-buttonbar {
 		margin-left: 0;
@@ -638,6 +583,46 @@ fieldset#article {
 			text-decoration: none;
 			i {
 				font-size: 10px;
+			}
+			&:hover {
+				color: #049cdb;
+			}
+		}
+	}
+}
+fieldset#map {
+	img {
+		padding: 1px;
+		border: 1px solid #ccc;
+	}
+}
+fieldset#video {
+	ul.thumbnails {
+		margin-left: -146px;
+		& > li {
+			width: 482px;
+			margin-left: 146px;
+		}
+	}
+	.name {
+		margin-bottom: 5px;
+	}
+	h4 {
+		float: left;
+	}
+	.actions {
+		padding-left: 5px;
+		display: inline-block;
+		height: 18px;
+		line-height: 15px;
+		a {
+			color: #ccc;
+			text-decoration: none;
+			i {
+				font-size: 10px;
+			}
+			&:hover {
+				color: #049cdb;
 			}
 		}
 	}

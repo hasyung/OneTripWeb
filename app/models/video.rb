@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessible :name, :place_id, :category_cd, :duration, :attachment, :cover, :order
+  attr_accessible :name, :place_id, :duration, :attachment, :cover, :order, :cover_cache
 
   # Associations
   belongs_to :place, :counter_cache => true
@@ -7,11 +7,8 @@ class Video < ActiveRecord::Base
   # Callbacks
   before_save :update_video_attributes, :update_video_cover_attributes
   
-   #SimpleEnum
-  as_enum :category, { :impression => 0, :route => 1 }
-  
   # Validates
-  validates :name, :place_id, :category_cd, :attachment, :duration, :presence => true
+  validates :name, :place_id, :attachment, :cover, :duration, :presence => true
 	with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
@@ -37,8 +34,6 @@ class Video < ActiveRecord::Base
   mount_uploader :cover, VideoCoverUploader
 
   # Scopes
-  scope :impressions, where(:category_cd => :impression).order("`order` DESC")
-  scope :routes, where(:category_cd => :route).order("`order` DESC")
   scope :order_desc, order("`order` DESC")
   
   def update_video_attributes
