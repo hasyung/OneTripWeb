@@ -69,6 +69,22 @@
 						poster: "<%= video.cover.thumb_middle.url %>"
 					});
 				},
+				play: function() {
+					$(this).jPlayer("pauseOthers");
+				},
+				repeat: function(event) {
+					if(event.jPlayer.options.loop) {
+						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
+						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerRepeat", function() {
+							$(this).jPlayer("play");
+						});
+					} else {
+						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
+						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerNext", function() {
+							$("#jquery_jplayer_2").jPlayer("play", 0);
+						});
+					}
+				},
 				cssSelectorAncestor: "#jp_container_video_<%= video.id %>",
 				wmode: "window",
 				swfPath: "/assets/jPlayer",

@@ -26,9 +26,13 @@
           <% if !audios.blank? -%>
             <li class="span5">
               <% Audio.categories.each do |key, value| -%>
-                <h4><%= t("activerecord.enums.audios.categories.#{key.to_s}") if value == category %></h4>
+                <% if value == category -%>
+                  <div class="name clearfix">
+                    <h4><%= t("activerecord.enums.audio.categories.#{key.to_s}") %></h4>
+                  </div>
+                <% end -%>
               <% end -%>
-              <%= render :partial => "admin/audios/audios", :object => audios %>
+              <%= render :partial => "admin/audios/audios", :locals => { :audios => audios, :category => category } %>
             </li>
           <% end -%>
         <% end -%>
@@ -43,7 +47,9 @@
       <% @articles.group_by(&:category_cd).each do |category, articles| -%>
         <% if !articles.blank? %>
           <% Article.categories.each do |key, value| -%>
-            <h4><%= t("activerecord.enums.article.categories.#{key.to_s}") if value == category %></h4>
+            <% if value == category -%>
+              <h4><%= t("activerecord.enums.article.categories.#{key.to_s}") %></h4>
+            <% end -%>
           <% end -%>
           <ul>
             <% articles.each do |article| -%>

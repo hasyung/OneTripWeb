@@ -596,7 +596,7 @@ fieldset#map {
 		border: 1px solid #ccc;
 	}
 }
-fieldset#video {
+fieldset#video, fieldset#audio {
 	ul.thumbnails {
 		margin-left: -146px;
 		& > li {
