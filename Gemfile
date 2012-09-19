@@ -26,7 +26,8 @@ gem 'mime-types'
 gem 'mini_magick'
 gem 'redactor-rails'
 gem 'acts-as-taggable-on'
-gem 'cantango'
+gem 'streamio-ffmpeg'
+gem 'paperclip'
 
 group :development do
   gem 'quiet_assets', git: 'https://github.com/AgilionApps/quiet_assets.git', tag: 'v0.1.0'

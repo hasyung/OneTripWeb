@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'carrierwave/processing/mini_magick'
 require 'rubygems'
+require 'streamio-ffmpeg'
 
 if defined?(Bundler)
   Bundler.require(*Rails.groups(:assets => %w(development test)))
