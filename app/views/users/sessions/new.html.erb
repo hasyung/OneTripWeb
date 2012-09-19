@@ -1,15 +1,20 @@
-<h2>Sign in</h2>
+<% content_for :title do -%>
+	<%= t("helpers.links.login") %>
+<% end -%>
+<div class="page-header">
+  <h1><%= t("helpers.links.login") %></h1>
+</div>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :email, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  	<%= f.input :email, :autofocus => true, :wrapper => :prepend, :as => :prepend, :icon => "icon-user",
+                :input_html => { :class => :span3 }, :label => false, :placeholder => true %>
+    <%= f.input :password, :required => false, :wrapper => :prepend, :as => :prepend_password, :icon => "icon-lock",
+                :input_html => { :class => :span3 }, :label => false, :placeholder => true %>
+    <%= f.input :remember_me, :as => :bootstrap_check_box, :label => false if devise_mapping.rememberable? %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
+    <%= f.button :submit, t("helpers.links.login"), :class => "pull-right btn-primary btn-large" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

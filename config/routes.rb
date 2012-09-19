@@ -6,10 +6,14 @@ OneTripWeb::Application.routes.draw do
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => "admin/sessions" }
 
-  root :to => 'home#index'
+  root :to => 'admin/home#index'
   
   namespace :admin do
     root :to => 'home#index'
+    resources :users do
+      post 'destroy_multiple', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
+    end
     resources :provinces do
       post 'search', :on => :collection
       post 'destroy_multiple', :on => :collection

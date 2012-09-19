@@ -236,6 +236,7 @@ zh_CN:
       video: "视频"
       article: "文章"
       picture: "图片"
+      user: "用户"
     attributes:
       province:
         name: "名字"
@@ -283,6 +284,14 @@ zh_CN:
         author: "作者"
         category_cd: "类别"
         order: "排序"
+      user:
+        login: "用户名"
+        password: "密码"
+        email: "邮箱"
+        password_confirmation: "确认密码"
+        remember_me: "记住我"
+        created_at: "创建时间"
+        updated_at: "修改时间"
     enums:
       audio:
         categories:
@@ -426,13 +435,14 @@ zh_CN:
         order: "选填，数字越大排序越高，默认为0。"
     placeholders:
       user:
-        login: "用户名"
+        email: "邮箱"
         password: "密码"
+        password_confirmation: "确认密码"
 
   devise:
     failure:
       already_authenticated: '您已经登录.'
-      unauthenticated: '继续操作前请注册或者登录.'
+      unauthenticated: '继续操作前请登录.'
       unconfirmed: '继续操作前请先激活您的帐号.'
       locked: '您的帐号已被锁定.'
       invalid: '用户名或密码错误'

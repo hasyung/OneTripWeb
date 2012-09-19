@@ -7,3 +7,6 @@
 <li <%= "class=active" if controller_name == "places" %>>
 	<%= link_to Place.model_name.human, admin_places_path, :title => Place.model_name.human %>
 </li>
+<li <%= "class=active" if controller_name == "users" %>>
+	<%= link_to User.model_name.human, admin_users_path, :title => User.model_name.human %>
+</li>
