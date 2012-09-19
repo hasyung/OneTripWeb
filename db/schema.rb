@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903065247) do
+ActiveRecord::Schema.define(:version => 20120919070348) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(:version => 20120903065247) do
   create_table "videos", :force => true do |t|
     t.integer  "place_id",                               :null => false
     t.string   "name",                                   :null => false
-    t.integer  "category_cd",             :default => 0, :null => false
     t.string   "duration"
     t.string   "attachment"
     t.integer  "attachment_size",         :default => 0

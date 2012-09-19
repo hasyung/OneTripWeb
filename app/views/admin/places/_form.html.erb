@@ -15,7 +15,7 @@
 	  <%= f.input :map, :as => :file %>
 	  <%= f.input :map_cache, :as => :hidden %>
 	  <% if @place.map? %>
-	  <div class="control-group">
+	  <div class="control-group map">
 	  	<%= image_tag @place.map.thumb.url %>
 	  </div>
 	  <% end -%>
