@@ -101,6 +101,9 @@ abbr {
   textarea[name*="body"] {
 		height: 400px;
 	}
+  img{
+    margin-bottom:10px;
+  }
 }
 
 /* 按钮 */
@@ -433,17 +436,24 @@ abbr {
 }
 
 /* jplayer */
-div.jp-video.jp-video-360p.jp-video-270p {
-  width:250px;
-  height:231px;
+fieldset#video{
+  margin-bottom:30px;
+}
+.span3 .other{
+  padding-bottom:10px;
+}
+div.mp4.jp-video-270p, li.span3{
+  width:510px;
+  height:380px;
   margin-bottom:10px;
   .jp-type-single {
-    height:150px;
+    width:510px;
+    height:300px;
     img, object{
-      margin-top:-20px;
     }
   }
   .jp-interface{
+    width:510px;
     padding-bottom:-15px;
     .jp-current-time,.jp-duration,.jp-title {
       height:22px;
@@ -457,18 +467,37 @@ div.jp-video.jp-video-360p.jp-video-270p {
     .jp-controls-holder {
 	    margin-top:10px;
 	    margin-bottom:-10px;
-	    width:250px;
+	    width:510px;
+     height:50px;
 	    .jp-controls{
-	      margin-left:105px
+	      margin-left:230px;
+        a.jp-mute,a.jp-unmute,a.jp-volume-max {
+	        position: absolute;
+        	top:12px;
+	        margin-top:0;
+         left: 50px;
+                  }
+        a.jp-volume-max{
+         left: 134px;
+        }
 	    }
+      div.jp-volume-bar {
+	      top:17px;
+      	left:72px;
+      }
 	  }
+    ul.jp-toggles {
+	    margin-top:-30px;
+	    width:100px;
+     margin-left:350px;
+    }
   }
   .jp-gui {
     margin-top:30px;
     text-align:center;
     margin:0 auto;
     .jp-video-play {
-      height:150px;
+      height:300px;
     }
   }
 }

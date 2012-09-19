@@ -16,6 +16,9 @@
 	  <%= f.input :attachment, :as => :file %>
 	  <%= f.input :duration, :as => :string %>
    <%= f.input :cover, :as => :file %>
+  	<% if %w(edit update).include?(action_name) %>
+    	<%= image_tag @video.cover.url(:thumb) %>
+   <% end -%>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">
