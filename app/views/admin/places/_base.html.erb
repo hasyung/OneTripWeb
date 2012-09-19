@@ -107,7 +107,7 @@
 		<div class="controls pagination-right search">
 	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
 	      <div class="input-append">
-	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
+	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
 	        <button type="submit" class="btn"><i class="icon-search"></i></button>
 	      </div>
 	    <% end -%>

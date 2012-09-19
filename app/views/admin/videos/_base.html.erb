@@ -35,13 +35,23 @@
 			</a>
 		</div>
 	<% end -%>
+	<div class="btn-group pull-right">
+		<div class="controls pagination-right search">
+	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
+	      <div class="input-append">
+	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => Place.model_name.human) %>
+	        <button type="submit" class="btn"><i class="icon-search"></i></button>
+	      </div>
+	    <% end -%>
+	  </div>
+	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
 	<% if %w(new create edit update).include?(action_name) -%>
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-			  <li>视频文件只能是（mp4）格式的。</li>
+			  <li>视频文件只能是（mp4，m4v）格式的。</li>
 			  <li>视频文件不得大于100M。</li>
      <li>视频封面只能是（jpg，png，gif）等格式的图片。</li>
 			  <li>视频封面不得大于10M。</li>

@@ -15,7 +15,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   def extension_white_list
-    %w(mp4 m4v mov)
+    %w(mp4 m4v)
   end
 
   def filename
