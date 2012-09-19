@@ -1,0 +1,12 @@
+<%- model_class = Article -%>
+<%= content_for :title do -%>
+	<% if !@article.blank? -%>
+		<%= @article.title %>
+	<% end -%>
+<% end -%>
+<fieldset id="article">
+  <legend><%= t("helpers.links.article") %></legend>
+  <tbody>
+    <% @article.body %>
+  </tbody>
+</fieldset>
