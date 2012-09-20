@@ -4,7 +4,5 @@ class User < ActiveRecord::Base
   # Devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  
-  # Cantango
-  tango_user
+
 end
