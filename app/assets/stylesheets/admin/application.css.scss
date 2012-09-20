@@ -632,3 +632,19 @@ fieldset {
 		padding: 0 10px;
 	}
 }
+
+/*文章*/
+#articles-show {
+  .article {
+    font-size: 14px;
+    .title {
+      text-align: center;
+      margin-bottom: 6px;
+          }
+    .info {
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 10px;
+          }
+    }
+}

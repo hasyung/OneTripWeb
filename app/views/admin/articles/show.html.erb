@@ -1,12 +1,21 @@
 <%- model_class = Article -%>
+<%= render "base" %>
 <%= content_for :title do -%>
 	<% if !@article.blank? -%>
 		<%= @article.title %>
 	<% end -%>
 <% end -%>
-<fieldset id="article">
-  <legend><%= t("helpers.links.article") %></legend>
-  <tbody>
-    <% @article.body %>
-  </tbody>
-</fieldset>
+<div class="article">
+  <h1 class="title"><%= @article.title %></h1>
+  <div class="info">
+  <% if !@article.author.blank? %>
+    <h4>
+      <span class="author"><%= @article.author %></span> -- 
+      <span class="created_at"><%= l @article.created_at.to_date, :format => :long %></span>
+    </h4>
+  <% end -%>
+</div>      
+  <div class="content">
+    <%= @article.body.html_safe %>
+  </div>
+</div>

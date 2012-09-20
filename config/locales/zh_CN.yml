@@ -357,6 +357,7 @@ zh_CN:
       add_info: "添加信息"
       edit_info: "修改信息"
       back_place: "返回%{place_name}"
+      edit_article: "修改文章"
       reset_map: "重新上传地图"
       tips: "小贴士"
     placeholder:
