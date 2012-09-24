@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-<<<<<<< HEAD
-=======
   # Scopes
   scope :search_name, lambda { |name| where("ucase(`users`.`email`) like concat('%',ucase(?),'%')", name) }
 
@@ -21,5 +19,4 @@ class User < ActiveRecord::Base
   	end
   	permissions.uniq
   end
->>>>>>> 完成后台权限系统
 end
