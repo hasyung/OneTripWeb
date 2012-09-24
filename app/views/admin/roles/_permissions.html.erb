@@ -1,0 +1,11 @@
+<% Permission.all.group_by(&:name).each do |key, permission_group| -%>
+	<div class="controls <%= key.split(".").last.downcase %>">
+		<label class="control-label"><%= t(key) %></label>
+		<% permission_group.each do |permission| -%>
+			<label class="checkbox inline <%= permission.description.split(".").last %>">
+				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permissions.include?(permission) %>
+				<%= t(permission.description) %>
+			</label>
+		<% end -%>
+	</div>
+<% end -%>

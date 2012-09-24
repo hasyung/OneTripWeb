@@ -1,5 +1,7 @@
 class Admin::PlacesController < Admin::ApplicationController
 
+	helper_method :permission
+
 	def index
 		@places = Place.page(params[:page]).per(Setting.admin_AlbumPageSize).created_desc
 	end
@@ -56,5 +58,10 @@ class Admin::PlacesController < Admin::ApplicationController
 		 end
    render :index
 	end
+
+	private
+	def self.permission
+  	return Place.name, "permission.controllers.admin.places"
+  end
 
 end

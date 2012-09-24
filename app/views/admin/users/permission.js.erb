@@ -1,0 +1,10 @@
+$("#permissions-modal")
+	.find(".modal-header h3")
+		.empty()
+		.append("<%= t('helpers.links.permission') %>")
+	.end()
+	.find(".modal-body")
+		.empty()
+		.append("<div class=\"simple_form\"><div class=\"control-group permission\"><%= j(render("permissions")) %></div></div>")
+	.end()
+.modal("show");

@@ -1,0 +1,8 @@
+<div class="controls">
+	<% Role.all.each do |role| -%>
+		<label class="checkbox inline">
+			<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+			<%= role.name %>
+		</label>
+	<% end -%>
+</div>

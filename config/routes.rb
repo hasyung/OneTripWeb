@@ -5,34 +5,43 @@ OneTripWeb::Application.routes.draw do
              :path_names => { :sign_in => 'login', :sign_out => 'logout' },
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => "admin/sessions" }
-
-  root :to => 'admin/home#index'
   
   match "/places/:name" => "places#index"
   
   namespace :admin do
     root :to => 'home#index'
+    
     resources :users do
-      post 'destroy_multiple', :on => :collection
+      post 'destroies', :on => :collection
+      post 'search', :on => :collection
+      get 'permission', :on => :member
       get 'page/:page', :action => :index, :on => :collection
     end
+
+    resources :roles do 
+      post 'destroies', :on => :collection
+      post 'search', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
+    end
+    
     resources :provinces do
       post 'search', :on => :collection
-      post 'destroy_multiple', :on => :collection
+      post 'destroies', :on => :collection
       get 'page/:page', :action => :index, :on => :collection
     end
+    
     resources :places do
       post 'search', :on => :collection
-      post 'destroy_multiple', :on => :collection
-      get 'edit_map', :on => :member
-      post 'update_map', :on => :member
       get 'page/:page', :action => :index, :on => :collection
-      resources :infos
-      resources :videos
-      resources :audios
-      resources :articles
+      resources :infos, :except => [:index, :show]
+      resources :videos, :except => [:index, :show]
+      resources :audios, :except => [:index, :show]
+      resources :articles, :except => :index
     end
+    
     resources :pictures
+    
+    resources :exceptions, :only => [:index]
   end
   
 end

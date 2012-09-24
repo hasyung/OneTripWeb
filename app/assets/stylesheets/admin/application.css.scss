@@ -111,9 +111,35 @@ abbr {
   	}
   }
   .control-group.alert {
-  	.close {
-  		top: 4px;
-  		right: -1px;
+  	padding: 8px 35px 8px 14px;
+  	// .close {
+  	// 	top: 4px;
+  	// 	right: -1px;
+  	// }
+  }
+  .control-group.permission {
+  	& > .controls {
+  		.control-label {
+  			margin-bottom: 0;
+  			font-weight: bold;
+  			padding-bottom: 3px;
+  			color: #3a87ad;
+  			border-bottom: 1px dashed #ccc;
+  		}
+  		.inline {
+  			margin-bottom: 10px;
+  			i.checked {
+  				color: #9d261d;
+  			}
+  			span.checked {
+  				color: #9d261d;
+  			}
+  		}
+  	}
+  }
+  .control-group.role {
+  	.control-label {
+  		margin-bottom: 0;
   	}
   }
 }
@@ -633,6 +659,7 @@ fieldset {
 	}
 }
 
+<<<<<<< HEAD
 /*文章*/
 #articles-show {
   .article {
@@ -647,4 +674,13 @@ fieldset {
       margin-bottom: 10px;
           }
     }
+=======
+.user-permissions {
+	.controls {
+
+	}
+	.control-label {
+		margin-bottom: 0;
+	}
+>>>>>>> 完成后台权限系统
 }

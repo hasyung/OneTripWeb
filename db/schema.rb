@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919070348) do
+ActiveRecord::Schema.define(:version => 20120922054150) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -49,6 +49,21 @@ ActiveRecord::Schema.define(:version => 20120919070348) do
   end
 
   add_index "infos", ["place_id", "var"], :name => "index_infos_on_place_id_and_var", :unique => true
+
+  create_table "permissions", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "action"
+    t.string   "subject_class"
+    t.integer  "subject_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "permissions_roles", :id => false, :force => true do |t|
+    t.integer "permission_id"
+    t.integer "role_id"
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "name",                              :null => false
@@ -90,6 +105,18 @@ ActiveRecord::Schema.define(:version => 20120919070348) do
 
   add_index "provinces", ["key"], :name => "index_provinces_on_key", :unique => true
   add_index "provinces", ["name"], :name => "index_provinces_on_name", :unique => true
+
+  create_table "roles", :force => true do |t|
+    t.string   "name",        :null => false
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
 
   create_table "settings", :force => true do |t|
     t.string   "var",                      :null => false

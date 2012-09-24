@@ -1,6 +1,7 @@
 class Admin::InfosController < Admin::ApplicationController
 
 	before_filter :get_place
+	helper_method :permission
 
 	def new
 		 @info = Info.new
@@ -41,4 +42,8 @@ class Admin::InfosController < Admin::ApplicationController
 	def get_place
 		 @place = Place.find params[:place_id]
 	end
+
+	def self.permission
+  	return Info.name, "permission.controllers.admin.infos"
+  end
 end

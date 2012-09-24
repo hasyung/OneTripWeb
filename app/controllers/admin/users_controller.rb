@@ -1,5 +1,7 @@
 class Admin::UsersController < Admin::ApplicationController
 
+	helper_method :permission
+
 	def index
 		 @users = User.page(params[:page]).per(Setting.admin_PageSize)
 	end
@@ -22,12 +24,16 @@ class Admin::UsersController < Admin::ApplicationController
 	end
 
 	def update
-		 @user = User.find params[:id]
-     if @user.update_attributes params[:user]
-       redirect_to :admin_users, :notice => t("helpers.messages.edit", :model_name => User.model_name.human)
-     else
-       render :action => "edit"
-     end
+		@user = User.find params[:id]
+
+		params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+
+		if @user.update_attributes(params[:user])
+      redirect_to :admin_users, :notice => t("helpers.messages.edit", :model_name => User.model_name.human)
+    else
+      render :action => "edit"
+    end
 	end
 
 	def destroy
@@ -39,7 +45,7 @@ class Admin::UsersController < Admin::ApplicationController
      end
 	end
 
-	def destroy_multiple
+	def destroies
 		 if params[:user_ids].blank?
 		   return redirect_to :admin_users,
 												 :alert => t("helpers.messages.selected_error",
@@ -54,4 +60,24 @@ class Admin::UsersController < Admin::ApplicationController
 			  redirect_to :admin_users, :alert => t("helpers.messages.notices.error")
 		 end
 	end
+
+	def search
+		if params[:user][:email].blank?
+			redirect_to :admin_users, :alert => t("helpers.messages.search_error")
+			return
+		else
+			@users = User.search_name(params[:user][:email]).page(params[:page]).per(Setting.admin_PageSize)
+		end
+		render :action => "index"
+	end
+
+	def permission
+		@user = User.find params[:id]
+		@permissions = @user.permissions
+	end
+
+	private
+	def self.permission
+  	return User.name, "permission.controllers.admin.users"
+  end
 end

@@ -1,4 +1,4 @@
-<%- model_class = User -%>
+<%- model_class = Role -%>
 <%= content_for :title do -%>
 	<% if %w(index).include?(action_name) -%>
 		<%= t("helpers.links.list") %>
@@ -14,7 +14,7 @@
 <% end -%>
 
 <%= content_for :sitemaps do -%>
-	<a href="<%= admin_users_path %>"><%= model_class.model_name.human %></a>
+	<a href="<%= admin_roles_path %>"><%= model_class.model_name.human %></a>
 	<span class="divider">/</span>
 	<% if %w(index).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.list") %></span>
@@ -32,10 +32,10 @@
 <%= content_for :toolbar do -%>
 	<% if %w(index search).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_user_path %>" class="btn">
+			<a href="<%= new_admin_role_path %>" class="btn">
 				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
 			</a>
-			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @users.blank? %>>
+			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @roles.blank? %>>
 				<i class="icon-trash icon-large"></i>
 				<b><%= t("helpers.links.delete_all") %></b>
 			</a>
@@ -43,14 +43,14 @@
 	<% end -%>
 	<% if %w(new create).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= admin_users_path %>" class="btn">
+			<a href="<%= admin_roles_path %>" class="btn">
 				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
 			</a>
 		</div>
 	<% end -%>
 	<% if %w(edit update).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_user_path %>" class="btn">
+			<a href="<%= new_admin_role_path %>" class="btn">
 				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
 			</a>
 			<a href="<%= admin_users_path %>" class="btn">
@@ -60,9 +60,9 @@
 	<% end -%>
 	<div class="btn-group pull-right">
 		<div class="controls pagination-right search">
-	    <%= simple_form_for :user, :url => search_admin_users_path do |f| -%>
+	    <%= simple_form_for :role, :url => search_admin_roles_path do |f| -%>
 	      <div class="input-append">
-	        <%= f.input_field :email, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
+	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
 	        <button type="submit" class="btn"><i class="icon-search"></i></button>
 	      </div>
 	    <% end -%>
@@ -74,7 +74,7 @@
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-			  <li>邮箱必须是唯一的。</li>
+			  <li>当勾选了“全部”权限的时候，请不要勾选后面的详细权限。</li>
 			</ul>
 		</div>
 	<% end -%>

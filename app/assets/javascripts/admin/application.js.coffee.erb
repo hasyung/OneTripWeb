@@ -28,6 +28,26 @@ $ ->
 		()=> $("#ajax-form form").submit()
 	)
 
+	$(".simple_form")
+		.find(".permission")
+			.find("label.all input[type=checkbox]").click(
+				()-> 
+					module_check_box_checkd = $(this).attr("checked")
+					if module_check_box_checkd is "checked"
+						$(this).parent().nextAll().find("input[type=checkbox]").attr("disabled", "disabled").removeAttr("checked")
+					else
+						$(this).parent().nextAll().find("input[type=checkbox]").removeAttr("disabled")
+			)
+			.end()
+		.find("div.all input[type=checkbox]").click(
+			()->
+				all_module_check_box_checkd = $(this).attr("checked")
+				if all_module_check_box_checkd is "checked"
+					$(this).parents(".controls").nextAll().find("input[type=checkbox]").attr("disabled", "disabled").removeAttr("checked")
+				else
+					$(this).parents(".controls").nextAll().find("input[type=checkbox]").removeAttr("disabled")
+		)
+
 	$("form textarea[name*=body]").redactor
 		autoresize: false
 		lang: 'zh_cn'

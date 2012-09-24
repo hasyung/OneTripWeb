@@ -9,14 +9,19 @@
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
 		<%= error_messages_for @user, :class => "control-group alert alert-error fade in", :close => :true %>
-	  <% if %w(new create).include?(action_name) %>
-		  <%= f.input :email, :input_html => { :class => "span-full" } %>
-	  <% end -%>
-   <% if %w(edit update).include?(action_name) %>
-    <div class="control-group"><span><%= @user.email %></span></div>
-	  <% end -%>
-		 <%= f.input :password, :input_html => { :class => "span-full" } %>
-   <%= f.input :password_confirmation, :input_html => { :class => "span-full" } %>
+		<% if %w(edit update).include?(action_name) and @user == current_user %>
+			<div class="control-group alert">
+			  <a class="close" data-dismiss="alert">×</a>
+			  <strong>警告！</strong> 修改当前登录用户的密码需要重新登录。
+			</div>
+		<% end -%>
+		<%= f.input :email, :input_html => { :class => "span-full" }, :required => true %>
+		<%= f.input :password, :input_html => { :class => "span-full" }, :required => true %>
+	  <%= f.input :password_confirmation, :input_html => { :class => "span-full" }, :required => true %>
+	  <div class="control-group role">
+	  	<label class="control-label"><%= model_class.human_attribute_name(:roles) %></label>
+	  	<%= render "roles" %>
+	  </div>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">
 	    	<i class="icon-save icon-large"></i>

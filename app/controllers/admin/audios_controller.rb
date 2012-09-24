@@ -1,6 +1,7 @@
 class Admin::AudiosController < Admin::ApplicationController
 
 	before_filter :get_place
+	helper_method :permission
 
 	def new
 		@audio = Audio.new
@@ -41,4 +42,8 @@ class Admin::AudiosController < Admin::ApplicationController
 	def get_place
 		@place = Place.find params[:place_id]
 	end
+
+	def self.permission
+  	return Audio.name, "permission.controllers.admin.audios"
+  end
 end

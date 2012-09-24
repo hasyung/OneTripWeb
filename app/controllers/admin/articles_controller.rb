@@ -1,14 +1,15 @@
 class Admin::ArticlesController < Admin::ApplicationController
 
 	before_filter :get_place
+	helper_method :permission
+
+	def show
+	  @article = Article.find params[:id]
+	end
 
 	def new
 		@article = @place.articles.new params[:article]
 	end
-  
- def show
-  @article = Article.find params[:id]
- end
 
 	def create
 		@article = @place.articles.new params[:article]
@@ -45,5 +46,9 @@ class Admin::ArticlesController < Admin::ApplicationController
 	def get_place
 		@place = Place.find params[:place_id]
 	end
+
+	def self.permission
+  	return Article.name, "permission.controllers.admin.articles"
+  end
 
 end

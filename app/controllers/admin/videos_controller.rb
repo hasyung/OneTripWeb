@@ -1,6 +1,7 @@
 class Admin::VideosController < Admin::ApplicationController
   
  before_filter :get_place
+ helper_method :permission
 
 	def new
 		 @video = Video.new
@@ -41,4 +42,8 @@ class Admin::VideosController < Admin::ApplicationController
 	def get_place
 		 @place = Place.find params[:place_id]
 	end
+
+	def self.permission
+  	return Video.name, "permission.controllers.admin.videos"
+  end
 end

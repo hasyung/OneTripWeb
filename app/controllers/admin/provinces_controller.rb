@@ -1,15 +1,18 @@
 class Admin::ProvincesController < Admin::ApplicationController
 
+	load_and_authorize_resource
+
+	helper_method :permission
+
 	def index
-		@provinces = Province.page(params[:page]).per(Setting.admin_PageSize)
+		@provinces = @provinces.page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
-		@province = Province.new
+		
 	end
 
 	def create
-		@province = Province.new params[:province]
 		if @province.save
 			redirect_to :admin_provinces, :notice => t("helpers.messages.new", :model_name => Province.model_name.human)
 		else
@@ -18,11 +21,10 @@ class Admin::ProvincesController < Admin::ApplicationController
 	end
 
 	def edit
-		@province = Province.find params[:id]
+		
 	end
 
 	def update
-		@province = Province.find params[:id]
     if @province.update_attributes params[:province]
       redirect_to :admin_provinces, :notice => t("helpers.messages.edit", :model_name => Province.model_name.human)
     else
@@ -31,7 +33,6 @@ class Admin::ProvincesController < Admin::ApplicationController
 	end
 
 	def destroy
-		@province = Province.find params[:id]
     if @province.destroy
       redirect_to :admin_provinces, :notice => t("helpers.messages.destroy", :model_name => Province.model_name.human)
     else
@@ -39,7 +40,7 @@ class Admin::ProvincesController < Admin::ApplicationController
     end
 	end
 
-	def destroy_multiple
+	def destroies
 		if params[:province_ids].blank?
 			return redirect_to :admin_provinces,
 												 :alert => t("helpers.messages.selected_error",
@@ -60,9 +61,14 @@ class Admin::ProvincesController < Admin::ApplicationController
 			redirect_to :admin_provinces, :alert => t("helpers.messages.search_error")
 			return
 		else
-			@provinces = Province.search_name(params[:province][:name]).page(params[:page]).per(Setting.admin_PageSize)
+			@provinces = @provinces.search_name(params[:province][:name]).page(params[:page]).per(Setting.admin_PageSize)
 		end
 		render :action => "index"
 	end
+
+	private
+	def self.permission
+  	return Province.name, "permission.controllers.admin.provinces"
+  end
 	
 end

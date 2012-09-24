@@ -1,0 +1,9 @@
+<%= render "base" %>
+<a href="<%= admin_root_path %>" class="btn btn-primary">
+	<i class="icon-ban-circle icon-large"></i>
+	<b><%= t("helpers.links.back_home") %></b>
+</a>
+<% if can? :permission, User %>
+	<%= link_to t("helpers.links.permission"), permission_admin_user_path(current_user), 
+	  :title => t("helpers.links.permission"), :rel => :tooltip, :class => "btn btn-primary", :remote => true %>
+<% end -%>

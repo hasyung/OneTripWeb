@@ -10,3 +10,6 @@
 <li <%= "class=active" if controller_name == "users" %>>
 	<%= link_to User.model_name.human, admin_users_path, :title => User.model_name.human %>
 </li>
+<li <%= "class=active" if controller_name == "roles" %>>
+	<%= link_to Role.model_name.human, admin_roles_path, :title => Role.model_name.human %>
+</li>

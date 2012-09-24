@@ -237,6 +237,8 @@
       article: "文章"
       picture: "图片"
       user: "用户"
+      role: "角色"
+      permission: "权限"
     attributes:
       province:
         name: "名字"
@@ -292,6 +294,14 @@
         remember_me: "记住我"
         created_at: "创建时间"
         updated_at: "修改时间"
+        roles: "角色"
+      role:
+        name: "名字"
+        description: "描述"
+        permissions: "权限"
+        created_at: "创建时间"
+      permission:
+        
     enums:
       audio:
         categories:
@@ -360,6 +370,9 @@
       edit_article: "修改文章"
       reset_map: "重新上传地图"
       tips: "小贴士"
+      exception: "出错啦"
+      back_home: "返回首页"
+      permission: "查看权限"
     placeholder:
       search: "搜索%{model}"
     messages:
@@ -435,6 +448,13 @@
         author: "必填，500个字符以内。"
         category_cd: "必选，选择文章的类别。"
         order: "选填，数字越大排序越高，默认为0。"
+      role:
+        name: "必填，30个字符以内，名字必须唯一。"
+        description: "选填，100个字符以内。"
+      user:
+        email: "必填，邮箱，必须唯一。"
+        password: "必填，6-20位。"
+        password_confirmation: "必填，确认密码，必须与密码一致。"
     placeholders:
       user:
         email: "邮箱"
@@ -485,5 +505,38 @@
         subject: '重置密码信息'
       unlock_instructions:
         subject: '解锁信息'
+
+  unauthorized:
+    manage:
+      all: "Not authorized to %{action} %{subject}."
+      user: "你没有权限管理用户模块。"
+    update:
+      province: "你没有修改省市的权限，请联系管理员。"
+    new:
+      user: "你没有添加用户的权限，请联系管理员。"
+      province: "你没有添加省市的权限，请联系管理员。"
+    index:
+      province: "你没有查看省市模块的权限，请联系管理员。"
+    destroy:
+      province: "你没有删除省市的权限，请联系管理员。"
+
+  permission:
+    controllers:
+      all: "所有模块"
+      admin:
+        articles: "景区文章模块"
+        audios: "景区音频模块"
+        videos: "景区视频模块"
+        places: "景区模块"
+        provinces: "省市模块"
+        roles: "用户角色模块"
+        infos: "景区信息模块"
+        users: "用户模块"
+    actions:
+      all: "全部"
+      read: "读取"
+      create: "新增"
+      update: "修改"
+      destroy: "删除"
 
 
