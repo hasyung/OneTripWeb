@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   as_enum :category, { :travels => 0, :recommend => 1 }
 
   # Validates
-  validates :title, :place_id, :category_cd, :author, :body, :presence => true
+  validates :title, :place_id, :category_cd, :body, :presence => true
 	with_options :if => :title? do |title|
     title.validates :title, :length => { :within => 2..200 }
     title.validates :title, :uniqueness => { :scope => :place_id }

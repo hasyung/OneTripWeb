@@ -8,6 +8,8 @@ OneTripWeb::Application.routes.draw do
 
   root :to => 'admin/home#index'
   
+  match "/places/:name" => "places#index"
+  
   namespace :admin do
     root :to => 'home#index'
     resources :users do
