@@ -42,9 +42,19 @@
         :data => { :confirm => t("helpers.messages.confirm") },
         :rel => :tooltip %>
     <% end -%>
-    <%= link_to raw("<i class=\"icon-eye-close icon-large\"></i>"), 
-      admin_places_path, 
-      :title => t("helpers.links.map"),
-      :rel => :tooltip %>
+    <% if can? :publish, Place %>
+      <% if place.draft? %>
+        <%= link_to raw("<i class=\"icon-lock icon-large\"></i>"), 
+          publish_admin_place_path(place, Place.statuses.publish(true)), 
+          :title => t("activerecord.enums.place.status.draft"),
+          :rel => :tooltip %>
+      <% end -%>
+      <% if place.publish? %>
+        <%= link_to raw("<i class=\"icon-unlock icon-large\"></i>"), 
+          publish_admin_place_path(place, Place.statuses.draft(true)), 
+          :title => t("activerecord.enums.place.status.publish"),
+          :rel => :tooltip %>
+      <% end -%>
+    <% end -%>
 	</div>
 </li>

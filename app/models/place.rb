@@ -11,6 +11,8 @@ class Place < ActiveRecord::Base
   has_many :videos, :dependent => :destroy
   has_many :articles, :dependent => :destroy
 
+  #SimpleEnum
+  as_enum :status, { :draft => 0, :publish => 1 }
 
   # Validates
   validates :name, :key, :province_id, :map, :presence => true

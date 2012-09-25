@@ -102,6 +102,20 @@
 				</a>
 			<% end -%>
 		</div>
+		<% if can? :publish, Place %>
+			<div class="btn-group">
+				<% if @place.draft? %>
+					<a href="<%= publish_admin_place_path(@place, Place.statuses.publish(true)) %>" class="btn btn-success">
+						<i class="icon-lock icon-large"></i>
+					</a>
+				<% end -%>
+				<% if @place.publish? %>
+					<a href="<%= publish_admin_place_path(@place, Place.statuses.draft(true)) %>" class="btn btn-success">
+						<i class="icon-unlock icon-large"></i>
+					</a>
+				<% end -%>
+			</div>
+		<% end -%>
 		<div class="btn-group">
 			<% if can? :read, model_class %>
 				<a href="<%= admin_places_path %>" class="btn">

@@ -48,13 +48,26 @@ class Admin::PlacesController < Admin::ApplicationController
 	end
   
  def search
-		 if params[:place][:name].blank?
-			  redirect_to :admin_places, :alert => t("helpers.messages.search_error")
-			  return
-		 else
-		   @places = @places.search_name(params[:place][:name]).page(params[:page]).per(Setting.admin_PageSize)
-		 end
+		if params[:place][:name].blank?
+		  redirect_to :admin_places, :alert => t("helpers.messages.search_error")
+		  return
+	  else
+		  @places = @places.search_name(params[:place][:name]).page(params[:page]).per(Setting.admin_PageSize)
+		end
    render :index
+	end
+
+	def publish
+		@place.status = params[:status].to_s.to_sym
+		if @place.save
+			if @place.publish?
+				redirect_to :admin_places, :notice => t("helpers.messages.publish")
+			else
+				redirect_to :admin_places, :notice => t("helpers.messages.draft")
+			end
+		else
+			redirect_to :admin_places, :alert => t("helpers.messages.error")
+		end
 	end
 
 	private

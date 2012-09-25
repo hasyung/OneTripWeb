@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925031926) do
+ActiveRecord::Schema.define(:version => 20120925050918) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20120925031926) do
     t.integer  "order",                            :default => 0
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+    t.integer  "status_cd",                        :default => 0
   end
 
   add_index "places", ["key"], :name => "index_places_on_key", :unique => true

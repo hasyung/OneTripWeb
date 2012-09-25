@@ -33,6 +33,7 @@ OneTripWeb::Application.routes.draw do
     resources :places do
       post 'search', :on => :collection
       get 'page/:page', :action => :index, :on => :collection
+      get 'publish/:status', :action => :publish, :on => :member, :as => :publish
       resources :infos, :except => [:index, :show]
       resources :videos, :except => [:index, :show]
       resources :audios, :except => [:index, :show]

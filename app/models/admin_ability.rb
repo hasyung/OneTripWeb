@@ -6,8 +6,11 @@ class AdminAbility
 
     user.permissions.each do |permission|
       if permission.subject_id.nil?
-        Clogger.success "can #{permission.action.to_sym}, #{permission.subject_class.constantize}"
-        can permission.action.to_sym, permission.subject_class.constantize
+        if permission.subject_class == "all"
+          can permission.action.to_sym, permission.subject_class.to_sym
+        else
+          can permission.action.to_sym, permission.subject_class.constantize
+        end
       else
         can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
       end

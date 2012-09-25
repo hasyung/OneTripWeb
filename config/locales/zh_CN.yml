@@ -311,6 +311,10 @@
         categories:
           travels: "游记攻略"
           recommend: "壹推荐"
+      place:
+        status:
+          draft: "待审核"
+          publish: "已发布"
       
   helpers:
     select:
@@ -373,6 +377,8 @@
       exception: "出错啦"
       back_home: "返回首页"
       permission: "查看权限"
+      publish: "解锁模式"
+      draft: "锁定模式"
     placeholder:
       search: "搜索%{model}"
     messages:
@@ -386,6 +392,8 @@
       selected_error: "操作失败，你没有选择任何项！"
       not_edit_admin: "你没有权限修改该类型的用户。"
       not_new_admin: "你没有权限添加该类型的用户。"
+      publish: "恭喜你，景区解锁成功！"
+      draft: "你已经将该景区转为锁定模式。"
   views:
     pagination:
       first: "第一页"
@@ -583,5 +591,7 @@
       create: "新增"
       update: "修改"
       destroy: "删除"
+      publish: "发布"
+      permission: "查看权限"
 
 
