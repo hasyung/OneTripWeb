@@ -1,5 +1,7 @@
 class Admin::PicturesController < Admin::ApplicationController
 
+	skip_authorization_check
+	
 	def index
 		@pictures = Picture.page(params[:page]).per(Setting.admin_PhotoPageSize).created_desc
 	end

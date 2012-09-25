@@ -1,31 +1,28 @@
 class Admin::UsersController < Admin::ApplicationController
 
+	load_and_authorize_resource
+	
 	helper_method :permission
 
 	def index
-		 @users = User.page(params[:page]).per(Setting.admin_PageSize)
+		@users = @user.page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
-		 @user = User.new
 	end
 
 	def create
-		 @user = User.new params[:user]
-		 if @user.save
-		  	redirect_to :admin_users, :notice => t("helpers.messages.new", :model_name => User.model_name.human)
+		if @user.save
+	  	redirect_to :admin_users, :notice => t("helpers.messages.new", :model_name => User.model_name.human)
 	 	else
-			  render :new
-		 end
+		  render :new
+		end
 	end
 
 	def edit
-		 @user = User.find params[:id]
 	end
 
 	def update
-		@user = User.find params[:id]
-
 		params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
 
@@ -37,28 +34,27 @@ class Admin::UsersController < Admin::ApplicationController
 	end
 
 	def destroy
-		 @user = User.find params[:id]
-     if @user.destroy
-       redirect_to :admin_users, :notice => t("helpers.messages.destroy", :model_name => User.model_name.human)
-     else
-       redirect_to :admin_users, :alert => t("helpers.messages.error")
-     end
+    if @user.destroy
+      redirect_to :admin_users, :notice => t("helpers.messages.destroy", :model_name => User.model_name.human)
+    else
+      redirect_to :admin_users, :alert => t("helpers.messages.error")
+    end
 	end
 
 	def destroies
-		 if params[:user_ids].blank?
-		   return redirect_to :admin_users,
+		if params[:user_ids].blank?
+		  return redirect_to :admin_users,
 												 :alert => t("helpers.messages.selected_error",
 												 							:model_name => User.model_name.human)
-		 end
-		 if User.destroy(params[:user_ids])
-			  redirect_to :admin_users, 
+		end
+		if User.destroy(params[:user_ids])
+		  redirect_to :admin_users, 
 									:notice => t("helpers.messages.destroy_multiple", 
 																:count => params[:user_ids].size,
 																:model_name => User.model_name.human)
-		 else
-			  redirect_to :admin_users, :alert => t("helpers.messages.notices.error")
-		 end
+		else
+		  redirect_to :admin_users, :alert => t("helpers.messages.notices.error")
+		end
 	end
 
 	def search
@@ -66,13 +62,12 @@ class Admin::UsersController < Admin::ApplicationController
 			redirect_to :admin_users, :alert => t("helpers.messages.search_error")
 			return
 		else
-			@users = User.search_name(params[:user][:email]).page(params[:page]).per(Setting.admin_PageSize)
+			@users = @users.search_name(params[:user][:email]).page(params[:page]).per(Setting.admin_PageSize)
 		end
 		render :action => "index"
 	end
 
 	def permission
-		@user = User.find params[:id]
 		@permissions = @user.permissions
 	end
 

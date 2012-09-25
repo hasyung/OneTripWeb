@@ -1,18 +1,17 @@
 class Admin::ArticlesController < Admin::ApplicationController
 
-	before_filter :get_place
+	load_and_authorize_resource :place
+	load_and_authorize_resource :through => :place
+
 	helper_method :permission
 
 	def show
-	  @article = Article.find params[:id]
 	end
 
 	def new
-		@article = @place.articles.new params[:article]
 	end
 
 	def create
-		@article = @place.articles.new params[:article]
 		if @article.save
 			redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Article.model_name.human)
 		else
@@ -21,11 +20,9 @@ class Admin::ArticlesController < Admin::ApplicationController
 	end
 
 	def edit
-		@article = Article.find params[:id]
 	end
 
 	def update
-		@article = Article.find params[:id]
 		if @article.update_attributes params[:article]
     	redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Article.model_name.human)
     else
@@ -34,7 +31,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 	end
 
 	def destroy
-		@article = Article.find params[:id]
 		if @article.destroy
 			redirect_to admin_place_url(@place), :notice => t("helpers.messages.destroy", :model_name => Article.model_name.human)
 		else
@@ -43,10 +39,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 	end
 
 	private
-	def get_place
-		@place = Place.find params[:place_id]
-	end
-
 	def self.permission
   	return Article.name, "permission.controllers.admin.articles"
   end
