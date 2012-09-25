@@ -1,17 +1,17 @@
 class Admin::RolesController < Admin::ApplicationController
 
+	load_and_authorize_resource
+
 	helper_method :permission
 
 	def index
-		@roles = Role.page(params[:page]).per(Setting.admin_PageSize)
+		@roles = @roles.page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
-		@role = Role.new
 	end
 
 	def create
-		@role = Role.new params[:role]
 		if @role.save
 			redirect_to :admin_roles, :notice => t("helpers.messages.edit", :model_name => Role.model_name.human)
 		else
@@ -20,11 +20,9 @@ class Admin::RolesController < Admin::ApplicationController
 	end
 
 	def edit
-		@role = Role.find params[:id]
 	end
 
 	def update
-		@role = Role.find params[:id]
     if @role.update_attributes params[:role]
       redirect_to :admin_roles, :notice => t("helpers.messages.edit", :model_name => Role.model_name.human)
     else
@@ -33,7 +31,6 @@ class Admin::RolesController < Admin::ApplicationController
 	end
 
 	def destroy
-		@role = Role.find params[:id]
     if @role.destroy
       redirect_to :admin_roles, :notice => t("helpers.messages.destroy", :model_name => Role.model_name.human)
     else
@@ -62,7 +59,7 @@ class Admin::RolesController < Admin::ApplicationController
 			redirect_to :admin_roles, :alert => t("helpers.messages.search_error")
 			return
 		else
-			@roles = Role.search_name(params[:role][:name]).page(params[:page]).per(Setting.admin_PageSize)
+			@roles = @roles.search_name(params[:role][:name]).page(params[:page]).per(Setting.admin_PageSize)
 		end
 		render :action => "index"
 	end

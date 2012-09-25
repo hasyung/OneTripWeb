@@ -1,15 +1,23 @@
 <li <%= "class=active" if controller_name == "home" %>>
 	<%= link_to t("helpers.links.home"), admin_root_path, :title => t("helpers.links.home") %>
 </li>
-<li <%= "class=active" if controller_name == "provinces" %>>
-	<%= link_to Province.model_name.human, admin_provinces_path, :title => Province.model_name.human %>
-</li>
-<li <%= "class=active" if controller_name == "places" %>>
-	<%= link_to Place.model_name.human, admin_places_path, :title => Place.model_name.human %>
-</li>
-<li <%= "class=active" if controller_name == "users" %>>
-	<%= link_to User.model_name.human, admin_users_path, :title => User.model_name.human %>
-</li>
-<li <%= "class=active" if controller_name == "roles" %>>
-	<%= link_to Role.model_name.human, admin_roles_path, :title => Role.model_name.human %>
-</li>
+<% if can? :read, Province %>
+	<li <%= "class=active" if controller_name == "provinces" %>>
+		<%= link_to Province.model_name.human, admin_provinces_path, :title => Province.model_name.human %>
+	</li>
+<% end -%>
+<% if can? :read, Place %>
+	<li <%= "class=active" if controller_name == "places" %>>
+		<%= link_to Place.model_name.human, admin_places_path, :title => Place.model_name.human %>
+	</li>
+<% end -%>
+<% if can? :read, User %>
+	<li <%= "class=active" if controller_name == "users" %>>
+		<%= link_to User.model_name.human, admin_users_path, :title => User.model_name.human %>
+	</li>
+<% end -%>
+<% if can? :read, Role %>
+	<li <%= "class=active" if controller_name == "roles" %>>
+		<%= link_to Role.model_name.human, admin_roles_path, :title => Role.model_name.human %>
+	</li>
+<% end -%>

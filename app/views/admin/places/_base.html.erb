@@ -55,61 +55,91 @@
 <%= content_for :toolbar do -%>
 	<% if %w(index search).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= new_admin_place_path %>" class="btn">
-				<i class="icon-pencil icon-large"></i><b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
-			</a>
-			<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @places.blank? %>>
-				<i class="icon-trash icon-large"></i>
-				<b><%= t("helpers.links.delete_all") %></b>
-			</a>
+			<% if can? :new, model_class %>
+				<a href="<%= new_admin_place_path %>" class="btn">
+					<i class="icon-pencil icon-large"></i>
+					<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+				</a>
+			<% end -%>
+			<% if can? :destroy, model_class %>
+				<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @places.blank? %>>
+					<i class="icon-trash icon-large"></i>
+					<b><%= t("helpers.links.delete_all") %></b>
+				</a>
+			<% end -%>
 		</div>
 	<% end -%>
 	<% if %w(show).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= edit_admin_place_path %>" class="btn">
-				<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
-			</a>
-			<a href="<%= new_admin_place_video_path(@place) %>" class="btn">
-				<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
-			</a>
-			<a href="<%= new_admin_place_audio_path(@place) %>" class="btn">
-				<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
-			</a>
-			<a href="<%= new_admin_place_article_path(@place) %>" class="btn">
-				<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
-			</a>
-			<a href="<%= new_admin_place_info_path(@place) %>" class="btn">
-				<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
-			</a>
-			<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
-				<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
-			</a>
+			<% if can? :update, model_class %>
+				<a href="<%= edit_admin_place_path %>" class="btn">
+					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Video %>
+				<a href="<%= new_admin_place_video_path(@place) %>" class="btn">
+					<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Audio %>
+				<a href="<%= new_admin_place_audio_path(@place) %>" class="btn">
+					<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Article %>
+				<a href="<%= new_admin_place_article_path(@place) %>" class="btn">
+					<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Info %>
+				<a href="<%= new_admin_place_info_path(@place) %>" class="btn">
+					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
+				</a>
+			<% end -%>
+			<% if can? :destroy, model_class %>
+				<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
+				</a>
+			<% end -%>
+		</div>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_places_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
 		</div>
 	<% end -%>
 	<% if %w(new create).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= admin_places_path %>" class="btn">
-				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-			</a>
+			<% if can? :read, model_class %>
+				<a href="<%= admin_places_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
 		</div>
 	<% end -%>
 	<% if %w(edit update).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= admin_place_path(@place) %>" class="btn">
-				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
-			</a>
-			<a href="<%= admin_places_path %>" class="btn">
-				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-			</a>
+			<% if can? :read, model_class %>
+				<a href="<%= admin_place_path(@place) %>" class="btn">
+					<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
+				</a>
+				<a href="<%= admin_places_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
 		</div>
 	<% end -%>
 	<div class="btn-group pull-right">
 		<div class="controls pagination-right search">
-	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
-	      <div class="input-append">
-	        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
-	        <button type="submit" class="btn"><i class="icon-search"></i></button>
-	      </div>
+			<% if can? :read, model_class %>
+		    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
+		      <div class="input-append">
+		        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
+		        <button type="submit" class="btn"><i class="icon-search"></i></button>
+		      </div>
+		    <% end -%>
 	    <% end -%>
 	  </div>
 	</div>
