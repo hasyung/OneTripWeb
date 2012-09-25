@@ -23,16 +23,20 @@
           <td><%= role.description %></td>
           <td><%= l role.created_at.to_date, :format => :long %></td>
           <td class="actions">
-            <%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-                        edit_admin_role_path(role), 
-                        :title => t("helpers.links.edit"),
-                        :rel => :tooltip %>
-            <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-                        admin_role_path(role),
-                        :method => :delete,
-                        :title => t("helpers.links.destroy"),
-                        :data => { :confirm => t("helpers.messages.confirm") },
-                        :rel => :tooltip %>
+            <% if can? :update, Role %>
+              <%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+                          edit_admin_role_path(role), 
+                          :title => t("helpers.links.edit"),
+                          :rel => :tooltip %>
+            <% end -%>
+            <% if can? :destroy, Role %>
+              <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+                          admin_role_path(role),
+                          :method => :delete,
+                          :title => t("helpers.links.destroy"),
+                          :data => { :confirm => t("helpers.messages.confirm") },
+                          :rel => :tooltip %>
+            <% end %>
           </td>
         </tr>
       <% end %>
