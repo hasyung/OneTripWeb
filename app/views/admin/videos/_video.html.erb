@@ -2,16 +2,20 @@
 	<div class="name">
 		<h4><%= video.name %></h4>
 		<span class="actions">
-			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-       	edit_admin_place_video_path(video.place_id, video), 
-       	:title => t("helpers.links.edit"),
-        :rel => :tooltip %>
-	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-	      admin_place_video_path(video.place_id, video),
-        :method => :delete,
-        :title => t("helpers.links.destroy"),
-        :data => { :confirm => t("helpers.messages.confirm") },
-        :rel => :tooltip %>
+    <% if can? :update, Video %>
+  			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+         	edit_admin_place_video_path(video.place_id, video), 
+         	:title => t("helpers.links.edit"),
+          :rel => :tooltip %>
+    <% end %>
+    <% if can? :destroy, Video %>
+  	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+  	      admin_place_video_path(video.place_id, video),
+          :method => :delete,
+          :title => t("helpers.links.destroy"),
+          :data => { :confirm => t("helpers.messages.confirm") },
+          :rel => :tooltip %>
+    <% end %>
 		</span>
 	</div>
 	<div id="jp_container_video_<%= video.id %>" class="jp-video jp-video-270p">

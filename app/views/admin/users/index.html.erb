@@ -28,16 +28,20 @@
                           :rel => :tooltip,
                           :remote => true %>
             <% end -%>
-            <%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-                        edit_admin_user_path(user), 
-                        :title => t("helpers.links.edit"),
-                        :rel => :tooltip %>
-            <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-                        admin_user_path(user),
-                        :method => :delete,
-                        :title => t("helpers.links.destroy"),
-                        :data => { :confirm => t("helpers.messages.confirm") },
-                        :rel => :tooltip %>
+            <% if can? :update, User %>
+              <%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+                          edit_admin_user_path(user), 
+                          :title => t("helpers.links.edit"),
+                          :rel => :tooltip %>
+            <% end -%>
+            <% if can? :destroy, User %>
+              <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+                          admin_user_path(user),
+                          :method => :delete,
+                          :title => t("helpers.links.destroy"),
+                          :data => { :confirm => t("helpers.messages.confirm") },
+                          :rel => :tooltip %>
+            <% end -%>
           </td>
         </tr>
       <% end %>

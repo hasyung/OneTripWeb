@@ -66,8 +66,12 @@
 						title: "<%= audio.name %>",
 						artist: "<%= audio.duration %>",
 						mp3: "<%= audio.attachment.url %>",
-						delete_url: "<%= admin_place_audio_path(audio.place_id, audio) %>",
-						edit_url: "<%= edit_admin_place_audio_path(audio.place_id, audio) %>"
+      <% if can? :destroy, Audio %>
+  						delete_url: "<%= admin_place_audio_path(audio.place_id, audio) %>",
+      <% end %>
+      <% if can? :destroy, Audio %>
+  						edit_url: "<%= edit_admin_place_audio_path(audio.place_id, audio) %>"
+      <% end %>
 					}<%= "," if i != audios.count - 1 %>
 				<% end -%>
 			], {

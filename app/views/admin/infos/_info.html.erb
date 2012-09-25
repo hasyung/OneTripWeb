@@ -1,16 +1,20 @@
 <li class="info_<%= info.id %>">
 	<div class="var"><%= info.var %>
   	<span class="actions">
-  		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-        edit_admin_place_info_path(info.place_id, info), 
-        :title => t("helpers.links.edit"),
-        :rel => :tooltip %>
+    <% if can? :update, Article %>
+    		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+          edit_admin_place_info_path(info.place_id, info), 
+          :title => t("helpers.links.edit"),
+          :rel => :tooltip %>
+    <% end %>
+    <% if can? :destroy, Article %>
       <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
         admin_place_info_path(info.place_id, info),
         :method => :delete,
         :title => t("helpers.links.destroy"),
         :data => { :confirm => t("helpers.messages.confirm") },
         :rel => :tooltip %>
+    <% end %>
   	</span>
   </div>
   <div class="value"><%= info.value %></div>

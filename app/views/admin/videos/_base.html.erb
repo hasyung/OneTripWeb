@@ -27,12 +27,14 @@
 <%= content_for :toolbar do -%>
 	<% if %w(new create edit update).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= admin_place_path(@place) %>" class="btn">
-				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
-			</a>
-			<a href="<%= admin_places_path %>" class="btn">
-				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-			</a>
+    <% if can? :new, model_class %>
+  			<a href="<%= admin_place_path(@place) %>" class="btn">
+  				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
+  			</a>
+  			<a href="<%= admin_places_path %>" class="btn">
+  				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+  			</a>
+    <% end %>
 		</div>
 	<% end -%>
 	<div class="btn-group pull-right">

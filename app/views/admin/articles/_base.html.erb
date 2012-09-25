@@ -27,16 +27,20 @@
 <%= content_for :toolbar do -%>
 	<% if %w(new create edit update show).include?(action_name) -%>
 		<div class="btn-group">
-			<a href="<%= admin_place_path(@place) %>" class="btn">
-				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
-			</a>
-			<a href="<%= admin_places_path %>" class="btn">
-				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-			</a>
+    <% if can? :read, model_class %>
+  			<a href="<%= admin_place_path(@place) %>" class="btn">
+  				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
+  			</a>
+  			<a href="<%= admin_places_path %>" class="btn">
+  				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+  			</a>
+    <% end%>
    <% if %w(show).include?(action_name) -%>
-    <a href="<%= edit_admin_place_article_path %>" class="btn">
-				  <i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_article") %></b>
-			  </a>
+    <% if can? :update, model_class %>
+      <a href="<%= edit_admin_place_article_path %>" class="btn">
+  				  <i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_article") %></b>
+  			  </a>
+    <% end%>
    <% end%>
 		</div>
 	<% end -%>
