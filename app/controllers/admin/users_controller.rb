@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
 	helper_method :permission
 
 	def index
-		@users = @user.page(params[:page]).per(Setting.admin_PageSize)
+		@users = @users.page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
