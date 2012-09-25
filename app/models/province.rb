@@ -6,9 +6,9 @@ class Province < ActiveRecord::Base
 
   # Validates
   validates :name, :key, :presence => true
-	with_options :if => :name? do |name|
-    name.validates :name, :length => { :within => 2..30 }
-    name.validates :name, :uniqueness => true
+     with_options :if => :name? do |name|
+     name.validates :name, :length => { :within => 2..30 }
+     name.validates :name, :uniqueness => true
   end
   with_options :if => :key? do |key|
   	key.validates :key, :uniqueness => true
