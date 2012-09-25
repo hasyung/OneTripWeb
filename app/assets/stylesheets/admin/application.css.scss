@@ -112,10 +112,6 @@ abbr {
   }
   .control-group.alert {
   	padding: 8px 35px 8px 14px;
-  	// .close {
-  	// 	top: 4px;
-  	// 	right: -1px;
-  	// }
   }
   .control-group.permission {
   	& > .controls {
@@ -255,6 +251,7 @@ abbr {
 	}
 }
 
+/* 文件上传 */
 .file_upload {
 	.controls {
 		@include clearfix;
@@ -265,6 +262,36 @@ abbr {
 		.help-block {
 			margin-bottom: 0;
 		}
+	}
+}
+
+/* 登录页面 */
+#sessions-new {
+	padding-top: 150px;
+	.control-group {
+		margin-bottom: 30px;
+	}
+	.form-inputs, .form-actions {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.form-actions {
+		background-color: transparent;
+		padding: 20px 0 0 0;
+	}
+	.prepend_password {
+		//margin-bottom: 30px;
+	}
+	.control-group.bootstrap_check_box {
+		margin-bottom: 10px;
+	}
+	.input-prepend .add-on, .input-append .add-on {
+		height: 24px;
+		line-height: 24px;
+	}
+	input[type="text"], input[type="password"] {
+		height: 24px;
+		line-height: 20px;
 	}
 }
 
@@ -323,6 +350,7 @@ abbr {
 	}
 }
 
+/* 文件上传 */
 #fileupload {
 	.row {
 		margin-left: 0;
@@ -366,6 +394,7 @@ abbr {
 	}
 }
 
+/* 地图上传，音频上传 */
 #map-fileupload, #audio-fileupload {
 	margin: 0;
 	.fileupload-buttonbar {
@@ -426,6 +455,8 @@ abbr {
 		text-align: center;
 	}
 }
+
+/* 景区详细显示页面 */
 #places-show {
 	#info {
 		ul {
@@ -461,6 +492,7 @@ abbr {
 	}
 }
 
+/* sidebar 边栏 */
 #sidebar {
 	.well {
 		padding: 8px;
@@ -476,6 +508,7 @@ abbr {
 	}
 }
 
+/* 上传弹出窗口 */
 #upload-modal {
 	.fileupload-buttonbar {
 		margin-left: 0;
@@ -556,6 +589,7 @@ abbr {
 	}
 }
 
+/* 图片列表 */
 #pictures-files {
 	@media (min-width: 1200px) {
 		.thumbnails {
@@ -583,6 +617,8 @@ abbr {
 		text-align: center;
 	}
 }
+
+/* 信息内容 */
 fieldset#info {
 	.actions {
 		padding-left: 5px;
@@ -598,6 +634,8 @@ fieldset#info {
 		}
 	}
 }
+
+/* 文章内容 */
 fieldset#article {
 	h4 {
 		color: #999;
@@ -619,12 +657,16 @@ fieldset#article {
 		}
 	}
 }
+
+/* 地图内容 */
 fieldset#map {
 	img {
 		padding: 1px;
 		border: 1px solid #ccc;
 	}
 }
+
+/* 视频和音频内容 */
 fieldset#video, fieldset#audio {
 	ul.thumbnails {
 		margin-left: -146px;
@@ -662,7 +704,7 @@ fieldset {
 	}
 }
 
-/*文章*/
+/* 文章详细内容 */
 #articles-show {
   .article {
     font-size: 14px;
