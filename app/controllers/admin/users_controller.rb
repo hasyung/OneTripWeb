@@ -5,10 +5,11 @@ class Admin::UsersController < Admin::ApplicationController
 	helper_method :permission
 
 	def index
-		@users = @users.page(params[:page]).per(Setting.admin_PageSize)
+		@users = @users.where(:admin => false).page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
+	
 	end
 
 	def create
@@ -20,6 +21,7 @@ class Admin::UsersController < Admin::ApplicationController
 	end
 
 	def edit
+		redirect_to :admin_users, :alert => t("helpers.messages.not_edit_admin") if @user.admin?
 	end
 
 	def update
@@ -62,7 +64,7 @@ class Admin::UsersController < Admin::ApplicationController
 			redirect_to :admin_users, :alert => t("helpers.messages.search_error")
 			return
 		else
-			@users = @users.search_name(params[:user][:email]).page(params[:page]).per(Setting.admin_PageSize)
+			@users = @users.where(:admin => false).search_name(params[:user][:email]).page(params[:page]).per(Setting.admin_PageSize)
 		end
 		render :action => "index"
 	end

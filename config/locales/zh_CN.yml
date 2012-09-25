@@ -384,6 +384,8 @@
       confirm: "你确定这样做吗？"
       search_error: "你没有提供任何要搜索的数据！"
       selected_error: "操作失败，你没有选择任何项！"
+      not_edit_admin: "你没有权限修改该类型的用户。"
+      not_new_admin: "你没有权限添加该类型的用户。"
   views:
     pagination:
       first: "第一页"
