@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 
   # Scopes
   scope :search_name, lambda { |name| where("ucase(`users`.`email`) like concat('%',ucase(?),'%')", name) }
+  scope :newest, lambda { |count| where(:admin => false).limit(count) }
+  scope :created_desc, order("created_at DESC")
+  scope :order_desc, order("`order` DESC")
 
   # Methods
   def permissions

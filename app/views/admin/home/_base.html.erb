@@ -1,0 +1,11 @@
+<%= content_for :title do -%>
+	<% if %w(index).include?(action_name) -%>
+		<%= t("helpers.links.home") %>
+	<% end -%>
+<% end -%>
+
+<%= content_for :sitemaps do -%>
+	<% if %w(index).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.home") %></span>
+	<% end -%>
+<% end -%>

@@ -32,4 +32,5 @@ class Article < ActiveRecord::Base
   scope :order_desc, order("`order` DESC")
   scope :all_travels, where(:category_cd => Article.travels)
   scope :recommends, where(:category_cd => Article.recommend)
+  scope :newest, lambda { |count| limit(count).includes(:place) }
 end

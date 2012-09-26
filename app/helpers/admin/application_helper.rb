@@ -52,5 +52,33 @@ module Admin::ApplicationHelper
 		content_tag(:div, raw("#{model_html}#{action_html}#{message_html}#{date_html}"), :class => :log)
 
 	end
+
+	def statistics_item(class_name)
+		html = ""
+		count = class_name.constantize.all.count
+		if !class_name.blank?
+			html += "<li>"
+			html += "<span class=\"name\">#{class_name.constantize.model_name.human}</span>"
+			html += "<span class=\"count\">"
+			label = case count
+			when 0..10
+				"inverse"
+			when 11..20
+				"info"
+			when 21..30
+				"success"
+			when 31..40
+				"warning"
+			else
+				"error"
+			end
+			html += "<span class=\"badge badge-#{label}\">"
+			html += "#{count}"
+			html += "</span>"
+			html += "</span>"
+			html += "</li>"
+		end
+		raw html
+	end
 	
 end
