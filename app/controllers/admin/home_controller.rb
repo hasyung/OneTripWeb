@@ -1,8 +1,6 @@
 class Admin::HomeController < Admin::ApplicationController
 	
 	skip_authorization_check
-  load_and_authorize_resource :province
-  load_and_authorize_resource :place
 
 	helper_method :permission
 

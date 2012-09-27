@@ -55,7 +55,11 @@
 	    		<b><%= t("helpers.submit.setting", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
+     <% if %w(setting).include?(action_name) %>
+      <a href="<%= admin_root_path %>" class="btn">
+    <% else -%>
 	    <a href="<%= admin_users_path %>" class="btn">
+    <% end %>
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>
