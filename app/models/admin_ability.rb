@@ -11,6 +11,10 @@ class AdminAbility
         else
           can permission.action.to_sym, permission.subject_class.constantize
         end
+        case permission.action
+        when "setting"
+          can permission.action.to_sym, permission.subject_class.constantize, :id => user.id
+        end
       else
         can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
       end

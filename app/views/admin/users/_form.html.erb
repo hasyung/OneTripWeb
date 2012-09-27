@@ -1,6 +1,12 @@
 <%- model_class = User -%>
 
-<%= simple_form_for [:admin, @user], :html => { :class => "special-form" } do |f| %>
+<% if %w(setting).include?(action_name) %>
+  <% url = setting_admin_user_path(current_user) %>
+<% else -%>
+  <% url = nil %>
+<% end -%>
+
+ <%= simple_form_for [:admin, @user], :url => url, :html => { :class => "special-form" } do |f| %>
   <fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
@@ -8,20 +14,32 @@
   	<% if %w(edit update).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
+  <% if %w(setting).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.setting", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
 		<%= error_messages_for @user, :class => "control-group alert alert-error fade in", :close => :true %>
-		<% if %w(edit update).include?(action_name) and @user == current_user %>
+		<% if %w(edit update setting).include?(action_name) and @user == current_user %>
 			<div class="control-group alert">
 			  <a class="close" data-dismiss="alert">×</a>
 			  <strong>警告！</strong> 修改当前登录用户的密码需要重新登录。
 			</div>
 		<% end -%>
-		<%= f.input :email, :input_html => { :class => "span-full" }, :required => true %>
-		<%= f.input :password, :input_html => { :class => "span-full" }, :required => true %>
+		<%= f.input :email, :input_html => { :class => "span-full" }, :required => true, :disabled => !url.blank? ? true : nil %>
+  <%= f.simple_fields_for :profile do |profile| -%>
+    <%= profile.input :real_name, :input_html => { :class => "span-full" }, :required => true %>
+    <%= profile.input :sex_cd do %>
+      <%= profile.select :sex_cd, UserProfile.sexes_for_select(:value) %>
+    <% end %>
+    <%= profile.input :position, :input_html => { :class => "span-full" } %>
+  <% end -%>
+  	<%= f.input :password, :input_html => { :class => "span-full" }, :required => true %>
 	  <%= f.input :password_confirmation, :input_html => { :class => "span-full" }, :required => true %>
-	  <div class="control-group role">
-	  	<label class="control-label"><%= model_class.human_attribute_name(:roles) %></label>
-	  	<%= render "roles" %>
-	  </div>
+   <% if !%w(setting).include?(action_name) %>
+  	  <div class="control-group role">
+  	  	<label class="control-label"><%= model_class.human_attribute_name(:roles) %></label>
+  	  	<%= render "roles" %>
+  	  </div>
+   <% end %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">
 	    	<i class="icon-save icon-large"></i>
@@ -30,6 +48,9 @@
 	    	<% end -%>
 	    	<% if %w(edit update).include?(action_name) %>
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+     	<% if %w(setting).include?(action_name) %>
+	    		<b><%= t("helpers.submit.setting", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
 	    <a href="<%= admin_users_path %>" class="btn">

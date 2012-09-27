@@ -2,7 +2,7 @@ namespace :utils do
 	desc "Setup Actions to Database"
 	task :setup_actions => :environment do
 		# 清空数据库只限用于第一次或者是调试模式下
-		clean_permission_db
+		# clean_permission_db
 
 		setup_actions_controllers_db
 	end

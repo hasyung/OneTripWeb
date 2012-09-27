@@ -11,10 +11,18 @@
 	<% if %w(edit update).include?(action_name) -%>
 		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
 	<% end -%>
+  
+  <% if %w(setting).include?(action_name) -%>
+		<%= t("helpers.submit.setting", :model => model_class.model_name.human) %>
+	<% end -%>
 <% end -%>
 
 <%= content_for :sitemaps do -%>
-	<a href="<%= admin_users_path %>"><%= model_class.model_name.human %></a>
+ <% if !%w(index setting).include?(action_name) %>
+	  <a href="<%= admin_users_path %>"><%= model_class.model_name.human %></a>
+  <% else %>
+    <%= model_class.model_name.human %>
+  <% end %>
 	<span class="divider">/</span>
 	<% if %w(index).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.list") %></span>
@@ -26,6 +34,9 @@
 
 	<% if %w(edit update).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.edit") %></span>
+	<% end -%>
+	<% if %w(setting).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.setting") %></span>
 	<% end -%>
 <% end -%>
 
@@ -67,18 +78,20 @@
 		</div>
 	<% end -%>
 	<div class="btn-group pull-right">
-		<div class="controls pagination-right search">
-	    <%= simple_form_for :user, :url => search_admin_users_path do |f| -%>
-	      <div class="input-append">
-	        <%= f.input_field :email, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
-	        <button type="submit" class="btn"><i class="icon-search"></i></button>
-	      </div>
-	    <% end -%>
-	  </div>
+  <% if %w(index new create edit update).include?(action_name) -%>
+  		<div class="controls pagination-right search">
+  	    <%= simple_form_for :user, :url => search_admin_users_path do |f| -%>
+  	      <div class="input-append">
+  	        <%= f.input_field :email, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
+  	        <button type="submit" class="btn"><i class="icon-search"></i></button>
+  	      </div>
+  	    <% end -%>
+  	 </div>
+  <% end %>
 	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
-	<% if %w(new create edit update).include?(action_name) -%>
+	<% if %w(new create edit update setting).include?(action_name) -%>
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>

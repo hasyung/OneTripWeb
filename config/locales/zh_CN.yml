@@ -237,6 +237,7 @@
       article: "文章"
       picture: "图片"
       user: "用户"
+      user_profile: "用户信息"
       role: "角色"
       permission: "权限"
     attributes:
@@ -255,6 +256,11 @@
         map: "地图"
         map_content_type: "地图类型"
         map_file_size: "地图大小"
+        videos_count: "视频数"
+        audios_count: "音频数"
+        articles_count: "文章数"
+        infos_count:  "信息数"
+        created_at: "创建时间"
       info:
         var: "名字"
         value: "内容"
@@ -295,6 +301,10 @@
         created_at: "创建时间"
         updated_at: "修改时间"
         roles: "角色"
+      profile:
+        real_name: "真实姓名"
+        sex_cd: "性别"
+        position: "职位"
       role:
         name: "名字"
         description: "描述"
@@ -307,6 +317,10 @@
         categories:
           narrate: "景点解说"
           story: "有声故事"
+      user_profile:
+        sexes:
+          male: "男"
+          female: "女"
       article:
         categories:
           travels: "游记攻略"
@@ -323,6 +337,7 @@
       create: "添加%{model}"
       update: "修改%{model}"
       submit: "储存%{model}"
+      setting: "设置%{model}"
       cancel: "取消"
     page_entries_info:
       one_page:
@@ -371,6 +386,8 @@
       add_info: "添加信息"
       edit_info: "修改信息"
       back_place: "返回%{place_name}"
+      add_place: "添加景区"
+      read_place: "查看景区"
       edit_article: "修改文章"
       reset_map: "重新上传地图"
       tips: "小贴士"
@@ -420,6 +437,16 @@
       mark: '*'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      user:
+        login: "用户名"
+        password: "密码"
+        email: "邮箱"
+        password_confirmation: "确认密码"
+      profile:
+        real_name: "真实姓名"
+        sex_cd: "性别"
+        position: "职位"
     hints:
       defaults:
         username: ''
@@ -593,5 +620,6 @@
       destroy: "删除"
       publish: "发布"
       permission: "查看权限"
+      setting: "设置个人信息"
 
 

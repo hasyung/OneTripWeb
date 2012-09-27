@@ -18,6 +18,7 @@ class Province < ActiveRecord::Base
   end
 
   # Scopes
+  scope :created_desc, order("created_at DESC")
   scope :search_name, lambda { |name| where("ucase(`provinces`.`name`) like concat('%',ucase(?),'%')", name) }
 
 end

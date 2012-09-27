@@ -6,7 +6,7 @@ OneTripWeb::Application.routes.draw do
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => "admin/sessions" }
   
-  match "/places/:name" => "places#index"
+  match "/places/:name" => "places#index", :as => :name_place
   
   namespace :admin do
     root :to => 'home#index'
@@ -14,6 +14,7 @@ OneTripWeb::Application.routes.draw do
     resources :users do
       post 'destroies', :on => :collection
       post 'search', :on => :collection
+      match 'setting' => "users#setting", :on => :member, :via => [:get, :put]
       get 'permission', :on => :member
       get 'page/:page', :action => :index, :on => :collection
     end

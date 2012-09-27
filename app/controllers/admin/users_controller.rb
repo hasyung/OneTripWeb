@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
 
-	load_and_authorize_resource
+ load_and_authorize_resource
 	
 	helper_method :permission
 
@@ -68,6 +68,20 @@ class Admin::UsersController < Admin::ApplicationController
 		end
 		render :action => "index"
 	end
+  
+  def setting
+    @user = current_user
+    if request.put?
+      params[:user].delete(:password) if params[:user][:password].blank?
+      params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+  
+      if @user.update_attributes(params[:user])
+        redirect_to :admin_root, :notice => t("helpers.messages.edit", :model_name => User.model_name.human)
+      else
+        render :action => :setting
+      end
+    end
+  end
 
 	def permission
 		@permissions = @user.permissions

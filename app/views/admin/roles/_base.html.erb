@@ -14,7 +14,12 @@
 <% end -%>
 
 <%= content_for :sitemaps do -%>
-	<a href="<%= admin_roles_path %>"><%= model_class.model_name.human %></a>
+
+ <% if !%w(index).include?(action_name) %>
+	  <a href="<%= admin_roles_path %>"><%= model_class.model_name.human %></a>
+  <% else %>
+    <%= model_class.model_name.human %>
+  <% end %>
 	<span class="divider">/</span>
 	<% if %w(index).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.list") %></span>
