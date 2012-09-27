@@ -876,3 +876,11 @@ fieldset {
 		}
 	}
 }
+
+#permissions-modal {
+	.simple_form {
+		label.setting {
+			margin-left: 0;
+		}
+	}
+}

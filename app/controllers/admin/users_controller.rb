@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
 
- load_and_authorize_resource
+	load_and_authorize_resource
 	
 	helper_method :permission
 
@@ -9,7 +9,7 @@ class Admin::UsersController < Admin::ApplicationController
 	end
 
 	def new
-	
+		@user.build_profile
 	end
 
 	def create
@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::ApplicationController
 		if @user.update_attributes(params[:user])
       redirect_to :admin_users, :notice => t("helpers.messages.edit", :model_name => User.model_name.human)
     else
-      render :action => "edit"
+      render :edit
     end
 	end
 
@@ -78,7 +78,7 @@ class Admin::UsersController < Admin::ApplicationController
       if @user.update_attributes(params[:user])
         redirect_to :admin_root, :notice => t("helpers.messages.edit", :model_name => User.model_name.human)
       else
-        render :action => :setting
+        render :setting
       end
     end
   end
