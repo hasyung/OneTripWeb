@@ -17,5 +17,8 @@ class Role < ActiveRecord::Base
 
   # Scopes
   scope :search_name, lambda { |name| where("ucase(`roles`.`name`) like concat('%',ucase(?),'%')", name) }
+  scope :newest, lambda { |count| limit(count) }
+  scope :created_desc, order("created_at DESC")
+  scope :order_desc, order("`order` DESC")
 
 end

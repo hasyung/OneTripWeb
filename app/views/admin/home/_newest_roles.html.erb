@@ -1,0 +1,16 @@
+<div id="roles" class="well newest-roles alert-success">
+	<h6>最新添加的用户角色</h6>
+	<% if can? :read, Role %>
+		<ul class="nav nav-list">
+			<% @newest_roles.each do |role| -%>
+				<li>
+					<a href="#">
+						<i class="icon-group"></i><%= " #{role.name}" %>
+					</a>
+				</li>
+			<% end -%>
+		</ul>
+	<% else -%>
+		<p><%= t("unauthorized.index.role") %></p>
+	<% end -%>
+</div>

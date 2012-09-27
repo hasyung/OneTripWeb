@@ -1,0 +1,8 @@
+<div id="places" class="hero-unit newest-places alert-warning">
+	<h6>最新添加的景区</h6>
+	<ul class="thumbnails">
+		<% @newest_places.each do |place| -%>
+		<%= render :partial => place %>
+		<% end -%>
+	</ul>
+</div>

@@ -1,0 +1,16 @@
+<div id="articles" class="well newest-articles alert-success">
+	<h6>最新添加的景区文章</h6>
+	<% if can? :read, Article %>
+		<ul class="nav nav-list">
+			<% @newest_articles.each do |article| -%>
+				<li>
+					<a href="<%= admin_place_article_path(article.place_id, article) %>">
+						<i class="icon-book"></i><%= " #{article.place.name} - #{article.title.truncate(26)}" %>
+					</a>
+				</li>
+			<% end -%>
+		</ul>
+	<% else -%>
+		<p><%= t("unauthorized.index.article") %></p>
+	<% end -%>
+</div>

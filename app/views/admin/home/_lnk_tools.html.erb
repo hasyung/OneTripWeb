@@ -1,0 +1,42 @@
+<div class="well lnk-tools alert-info">
+	<h6>快捷操作</h6>
+	<div class="btn-toolbar">
+		<% if can? :new, Province %>
+		<div class="btn-group">
+			<%= link_to t("helpers.submit.create", :model => Province.model_name.human), 
+	      new_admin_province_path, :title => t("helpers.submit.create", :model => Province.model_name.human),
+	      :class => "btn btn-primary btn-large" %>
+		</div>
+		<% end -%>
+		<% if can? :new, Place %>
+		<div class="btn-group">
+			<%= link_to t("helpers.submit.create", :model => Place.model_name.human), 
+	      new_admin_place_path, :title => t("helpers.submit.create", :model => Place.model_name.human),
+	      :class => "btn btn-primary btn-large" %>
+		</div>
+		<% end -%>
+		<% if can? :new, User %>
+		<div class="btn-group">
+			<%= link_to t("helpers.submit.create", :model => User.model_name.human), 
+	      new_admin_user_path, :title => t("helpers.submit.create", :model => User.model_name.human),
+	      :class => "btn btn-primary btn-large" %>
+		</div>
+		<% end -%>
+		<% if can? :new, Role %>
+			<div class="btn-group">
+				<%= link_to t("helpers.submit.create", :model => Role.model_name.human), 
+		      new_admin_role_path, :title => t("helpers.submit.create", :model => Role.model_name.human),
+		      :class => "btn btn-primary btn-large" %>
+			</div>
+		<% end -%>
+		<% if can? :permission, Role %>
+			<div class="btn-group">
+				<%= link_to t("helpers.links.permission"), permission_admin_user_path(current_user), 
+				  :title => t("helpers.links.permission"), :rel => :tooltip, :class => "btn btn-primary btn-large", :remote => true %>
+			</div>
+		<% end -%>
+	</div>
+</div>
+<% if can? :permission, Role %>
+	<%= render "admin/shared/permissions_modal" %>
+<% end -%>

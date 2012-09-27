@@ -14,7 +14,8 @@
 /log/*.log
 /tmp
 config/database.yml
-database.yml.simple
 .DS_store
 .redcar
 public/uploads
+
+config/database.yml.simple

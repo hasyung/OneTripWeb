@@ -1,0 +1,16 @@
+<div id="users" class="well newest-users alert-info">
+	<h6>最新添加的用户</h6>
+	<% if can? :read, User %>
+		<ul class="nav nav-list">
+			<% @newest_users.each do |user| -%>
+				<li>
+					<a href="#">
+						<i class="icon-user"></i><%= " #{user.email}" %>
+					</a>
+				</li>
+			<% end -%>
+		</ul>
+	<% else -%>
+		<p><%= t("unauthorized.index.user") %></p>
+	<% end -%>
+</div>

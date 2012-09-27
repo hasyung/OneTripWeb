@@ -1,0 +1,16 @@
+<div id="infos" class="well newest-infos alert-success">
+	<h6>最新添加的景区信息</h6>
+	<% if can? :read, Article %>
+		<ul class="nav nav-list">
+			<% @newest_infos.each do |info| -%>
+				<li>
+					<a href="<%= "#{admin_place_path(info.place_id)}#info" %>">
+						<i class="icon-pushpin"></i><%= " #{info.place.name} - #{info.var.truncate(26)}" %>
+					</a>
+				</li>
+			<% end -%>
+		</ul>
+	<% else -%>
+		<p><%= t("unauthorized.index.info") %></p>
+	<% end -%>
+</div>

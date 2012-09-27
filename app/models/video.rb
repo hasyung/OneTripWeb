@@ -35,6 +35,8 @@ class Video < ActiveRecord::Base
 
   # Scopes
   scope :order_desc, order("`order` DESC")
+  scope :created_desc, order("created_at DESC")
+  scope :newest, lambda { |count| limit(count).includes(:place) }
   
   def update_video_attributes
     if attachment.present? && attachment_changed?
