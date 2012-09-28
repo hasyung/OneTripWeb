@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Callbacks
 
 	# Associations
-	has_and_belongs_to_many :roles
+	has_and_belongs_to_many :roles, :include => :permissions
   has_one :profile, :class_name => "UserProfile", :dependent => :destroy
   accepts_nested_attributes_for :profile
 

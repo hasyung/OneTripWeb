@@ -30,4 +30,7 @@ gem 'cancan'
 
 group :development do
   gem 'quiet_assets', git: 'https://github.com/AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+  gem 'bullet'
+  gem 'ruby-growl'
+  gem 'ruby_gntp'
 end

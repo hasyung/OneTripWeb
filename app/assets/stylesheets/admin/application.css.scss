@@ -110,6 +110,16 @@ abbr {
   		padding: 1px;
   	}
   }
+  .control-group.sex_cd {
+  	& > .controls {
+  		label {
+  			padding-top: 0;
+  		}
+  		.help-block {
+  			margin-top: 4px;
+  		}
+  	}
+  }
   .control-group.alert {
   	padding: 8px 35px 8px 14px;
   }
@@ -877,10 +887,18 @@ fieldset {
 	}
 }
 
+/* 修正权限弹出框的样式 */
 #permissions-modal {
 	.simple_form {
 		label.setting {
 			margin-left: 0;
 		}
+	}
+}
+
+/* 用户设置页面 */
+#users-setting {
+	#toolbar {
+		display: none;
 	}
 }

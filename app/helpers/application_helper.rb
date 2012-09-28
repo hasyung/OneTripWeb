@@ -21,6 +21,17 @@ module ApplicationHelper
     link_to(name, path, :rel => rel, :title => title, :remote => remote, :data => confirm, :method => method)
   end
 
+  def current_user_html
+    html = ""
+    if !current_user.profile.blank?
+      html += current_user.profile.real_name
+      html += " [#{current_user.profile.position}]" if !current_user.profile.position.blank?
+    else
+      html += current_user.email
+    end
+    html
+  end
+
   def bootstrap_flash
     flash_messages = []
     flash.each do |type, message|

@@ -70,8 +70,10 @@ class Admin::UsersController < Admin::ApplicationController
 	end
   
   def setting
-    @user = current_user
     if request.put?
+    	# delete params roles
+    	params[:user].delete(:role_ids) if !params[:user][:role_ids].blank?
+    	
       params[:user].delete(:password) if params[:user][:password].blank?
       params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
   

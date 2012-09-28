@@ -337,7 +337,7 @@
       create: "添加%{model}"
       update: "修改%{model}"
       submit: "储存%{model}"
-      setting: "设置%{model}"
+      setting: "保存设置"
       cancel: "取消"
     page_entries_info:
       one_page:
@@ -492,6 +492,10 @@
         email: "必填，邮箱，必须唯一。"
         password: "必填，6-20位。"
         password_confirmation: "必填，确认密码，必须与密码一致。"
+      profile:
+        real_name: "必填，10个字符以内。"
+        sex_cd: "必选，不然你只能回火星了。"
+        position: "选填，30个字符以内。"
     placeholders:
       user:
         email: "邮箱"

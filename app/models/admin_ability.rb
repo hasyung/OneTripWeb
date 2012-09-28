@@ -12,11 +12,12 @@ class AdminAbility
           if permission.subject_class == "all"
             can permission.action.to_sym, permission.subject_class.to_sym
           else
-            can permission.action.to_sym, permission.subject_class.constantize
-          end
-          case permission.action
-          when "setting"
-            can permission.action.to_sym, permission.subject_class.constantize, :id => user.id
+            case permission.action
+            when "setting"
+              can permission.action.to_sym, permission.subject_class.constantize, :id => user.id
+            else
+              can permission.action.to_sym, permission.subject_class.constantize
+            end
           end
         else
           can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
