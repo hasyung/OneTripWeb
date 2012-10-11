@@ -17,5 +17,3 @@ config/database.yml
 .DS_store
 .redcar
 public/uploads
-
-config/database.yml.simple
