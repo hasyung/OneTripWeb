@@ -240,6 +240,7 @@
       user_profile: "用户信息"
       role: "角色"
       permission: "权限"
+      setting: "网站"
     attributes:
       province:
         name: "名字"
@@ -310,6 +311,11 @@
         description: "描述"
         permissions: "权限"
         created_at: "创建时间"
+      setting:
+        app_name: "网站名称"
+        app_keywords: "网站关键字"
+        app_description: "网站描述"
+        admin_page_size: "列表分页数"
       permission:
         
     enums:
@@ -337,7 +343,8 @@
       create: "添加%{model}"
       update: "修改%{model}"
       submit: "储存%{model}"
-      setting: "保存设置"
+      setting: "保存%{model}"
+      installing: "%{model}设置"
       cancel: "取消"
     page_entries_info:
       one_page:
@@ -350,6 +357,7 @@
     links:
       home: "首页"
       setting: "设置"
+      installing: "网站设置"
       helper: "帮助"
       login: "登录"
       logout: "退出"
@@ -411,6 +419,7 @@
       not_new_admin: "你没有权限添加该类型的用户。"
       publish: "恭喜你，景区解锁成功！"
       draft: "你已经将该景区转为锁定模式。"
+      installed: "你已经成功修改网站设置！"
   views:
     pagination:
       first: "第一页"
@@ -496,6 +505,10 @@
         real_name: "必填，10个字符以内。"
         sex_cd: "必选，不然你只能回火星了。"
         position: "选填，30个字符以内。"
+      setting:
+        app_name: "给你的网站取个好听的名字吧！30字以内"
+        app_keywords: "为了优化，提供一些关键词吧！100字内。"
+        app_description: "用一些话来形容一下你的网站吧！100字内。"
     placeholders:
       user:
         email: "邮箱"

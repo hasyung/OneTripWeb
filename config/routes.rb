@@ -11,6 +11,10 @@ OneTripWeb::Application.routes.draw do
   namespace :admin do
     root :to => 'home#index'
     
+    resources :settings, :only => [:installing] do
+      match 'installing' => "settings#installing", :on => :collection, :via => [:get, :post]
+    end
+    
     resources :users do
       post 'destroies', :on => :collection
       post 'search', :on => :collection
