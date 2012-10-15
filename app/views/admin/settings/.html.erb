@@ -1,0 +1,58 @@
+<%- model_class = Setting -%>
+
+<%= content_for :title do -%>
+	<%= t("helpers.submit.setting", :model => model_class.model_name.human) %>
+<% end -%>
+<%= content_for :sitemaps do -%>
+  <span class="active"><%= t("helpers.links.setting",:model => model_class.model_name.human) %></span>
+<% end -%>
+<%= content_for :sidebar do -%>
+	<div class="well warning-bg">
+		<ul class="nav nav-list">
+		  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+		  <li>关键字100字内，用逗号间隔。</li>
+		</ul>
+	</div>
+<% end -%>
+
+<form accept-charset="UTF-8" action="/admin/settings/installing" class="simple_form special-form" method="post" novalidate="novalidate">
+  <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden"/></div>
+  <fieldset>
+	    <legend>设置</legend>
+  		<div class="control-group string required">
+        <label class="string required control-label" for="admin_app_name">网站名称<abbr title="required">*</abbr></label>
+        <div class="controls">
+          <input class="string required span-full" id="admin_app_name" name="setting[app_name]" required="required" size="50" type="text" value="<%= Setting.app_name %>"/>
+          <p class="help-block">给你的网站取个好听的名字吧！30字以内。<span class="error"></span></p>
+        </div>
+    </div>
+    <div class="control-group string required">
+      <label class="string required control-label" for="admin_app_keywords">网站关键字 <abbr title="required">*</abbr></label>
+      <div class="controls">
+        <input class="string required span-full" id="admin_app_keywords" name="setting[app_keywords]" required="required" size="50" type="text" value="<%= Setting.app_keywords %>"/>
+        <p class="help-block">为了优化，提供一些关键词吧！100字内。<span class="error"></span></p>
+      </div>
+    </div>
+    <div class="control-group string required">
+      <label class="string required control-label" for="admin_app_description">网站描述<abbr title="required">*</abbr></label>
+      <div class="controls">
+        <input class="string required span-full" id="admin_app_description" name="setting[app_description]" required="required" size="50" type="text" value="<%= Setting.app_description %>"/>
+        <p class="help-block">用一些话来形容一下你的网站吧！100字内。<span class="error"></span></p>
+      </div>
+    </div>
+
+  	  <div class="form-actions">
+  	    <button type="submit" class="btn btn-primary">
+  	    	<i class="icon-save icon-large"></i>
+  		    	<b>保存设置</b>
+  	    </button>
+      <a href="/admin" class="btn">
+  	    	<i class="icon-ban-circle icon-large"></i>
+  	    	<b>取消</b>
+  	    </a>
+  	  </div>
+
+  </fieldset>
+</form>
+
+

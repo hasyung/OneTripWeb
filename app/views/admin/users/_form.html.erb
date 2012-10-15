@@ -15,7 +15,7 @@
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
 	  <% if %w(setting).include?(action_name) %>
-	  	<legend><%= "#{t("helpers.links.setting")}#{model_class.model_name.human}" %></legend>
+	  	<legend><%= "#{model_class.model_name.human}#{t("helpers.links.setting")}" %></legend>
   	<% end -%>
 		<%= error_messages_for @user, :class => "control-group alert alert-error fade in", :close => :true %>
 		

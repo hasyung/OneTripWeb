@@ -2,7 +2,7 @@ namespace :utils do
 	desc "Setup Actions to Database"
 	task :setup_actions => :environment do
 		# 清空数据库只限用于第一次或者是调试模式下
-		# clean_permission_db
+ #clean_permission_db
 
 		setup_actions_controllers_db
 	end
@@ -24,7 +24,7 @@ namespace :utils do
 	      write_permission(clazz, "manage", description, "permission.actions.all")
 	      controller.action_methods.each do |action|
 	        if action.to_s.index("_callback").nil?
-	          action_desc, cancan_action = eval_cancan_action(action)
+	          action_desc, cancan_action = eval_cancan_action(clazz, action)
 	          write_permission(clazz, cancan_action, description, action_desc)
 	        end
 	      end
@@ -50,12 +50,17 @@ namespace :utils do
 	  end
 	end
 
-	def eval_cancan_action(action)
+	def eval_cancan_action(clazz, action)
 	  case action.to_s
 	  when "index", "show", "search"
-	    cancan_action = "read"
-	    action_desc = "permission.actions.read"
-	  when "create", "new"
+    if %w(Setting).include?(clazz)
+      cancan_action = "update"
+      action_desc = "permission.actions.update"
+    else
+      cancan_action = "read"
+      action_desc = "permission.actions.read"
+    end
+	 when "create", "new"
 	    cancan_action = "create"
 	    action_desc = "permission.actions.create"
 	  when "edit", "update"

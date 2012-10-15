@@ -1,5 +1,9 @@
 class Admin::ApplicationController < ApplicationController
+  
   before_filter :authenticate_user!
+
+  # mobile-fu
+  has_mobile_fu false
 
   #Cancan
   check_authorization
