@@ -1,10 +1,10 @@
 <%- model_class = Setting -%>
 
 <%= content_for :title do -%>
-	<%= t("helpers.submit.installing", :model => model_class.model_name.human) %>
+	<%= t("helpers.submit.setting", :model => model_class.model_name.human) %>
 <% end -%>
 <%= content_for :sitemaps do -%>
-  <span class="active"><%= model_class.model_name.human %><%= t("helpers.links.setting") %></span>
+  <span class="active"><%= t("helpers.links.setting",:model => model_class.model_name.human) %></span>
 <% end -%>
 <%= content_for :sidebar do -%>
 	<div class="well warning-bg">
@@ -18,7 +18,7 @@
 <form accept-charset="UTF-8" action="/admin/settings/installing" class="simple_form special-form" method="post" novalidate="novalidate">
   <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden"/></div>
   <fieldset>
-	    <legend>网站设置</legend>
+	    <legend>设置</legend>
   		<div class="control-group string required">
         <label class="string required control-label" for="admin_app_name">网站名称<abbr title="required">*</abbr></label>
         <div class="controls">
@@ -44,7 +44,7 @@
   	  <div class="form-actions">
   	    <button type="submit" class="btn btn-primary">
   	    	<i class="icon-save icon-large"></i>
-  		    	<b>保存网站</b>
+  		    	<b>保存设置</b>
   	    </button>
       <a href="/admin" class="btn">
   	    	<i class="icon-ban-circle icon-large"></i>

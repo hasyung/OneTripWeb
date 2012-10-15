@@ -53,9 +53,9 @@ namespace :utils do
 	def eval_cancan_action(action)
 	  case action.to_s
 	  when "index", "show", "search"
-	    cancan_action = "read"
-	    action_desc = "permission.actions.read"
-	  when "create", "new"
+  	    cancan_action = "read"
+  	    action_desc = "permission.actions.read"
+	 when "create", "new"
 	    cancan_action = "create"
 	    action_desc = "permission.actions.create"
 	  when "edit", "update"
