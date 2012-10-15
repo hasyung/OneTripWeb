@@ -2,7 +2,7 @@ namespace :utils do
 	desc "Setup Actions to Database"
 	task :setup_actions => :environment do
 		# 清空数据库只限用于第一次或者是调试模式下
- #clean_permission_db
+ 		clean_permission_db
 
 		setup_actions_controllers_db
 	end
@@ -23,7 +23,7 @@ namespace :utils do
 	      clazz, description = controller.permission
 	      write_permission(clazz, "manage", description, "permission.actions.all")
 	      controller.action_methods.each do |action|
-	        if action.to_s.index("_callback").nil?
+	        if action.to_s.index("_callback").nil? and ignore_action?(action)
 	          action_desc, cancan_action = eval_cancan_action(clazz, action)
 	          write_permission(clazz, cancan_action, description, action_desc)
 	        end
@@ -60,7 +60,7 @@ namespace :utils do
       cancan_action = "read"
       action_desc = "permission.actions.read"
     end
-	 when "create", "new"
+	  when "create", "new"
 	    cancan_action = "create"
 	    action_desc = "permission.actions.create"
 	  when "edit", "update"
@@ -74,6 +74,10 @@ namespace :utils do
 	    action_desc = "permission.actions.#{cancan_action}"
 	  end
 	  return action_desc, cancan_action
+	end
+
+	def ignore_action?(action)
+		!%w(set_request_format set_device_type force_mobile_format force_tablet_format set_mobile_format in_mobile_view? in_tablet_view? is_mobile_device? is_tablet_device? mobile_device is_device? mobile_exempt?).include?(action)
 	end
 
 	def clean_permission_db
