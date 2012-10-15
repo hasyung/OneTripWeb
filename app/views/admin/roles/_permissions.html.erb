@@ -4,11 +4,7 @@
 		<% permission_group.each do |permission| -%>
 			<label class="checkbox inline <%= permission.description.split(".").last %>">
 				<%= check_box_tag "role[permission_ids][]", permission.id, @role.permissions.include?(permission) %>
-        <% if %w(Setting).include?(permission.subject_class) & %w(permission.actions.read).include?(permission.description)%>
-				    <%= t("helpers.links.setting") %>
-        <% else %>
-          <%= t(permission.description ) %>
-        <% end %>
+      <%= t(permission.description ) %>
 			</label>
 		<% end -%>
 	</div>

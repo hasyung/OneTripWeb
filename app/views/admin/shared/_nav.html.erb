@@ -21,3 +21,8 @@
 		<%= link_to Role.model_name.human, admin_roles_path, :title => Role.model_name.human %>
 	</li>
 <% end -%>
+<% if can? :update, Setting %>
+	<li <%= "class=active" if controller_name == "settings" %>>
+		<%= link_to Setting.model_name.human, admin_settings_path, :title => Setting.model_name.human %>
+	</li>
+<% end -%>
