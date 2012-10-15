@@ -43,7 +43,7 @@
                   </a>
                   <ul class="dropdown-menu">
                     <% if can? :setting, User %>
-                      <li><a href="<%=  setting_admin_user_path(current_user) %>"><%= t("helpers.links.setting") %></a></li>
+                      <li><a href="<%= setting_admin_user_path(current_user) %>"><%= t("helpers.links.setting") %></a></li>
                     <% end -%>
                     <li><a href="#"><%= t("helpers.links.helper") %></a></li>
                     <li class="divider"></li>
