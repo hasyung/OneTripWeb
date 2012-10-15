@@ -4,9 +4,7 @@ OneTripWeb::Application.routes.draw do
              :path => "",
              :path_names => { :sign_in => 'login', :sign_out => 'logout' },
              :skip => [:passwords, :registrations],
-             :controllers => { :sessions => "admin/sessions" }
-  
-  match "/places/:name" => "places#index", :as => :name_place
+             :controllers => { :sessions => 'admin/sessions' }
   
   namespace :admin do
     root :to => 'home#index'
@@ -49,5 +47,7 @@ OneTripWeb::Application.routes.draw do
     
     resources :exceptions, :only => [:index]
   end
+
+  root :to => 'home#index'
   
 end

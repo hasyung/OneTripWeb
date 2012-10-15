@@ -1,17 +1,18 @@
 GIT
-  remote: https://github.com/AgilionApps/quiet_assets.git
-  revision: a63a7292f82f385b2d453edcb293ef1661f5960d
-  tag: v0.1.0
-  specs:
-    quiet_assets (0.0.1)
-
-GIT
   remote: https://github.com/amatsuda/kaminari.git
   revision: 82a38e07db1ca1598c8daf073a8f6be22ae714d6
   specs:
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+
+GIT
+  remote: https://github.com/benlangfeld/mobile-fu.git
+  revision: d442479212838ae7e95543774b16b711d5ace0b6
+  specs:
+    mobile-fu (1.1.0)
+      rack-mobile-detect
+      rails
 
 GEM
   remote: http://ruby.taobao.org/
@@ -63,6 +64,7 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     daemons (1.1.9)
+    dalli (2.2.1)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -100,9 +102,13 @@ GEM
     mysql2 (0.3.11)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    quiet_assets (1.0.1)
+      railties (~> 3.1)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-mobile-detect (0.4.0)
+      rack
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -178,6 +184,7 @@ DEPENDENCIES
   cancan
   carrierwave
   coffee-rails (~> 3.2.1)
+  dalli
   devise
   dynamic_form
   font-awesome-sass-rails
@@ -187,8 +194,9 @@ DEPENDENCIES
   kaminari!
   mime-types
   mini_magick
+  mobile-fu!
   mysql2
-  quiet_assets!
+  quiet_assets
   rails (= 3.2.8)
   rails-settings-cached
   redactor-rails

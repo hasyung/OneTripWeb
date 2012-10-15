@@ -27,9 +27,11 @@ gem 'mini_magick'
 gem 'redactor-rails'
 gem 'acts-as-taggable-on'
 gem 'cancan'
+gem 'dalli'
+gem 'mobile-fu', git: 'https://github.com/benlangfeld/mobile-fu.git'
 
 group :development do
-  gem 'quiet_assets', git: 'https://github.com/AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+  gem 'quiet_assets'
   gem 'bullet'
   gem 'ruby-growl'
   gem 'ruby_gntp'

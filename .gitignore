@@ -14,8 +14,8 @@
 /log/*.log
 /tmp
 config/database.yml
+config/thin.yml
 .DS_store
 .redcar
 public/uploads
-
-config/database.yml.simple
+public/assets
