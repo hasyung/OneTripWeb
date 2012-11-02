@@ -203,10 +203,15 @@
       even: "必须为双数"
       taken: "已经被使用"
       record_invalid: "验证失败: %{errors}"
-      extension_white_list_error: "文件格式不正确"
-      wrong_size: "错误的大小 (应该是 %{file_size})"
-      size_too_small: "必须大于 %{file_size}"
-      size_too_big: "必须小于 %{file_size}"
+      carrierwave_processing_error: 处理错误
+      carrierwave_integrity_error: 格式不是可上载的类型
+      extension_white_list_error: "不可上载 %{extension} 档案，可以上载的档案类型为：%{allowed_types}"
+      rmagick_processing_error: "用 rmagick 处理档案时发生错误，也许上载的不是档案？原错误讯息：%{e}"
+      mime_types_processing_error: "处理档案 MIME::Types 时发生错误，也许上载的档案不是正确的 content-type ？原错误：%{e}"
+      mini_magick_processing_error: "使用 MiniMagick 处理影像时发生错误，也许上载的不是影像档？原错误：%{e}"
+      wrong_size: "文件大小不对 (要求 %{file_size})"
+      size_too_small: "文件太小 (至少要 %{file_size})"
+      size_too_big: "文件过大 (最大只能 %{file_size})"
     template: &errors_template
       header:
         one: "有 1 个错误发生导致「%{model}」无法被保存。"
