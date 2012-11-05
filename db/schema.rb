@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105070322) do
+ActiveRecord::Schema.define(:version => 20121105102933) do
+
+  create_table "area_categories", :force => true do |t|
+    t.string   "name",        :limit => 50,   :null => false
+    t.string   "description", :limit => 1000
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "areas", :force => true do |t|
+    t.integer  "areable_id",                      :null => false
+    t.string   "areable_type",                    :null => false
+    t.integer  "style_type",       :default => 0
+    t.integer  "area_category_id",                :null => false
+    t.integer  "order",            :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
 
   create_table "articles", :force => true do |t|
     t.integer  "area_id",                                   :null => false
@@ -36,23 +53,6 @@ ActiveRecord::Schema.define(:version => 20121105070322) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "body"
-  end
-
-  create_table "erea_categories", :force => true do |t|
-    t.string   "name",        :limit => 50,   :null => false
-    t.string   "description", :limit => 1000
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  create_table "ereas", :force => true do |t|
-    t.integer  "specialable_id",                  :null => false
-    t.string   "specialable_type",                :null => false
-    t.integer  "style_type",       :default => 0
-    t.integer  "area_category_id",                :null => false
-    t.integer  "order",            :default => 0
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
   end
 
   create_table "images", :force => true do |t|
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20121105070322) do
     t.integer  "status_cd",                   :default => 0
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.string   "slug",                                       :null => false
   end
 
   add_index "minorities", ["key"], :name => "index_minorities_on_key", :unique => true
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20121105070322) do
     t.datetime "updated_at",                                 :null => false
     t.integer  "status_cd",                   :default => 0
     t.integer  "areas_count",                 :default => 0
+    t.string   "slug",                                       :null => false
   end
 
   add_index "places", ["key"], :name => "index_places_on_key", :unique => true
