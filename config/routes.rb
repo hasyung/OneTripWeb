@@ -33,11 +33,12 @@ OneTripWeb::Application.routes.draw do
       get 'page/:page', :action => :index, :on => :collection
     end
     
-    resources :categories do
+    resources :categories, :except => [:show] do
       post 'search', :on => :collection
-      post 'destroies', :on => :collection
       get 'page/:page', :action => :index, :on => :collection
     end
+    
+    resources :specials
     
     resources :places do
       post 'search', :on => :collection
@@ -52,6 +53,8 @@ OneTripWeb::Application.routes.draw do
     resources :pictures
     
     resources :exceptions, :only => [:index]
+    
+    match ':category_slug' => 'categories#show', :as => :category, :via => [:get]
   end
 
   root :to => 'home#index'

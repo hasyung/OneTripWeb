@@ -8,6 +8,10 @@ class Admin::CategoriesController < Admin::ApplicationController
     @categories = @categories.page(params[:page]).per(Setting.admin_PageSize)
   end
   
+  def show
+    @category = Category.find_by_slug params[:category_slug]
+  end
+  
   def new
     @category = Category.new
   end

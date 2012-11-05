@@ -18,7 +18,7 @@ class Category < ActiveRecord::Base
   end
   with_options :if => :key? do |key|
     key.validates :key, :uniqueness => true
-    key.validates :key, :format => { :with => /^[A-Za-z0-9\s]+$/ }
+    key.validates :key, :format => { :with => /^[a-z0-9\-]*$/ }
     key.validates :key, :length => { :within => 2..20 }
   end
 end

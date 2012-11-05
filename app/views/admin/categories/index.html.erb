@@ -20,7 +20,7 @@
           <td class="select-all">
             <%= check_box_tag "category_ids[]", category.id, false, :id => "category_#{category.id}" %>
           </td>
-          <td><%= category.name %></td>
+          <td><%= link_to category.name, admin_category_path(category) %></td>
           <td><%= category.key %></td>
           <td><%= category.specials_count %></td>
           <td><%= l category.created_at.to_date, :format => :long %></td>
