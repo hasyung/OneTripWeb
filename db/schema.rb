@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102035812) do
+ActiveRecord::Schema.define(:version => 20121102142810) do
 
   create_table "articles", :force => true do |t|
     t.integer  "place_id",                                  :null => false
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(:version => 20121102035812) do
     t.datetime "updated_at",                             :null => false
     t.string   "body"
   end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name",                          :null => false
+    t.string   "key",                           :null => false
+    t.string   "slug",                          :null => false
+    t.integer  "specials_count", :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "categories", ["key"], :name => "index_categories_on_key", :unique => true
+  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
+  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
   create_table "infos", :force => true do |t|
     t.integer  "place_id",                                 :null => false
@@ -98,15 +111,17 @@ ActiveRecord::Schema.define(:version => 20121102035812) do
   add_index "places", ["name"], :name => "index_places_on_name", :unique => true
 
   create_table "provinces", :force => true do |t|
-    t.string   "name",         :limit => 30,                :null => false
-    t.string   "key",          :limit => 30,                :null => false
-    t.integer  "places_count",               :default => 0
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.string   "name",           :limit => 30,                :null => false
+    t.string   "key",            :limit => 30,                :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "slug",                                        :null => false
+    t.integer  "specials_count",               :default => 0
   end
 
   add_index "provinces", ["key"], :name => "index_provinces_on_key", :unique => true
   add_index "provinces", ["name"], :name => "index_provinces_on_name", :unique => true
+  add_index "provinces", ["slug"], :name => "index_provinces_on_slug", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name",        :null => false
@@ -130,6 +145,25 @@ ActiveRecord::Schema.define(:version => 20121102035812) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
+
+  create_table "specials", :force => true do |t|
+    t.integer  "category_id",                :null => false
+    t.integer  "province_id",                :null => false
+    t.string   "name",                       :null => false
+    t.string   "key",                        :null => false
+    t.string   "slug",                       :null => false
+    t.string   "keywords"
+    t.string   "description"
+    t.integer  "order"
+    t.integer  "areas_count", :default => 0
+    t.integer  "status_cd",   :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "specials", ["key"], :name => "index_specials_on_key", :unique => true
+  add_index "specials", ["name"], :name => "index_specials_on_name", :unique => true
+  add_index "specials", ["slug"], :name => "index_specials_on_slug", :unique => true
 
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id"

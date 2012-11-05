@@ -33,6 +33,12 @@ OneTripWeb::Application.routes.draw do
       get 'page/:page', :action => :index, :on => :collection
     end
     
+    resources :categories do
+      post 'search', :on => :collection
+      post 'destroies', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
+    end
+    
     resources :places do
       post 'search', :on => :collection
       get 'page/:page', :action => :index, :on => :collection

@@ -6,6 +6,11 @@
 		<%= link_to Province.model_name.human, admin_provinces_path, :title => Province.model_name.human %>
 	</li>
 <% end -%>
+<% if can? :read, Category %>
+	<li <%= "class=active" if controller_name == "categories" %>>
+		<%= link_to Category.model_name.human, admin_categories_path, :title => Category.model_name.human %>
+	</li>
+<% end -%>
 <% if can? :read, Place %>
 	<li <%= "class=active" if controller_name == "places" %>>
 		<%= link_to Place.model_name.human, admin_places_path, :title => Place.model_name.human %>

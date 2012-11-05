@@ -1,8 +1,14 @@
 class Province < ActiveRecord::Base
+  include FriendlyId
+  
   attr_accessible :name, :key
 
   # Associations
   has_many :places, :order => "created_at DESC"
+  has_many :specials
+  
+  # FriendlyId
+  friendly_id :key, :use => :slugged
 
   # Validates
   validates :name, :key, :presence => true
@@ -13,8 +19,8 @@ class Province < ActiveRecord::Base
   end
   with_options :if => :key? do |key|
     key.validates :key, :uniqueness => true
-    key.validates :key, :format => { :with => /^[A-Za-z0-9\s]+$/ }
-    key.validates :key, :length => { :within => 2..30 }
+    key.validates :key, :format => { :with => /\A[a-z0-9]+\z/i }
+    key.validates :key, :length => { :within => 2..10 }
   end
 
   # Scopes

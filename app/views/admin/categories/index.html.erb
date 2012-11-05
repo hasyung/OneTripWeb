@@ -1,8 +1,8 @@
-<%- model_class = Province -%>
+<%- model_class = Category -%>
 
 <%= render "base" %>
 
-<%= simple_form_for :province, :url => destroies_admin_provinces_path, :html => { :class => "search-form" }  do |f| -%>
+<%= simple_form_for :category, :url => destroies_admin_categories_path, :html => { :class => "search-form" }  do |f| -%>
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -15,27 +15,27 @@
       </tr>
     </thead>
     <tbody>
-      <% @provinces.each do |province| %>
+      <% @categories.each do |category| %>
         <tr>
           <td class="select-all">
-            <%= check_box_tag "province_ids[]", province.id, false, :id => "province_#{province.id}" %>
+            <%= check_box_tag "category_ids[]", category.id, false, :id => "category_#{category.id}" %>
           </td>
-          <td><%= province.name %></td>
-          <td><%= province.key %></td>
-          <td><%= province.specials_count %></td>
-          <td><%= l province.created_at.to_date, :format => :long %></td>
+          <td><%= category.name %></td>
+          <td><%= category.key %></td>
+          <td><%= category.specials_count %></td>
+          <td><%= l category.created_at.to_date, :format => :long %></td>
           <td class="actions">
-            <% if can? :update, Province %>
+            <% if can? :update, Category %>
               <%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-                          edit_admin_province_path(province), 
-                          :title => t("helpers.links.edit", :model_name => province.name),
+                          edit_admin_category_path(category), 
+                          :title => t("helpers.links.edit", :model_name => category.name),
                           :rel => :tooltip %>
             <% end -%>
-            <% if can? :destroy, Province %>
+            <% if can? :destroy, Category %>
               <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-                          admin_province_path(province),
+                          admin_category_path(category),
                           :method => :delete,
-                          :title => t("helpers.links.destroy", :model_name => province.name),
+                          :title => t("helpers.links.destroy", :model_name => category.name),
                           :data => { :confirm => t("helpers.messages.confirm") },
                           :rel => :tooltip %>
             <% end -%>
@@ -47,6 +47,6 @@
 <% end -%>
 
 <div class="table-footer clearfix">
-  <div class="paginates-info"><%= page_entries_info @provinces %></div>
-  <%= paginate @provinces, :theme => "admin" %>
+  <div class="paginates-info"><%= page_entries_info @categories %></div>
+  <%= paginate @categories, :theme => "admin" %>
 </div>
