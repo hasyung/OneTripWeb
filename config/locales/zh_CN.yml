@@ -237,7 +237,7 @@
       province: "省市"
       minority: "民族"
       place: "景点"
-      area_category: "模版"
+      area_category: "模版分类"
       info: "信息"
       audio: "音频"
       video: "视频"
@@ -262,7 +262,7 @@
         key: "url"
         keywords: "关键词"
         description: "描述"
-        areas_count:  "板块数"
+        areas_count:  "模版数"
         order: "排序"
         created_at: "创建时间"
       minority:
