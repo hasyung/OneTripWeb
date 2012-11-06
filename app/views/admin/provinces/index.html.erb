@@ -9,7 +9,8 @@
         <th class="select-all"><%= check_box_tag "select_all" %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:key) %></th>
-        <th><%= model_class.human_attribute_name(:specials_count) %></th>
+        <th><%= model_class.human_attribute_name(:places_count) %></th>
+        <th><%= model_class.human_attribute_name(:minorities_count) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
         <th class="actions"><%= t("helpers.links.action") %></th>
       </tr>
@@ -22,7 +23,8 @@
           </td>
           <td><%= province.name %></td>
           <td><%= province.key %></td>
-          <td><%= province.specials_count %></td>
+          <td><%= province.places_count %></td>
+          <td><%= province.minorities_count %></td>
           <td><%= l province.created_at.to_date, :format => :long %></td>
           <td class="actions">
             <% if can? :update, Province %>

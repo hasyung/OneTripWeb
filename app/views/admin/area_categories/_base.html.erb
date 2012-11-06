@@ -1,0 +1,108 @@
+<%- model_class = AreaCategory -%>
+<%= content_for :title do -%>
+	<% if %w(index).include?(action_name) -%>
+		<%= t("helpers.links.list") %>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<%= t("helpers.submit.create", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(search).include?(action_name) -%>
+		<%= t("helpers.links.search") %>
+	<% end -%>
+<% end -%>
+
+<%= content_for :sitemaps do -%>
+  <% if !%w(index).include?(action_name) %>
+	  <a href="<%= admin_area_categories_path %>"><%= model_class.model_name.human %></a>
+  <% else %>
+    <%= model_class.model_name.human %>
+  <% end %>
+	<span class="divider">/</span>
+	<% if %w(index).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.list") %></span>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.new") %></span>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.edit") %></span>
+	<% end -%>
+
+	<% if %w(search).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.search") %></span>
+	<% end -%>
+<% end -%>
+
+<%= content_for :toolbar do -%>
+	<% if %w(index).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :new, model_class %>
+				<a href="<%= new_admin_area_category_path %>" class="btn">
+					<i class="icon-pencil icon-large"></i>
+					<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+				</a>
+				<% end -%>
+			<% if can? :destroy, model_class %>
+				<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @area_categories.blank? %>>
+					<i class="icon-trash icon-large"></i>
+					<b><%= t("helpers.links.delete_all") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<% if %w(new create).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_area_categories_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<% if %w(edit update search).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :new, model_class %>
+				<a href="<%= new_admin_area_category_path %>" class="btn">
+					<i class="icon-pencil icon-large"></i>
+					<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+				</a>
+			<% end -%>
+			<% if can? :read, model_class %>
+				<a href="<%= admin_area_categories_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<div class="btn-group pull-right">
+		<div class="controls pagination-right search">
+			<% if can? :read, model_class %>
+		    <%= simple_form_for :area_category, :url => search_admin_area_categories_path do |f| -%>
+		      <div class="input-append">
+		        <%= f.input_field :name, 
+		        	:placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human) %>
+		        <button type="submit" class="btn"><i class="icon-search"></i></button>
+		      </div>
+		    <% end -%>
+	    <% end -%>
+	  </div>
+	</div>
+<% end -%>
+<%= content_for :sidebar do -%>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="well warning-bg">
+			<ul class="nav nav-list">
+			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+			  <li>样式控制该版块的显示内容及样式。</li>
+			</ul>
+		</div>
+	<% end -%>
+<% end -%>

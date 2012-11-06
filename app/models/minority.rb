@@ -1,10 +1,14 @@
 class Minority < ActiveRecord::Base
+  include FriendlyId
   attr_accessible :name, :key, :keywords, :description, :order, :province_id
 
   # Associations
   belongs_to :province, :counter_cache => true
   has_many :areas, :as => :areable, :dependent => :destroy
 
+  # FriendlyId
+  friendly_id :key, :use => :slugged
+  
   #SimpleEnum
   as_enum :status, { :draft => 0, :publish => 1 }
 

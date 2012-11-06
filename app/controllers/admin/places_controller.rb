@@ -9,10 +9,7 @@ class Admin::PlacesController < Admin::ApplicationController
 	end
 
 	def show
-		@infos = @place.infos.order_desc.created_desc
-		@videos = @place.videos.order_desc
-		@articles = @place.articles.order_desc.created_desc
-		@audios = @place.audios.order_desc.created_desc
+		@areas = @place.areas.order_desc.created_desc
 	end
 
 	def new
@@ -45,6 +42,22 @@ class Admin::PlacesController < Admin::ApplicationController
     else
       redirect_to :admin_places, :alert => t("helpers.messages.error")
     end
+	end
+  
+  def destroies
+		if params[:place_ids].blank?
+			return redirect_to :admin_places,
+												 :alert => t("helpers.messages.selected_error",
+												 							:model_name => Place.model_name.human)
+		end
+		if Place.destroy(params[:place_ids])
+			redirect_to :admin_places, 
+									:notice => t("helpers.messages.destroy_multiple", 
+																:count => params[:place_ids].size,
+																:model_name => Place.model_name.human)
+		else
+			redirect_to :admin_places, :alert => t("helpers.messages.notices.error")
+		end
 	end
   
  def search

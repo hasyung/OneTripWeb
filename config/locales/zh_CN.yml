@@ -235,8 +235,9 @@
         <<: *errors_template
     models:
       province: "省市"
-      category: "分类"
+      minority: "民族"
       place: "景点"
+      area_category: "模版"
       info: "信息"
       audio: "音频"
       video: "视频"
@@ -252,10 +253,8 @@
         name: "名字"
         key: "关键字"
         created_at: "创建时间"
-      category:
-        name: "名字"
-        key: "关键字"
-        created_at: "创建时间"
+        places_count: "景点数"
+        minorities_count: "民族数"
       place:
         name: "名字"
         province_id: "省市"
@@ -263,13 +262,25 @@
         key: "url"
         keywords: "关键词"
         description: "描述"
-        map: "地图"
-        map_content_type: "地图类型"
-        map_file_size: "地图大小"
-        videos_count: "视频数"
-        audios_count: "音频数"
-        articles_count: "文章数"
-        infos_count:  "信息数"
+        areas_count:  "板块数"
+        order: "排序"
+        created_at: "创建时间"
+      minority:
+        name: "名字"
+        province_id: "省市"
+        province: "省市"
+        key: "url"
+        keywords: "关键词"
+        description: "描述"
+        areas_count:  "板块数"
+        order: "排序"
+        created_at: "创建时间"
+      area:
+        created_at: "创建时间"
+      area_category:
+        name: "名字"
+        style_type_cd: "样式"
+        description: "描述"
         created_at: "创建时间"
       info:
         var: "名字"
@@ -332,6 +343,15 @@
         categories:
           narrate: "景点解说"
           story: "有声故事"
+      area_category:
+        style_types:
+          style_0: "地图&信息"
+          style_1: "视频"
+          style_2: "音频列表"
+          style_3: "文章列表（橙点）"
+          style_4: "文章列表（红点）"
+          style_5: "图片&文章"
+          style_6: "视频&文章"
       user_profile:
         sexes:
           male: "男"
@@ -370,6 +390,7 @@
       logout: "退出"
       new: "添加"
       edit: "修改"
+      read: "查看"
       destroy: "删除"
       map: "地图"
       video: "视频"
@@ -395,6 +416,7 @@
       media_cover: "上传封面"
       back_list: "返回列表"
       add_map: "上传地图"
+      add_area: "添加版块"
       add_video: "添加视频"
       add_audio: "添加音频"
       add_article: "添加文章"

@@ -1,0 +1,11 @@
+<legend><%= t("helpers.links.video") %></legend>
+  <div class="control-group">
+    <% if !@area.videos.blank? %>
+      <ul class="thumbnails">
+      <% @area.videos.each do |video| -%>
+        <%= render :partial => "admin/videos/video", :object => video %>
+      <% end -%>
+      </ul>
+    <% end -%>
+  </div>
+</fieldset>

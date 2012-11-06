@@ -1,5 +1,7 @@
 OneTripWeb::Application.routes.draw do
   
+  get "admin/images"
+
   devise_for :users,
              :path => "",
              :path_names => { :sign_in => 'login', :sign_out => 'logout' },
@@ -33,21 +35,38 @@ OneTripWeb::Application.routes.draw do
       get 'page/:page', :action => :index, :on => :collection
     end
     
-    resources :categories, :except => [:show] do
-      post 'search', :on => :collection
-      get 'page/:page', :action => :index, :on => :collection
-    end
-    
-    resources :specials
-    
     resources :places do
       post 'search', :on => :collection
+      post 'destroies', :on => :collection
       get 'page/:page', :action => :index, :on => :collection
       get 'publish/:status', :action => :publish, :on => :member, :as => :publish
-      resources :infos, :except => [:index, :show]
-      resources :videos, :except => [:index, :show]
-      resources :audios, :except => [:index, :show]
-      resources :articles, :except => :index
+      resources :areas, :except => [:index, :show] do
+        resources :infos, :except => [:index, :show]
+        resources :videos, :except => [:index, :show]
+        resources :audios, :except => [:index, :show]
+        resources :articles, :except => :index
+        resources :images, :except => [:index, :show]
+      end
+    end
+    
+    resources :minorities do
+      post 'search', :on => :collection
+      post 'destroies', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
+      get 'publish/:status', :action => :publish, :on => :member, :as => :publish
+      resources :areas, :except => [:index, :show] do
+        resources :infos, :except => [:index, :show]
+        resources :videos, :except => [:index, :show]
+        resources :audios, :except => [:index, :show]
+        resources :articles, :except => :index
+        resources :images, :except => [:index, :show]
+      end
+    end
+    
+    resources :area_categories do
+      post 'search', :on => :collection
+      post 'destroies', :on => :collection
+      get 'page/:page', :action => :index, :on => :collection
     end
     
     resources :pictures

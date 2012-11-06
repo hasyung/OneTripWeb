@@ -1,6 +1,6 @@
-<%- model_class = Place -%>
+<%- model_class = AreaCategory -%>
 
-<%= simple_form_for [:admin, @place] do |f| %>
+<%= simple_form_for [:admin, @area_category], :html => { :class => "special-form" } do |f| %>
   <fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
@@ -8,18 +8,12 @@
   	<% if %w(edit update).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
-		<%= error_messages_for @place, :class => "control-group alert alert-error fade in", :close => :true %>
+		<%= error_messages_for @area_category, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :name, :input_html => { :class => "span-full" } %>
-	   <% if %w(new create).include?(action_name) %>
-		  <%= f.input :key, :input_html => { :class => "span-full" } %>
+    <%= f.input :style_type_cd do %>
+	  	<%= f.select :style_type_cd, model_class.style_types_for_select(:value) %>
 	  <% end -%>
-	  <% if %w(edit update).include?(action_name) %>
-		  <%= f.input :key, :input_html => { :class => "span-full disabled", :disabled => true } %>
-	  <% end -%>
-	  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
-	  <%= f.input :order, :input_html => { :class => "span1" } %>
-    <%= f.input :keywords, :input_html => { :class => "span-full" } %>
-	  <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
+    <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">
 	    	<i class="icon-save icon-large"></i>
@@ -30,7 +24,7 @@
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
-	    <a href="<%= admin_places_path %>" class="btn">
+	    <a href="<%= admin_area_categories_path %>" class="btn">
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>

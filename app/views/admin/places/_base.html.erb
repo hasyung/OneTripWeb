@@ -80,24 +80,9 @@
 					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Video %>
-				<a href="<%= new_admin_place_video_path(@place) %>" class="btn">
-					<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
-				</a>
-			<% end -%>
-			<% if can? :new, Audio %>
-				<a href="<%= new_admin_place_audio_path(@place) %>" class="btn">
-					<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
-				</a>
-			<% end -%>
-			<% if can? :new, Article %>
-				<a href="<%= new_admin_place_article_path(@place) %>" class="btn">
-					<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
-				</a>
-			<% end -%>
-			<% if can? :new, Info %>
-				<a href="<%= new_admin_place_info_path(@place) %>" class="btn">
-					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
+			<% if can? :new, Area %>
+				<a href="<%= new_admin_place_area_path(@place) %>" class="btn">
+					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_area") %></b>
 				</a>
 			<% end -%>
 			<% if can? :destroy, model_class %>
@@ -167,8 +152,8 @@
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-			  <li>地图只能是（jpg，png，gif）等格式的图片。</li>
-			  <li>地图不得大于10M。</li>
+        <li>url必填且唯一。</li>
+			  <li>景点添加成功后不能修改url。</li>
 			</ul>
 		</div>
 	<% end -%>

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106031800) do
+ActiveRecord::Schema.define(:version => 20121106084435) do
 
   create_table "area_categories", :force => true do |t|
-    t.string   "name",        :limit => 50,                  :null => false
-    t.string   "description", :limit => 1000
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.integer  "style_type",                  :default => 0
+    t.string   "name",          :limit => 50,                  :null => false
+    t.string   "description",   :limit => 1000
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "style_type_cd",                 :default => 0
   end
 
   create_table "areas", :force => true do |t|
