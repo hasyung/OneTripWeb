@@ -1,8 +1,8 @@
 class Info < ActiveRecord::Base
-  attr_accessible :place_id, :var, :value, :order
+  attr_accessible :area_id, :var, :value, :order
 
   # Associations
-  belongs_to :place, :counter_cache => true
+  belongs_to :area
 
   # Validates
   validates :var, :value, :place_id, :presence => true
@@ -21,6 +21,6 @@ class Info < ActiveRecord::Base
   # Scopes
   scope :created_desc, order("created_at DESC")
   scope :order_desc, order("`order` DESC")
-  scope :newest, lambda { |count| limit(count).includes(:place) }
+  scope :newest, lambda { |count| limit(count).includes(:area) }
 
 end

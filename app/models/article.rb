@@ -1,14 +1,11 @@
 class Article < ActiveRecord::Base
-	attr_accessible :title, :place_id, :category_cd, :keywords, :description, :author, :body, :order
+	attr_accessible :title, :area_id, :keywords, :description, :author, :body, :order
 
   # Associations
-  belongs_to :place, :counter_cache => true
-
-  #SimpleEnum
-  as_enum :category, { :travels => 0, :recommend => 1 }
+  belongs_to :area
 
   # Validates
-  validates :title, :place_id, :category_cd, :body, :presence => true
+  validates :title, :area_id, :body, :presence => true
 	with_options :if => :title? do |title|
     title.validates :title, :length => { :within => 2..200 }
     title.validates :title, :uniqueness => { :scope => :place_id }
@@ -30,7 +27,5 @@ class Article < ActiveRecord::Base
   # Scopes
   scope :created_desc, order("created_at DESC")
   scope :order_desc, order("`order` DESC")
-  scope :all_travels, where(:category_cd => Article.travels)
-  scope :recommends, where(:category_cd => Article.recommend)
-  scope :newest, lambda { |count| limit(count).includes(:place) }
+  scope :newest, lambda { |count| limit(count).includes(:area) }
 end

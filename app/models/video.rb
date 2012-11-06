@@ -1,18 +1,14 @@
 class Video < ActiveRecord::Base
-  attr_accessible :name, :place_id, :duration, :attachment, :cover, :order, :cover_cache
+  attr_accessible :area_id, :duration, :attachment, :cover, :order, :cover_cache
 
   # Associations
-  belongs_to :place, :counter_cache => true
+  belongs_to :area
 
   # Callbacks
   before_save :update_video_attributes, :update_video_cover_attributes
   
   # Validates
-  validates :name, :place_id, :attachment, :cover, :duration, :presence => true
-	with_options :if => :name? do |name|
-    name.validates :name, :length => { :within => 2..30 }
-    name.validates :name, :uniqueness => true
-  end
+  validates :area_id, :attachment, :cover, :duration, :presence => true
   with_options :if => :order? do |order|
     order.validates :order, :numericality => 
       { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 999 }
@@ -36,7 +32,7 @@ class Video < ActiveRecord::Base
   # Scopes
   scope :order_desc, order("`order` DESC")
   scope :created_desc, order("created_at DESC")
-  scope :newest, lambda { |count| limit(count).includes(:place) }
+  scope :newest, lambda { |count| limit(count).includes(:area) }
   
   def update_video_attributes
     if attachment.present? && attachment_changed?

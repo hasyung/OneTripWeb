@@ -1,21 +1,15 @@
 class Place < ActiveRecord::Base
-  attr_accessible :name, :key, :keywords, :description, :map, :order, :province_id, :map_cache
-
-  # Callbacks
-  before_save :update_map_attributes
+  attr_accessible :name, :key, :keywords, :description, :order, :province_id
 
   # Associations
   belongs_to :province, :counter_cache => true
-  has_many :infos, :dependent => :destroy
-  has_many :audios, :dependent => :destroy
-  has_many :videos, :dependent => :destroy
-  has_many :articles, :dependent => :destroy
+  has_many :areas, :as => :areable, :dependent => :destroy
 
   #SimpleEnum
   as_enum :status, { :draft => 0, :publish => 1 }
 
   # Validates
-  validates :name, :key, :province_id, :map, :presence => true
+  validates :name, :key, :province_id, :presence => true
 	 with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
@@ -24,9 +18,6 @@ class Place < ActiveRecord::Base
   	key.validates :key, :uniqueness => true
   	key.validates :key, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   	key.validates :key, :length => { :within => 2..30 }
-  end
-  with_options :if => :map? do |map|
-    map.validates :map, :file_size => { :maximum => 10.megabytes.to_i }
   end
   with_options :if => :keywords? do |keywords|
     keywords.validates :keywords, :length => { :within => 2..100 }
@@ -43,16 +34,5 @@ class Place < ActiveRecord::Base
   scope :created_desc, order("created_at DESC")
   scope :search_name, lambda { |name| where("ucase(`places`.`name`) like concat('%',ucase(?),'%')", name) }
   scope :newest, lambda { |count| limit(count) }
-
-  # Carrierwave
-  mount_uploader :map, MapUploader
-  
-  # Methods
-  def update_map_attributes
-    if map.present? && map_changed?
-      self.map_size = map.file.size
-      self.map_content_type = map.file.content_type
-    end
-  end
 
 end

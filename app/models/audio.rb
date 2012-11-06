@@ -1,17 +1,14 @@
 class Audio < ActiveRecord::Base
-  attr_accessible :name, :place_id, :category_cd, :duration, :attachment, :order
+  attr_accessible :name, :area_id, :duration, :attachment, :order
 
   # Associations
-  belongs_to :place, :counter_cache => true
+  belongs_to :area
 
   # Callbacks
   before_save :update_audio_attributes
-  
-  #SimpleEnum
-  as_enum :category, { :narrate => 0, :story => 1 }
 
   # Validates
-  validates :name, :place_id, :category_cd, :attachment, :duration, :presence => true
+  validates :name, :area_id, :attachment, :duration, :presence => true
 	with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
@@ -34,8 +31,7 @@ class Audio < ActiveRecord::Base
   # Scopes
   scope :created_desc, order("created_at DESC")
   scope :order_desc, order("`order` DESC")
-  scope :narrates, where(:category_cd => Audio.narrate)
-  scope :newest, lambda { |count| limit(count).includes(:place) }
+  scope :newest, lambda { |count| limit(count).includes(:area) }
 
   def update_audio_attributes
     if attachment.present? && attachment_changed?

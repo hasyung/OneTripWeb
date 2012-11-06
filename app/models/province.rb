@@ -5,7 +5,7 @@ class Province < ActiveRecord::Base
 
   # Associations
   has_many :places, :order => "created_at DESC"
-  has_many :specials
+  has_many :minorities, :order => "created_at_DESC"
   
   # FriendlyId
   friendly_id :key, :use => :slugged
