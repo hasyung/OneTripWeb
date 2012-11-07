@@ -80,5 +80,16 @@ module Admin::ApplicationHelper
 		end
 		raw html
 	end
+  
+  def admin_polymorphic_area_path(model)
+    path = ""
+    case model.class.name
+    when "Place"
+      path = admin_place_path(model.id)
+    when "Minority"
+      path = admin_minority_path(model.id)
+    end
+    path
+  end
 	
 end

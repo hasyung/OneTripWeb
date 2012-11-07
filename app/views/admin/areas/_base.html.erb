@@ -1,0 +1,75 @@
+<%- model_class = Area -%>
+
+<%= content_for :title do -%>
+	<% if %w(index).include?(action_name) -%>
+		<%= t("helpers.links.list") %>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<%= t("helpers.submit.create", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
+	<% end -%>
+  <% if %w(show).include?(action_name) -%>
+		<%= @area.name %>
+	<% end -%>
+	<% if %w(search).include?(action_name) -%>
+		<%= t("helpers.links.search", :model => model_class.model_name.human) %>
+	<% end -%>
+<% end -%>
+
+<%= content_for :sitemaps do -%>
+  <% if !%w(index).include?(action_name) %>
+  <a href="<%= admin_polymorphic_area_path(@model) %>"><%= @model.name %></a>
+  <% else %>
+    <%= @model.name %>
+  <% end %>
+	<span class="divider">/</span>
+	<% if %w(index).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.list") %></span>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<span class="active"><%= t("helpers.submit.create", :model => model_class.model_name.human) %></span>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.edit") %></span>
+	<% end -%>
+  <% if %w(show).include?(action_name) -%>
+		<span class="active"><%= @area.name %></span>
+	<% end -%>
+  	<% if %w(search).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.search", :model => model_class.model_name.human) %></span>
+	<% end -%>
+
+	<% if %w(edit_map update_map).include?(action_name) -%>
+		<a href="<%=  %>"><%=  %></a>
+		<span class="divider">/</span>
+		<span class="active"><%= t("helpers.links.add_map") %></span>
+	<% end -%>
+  <% end -%>
+<%= content_for :toolbar do -%>
+	
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_polymorphic_area_path(@model) %>" class="btn">
+					<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place",:place_name => @model.name) %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+<% end -%>
+<%= content_for :sidebar do -%>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="well warning-bg">
+			<ul class="nav nav-list">
+			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+        <li>排序决定了模版的显示顺序。</li>
+			</ul>
+		</div>
+	<% end -%>
+<% end -%>

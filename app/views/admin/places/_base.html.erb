@@ -85,6 +85,7 @@
 					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_area") %></b>
 				</a>
 			<% end -%>
+	
 			<% if can? :destroy, model_class %>
 				<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
 					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
@@ -152,8 +153,8 @@
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-        <li>url必填且唯一。</li>
-			  <li>景点添加成功后不能修改url。</li>
+			  <li>地图只能是（jpg，png，gif）等格式的图片。</li>
+			  <li>地图不得大于10M。</li>
 			</ul>
 		</div>
 	<% end -%>

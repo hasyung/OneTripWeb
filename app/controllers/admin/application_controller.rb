@@ -1,5 +1,4 @@
 class Admin::ApplicationController < ApplicationController
-  
   before_filter :authenticate_user!
 
   # mobile-fu
@@ -15,5 +14,16 @@ class Admin::ApplicationController < ApplicationController
   def current_ability
 	  @current_ability ||= AdminAbility.new(current_user)
 	end
+  
+  def generation_area_path(area)
+    path = ""
+    case area.areable_type
+    when "Place"
+      path = admin_place_path(area.areable_id)
+    when "Minority"
+      path = admin_minority_path(area.areable_id)
+    end
+    path
+  end
 
 end

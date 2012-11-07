@@ -3,7 +3,7 @@ class Area < ActiveRecord::Base
 
   # Associations
   belongs_to :areable, :polymorphic => true
-  has_one :area_category
+  belongs_to :area_category
 
   #SimpleEnum
   as_enum :status, { :draft => 0, :publish => 1 }

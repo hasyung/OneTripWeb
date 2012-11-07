@@ -1,0 +1,31 @@
+<%- model_class = Area -%>
+
+<%= simple_form_for [:admin, @model, @area] do |f| %>
+  <fieldset>
+  	<% if %w(new create).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+  	<% if %w(edit update).include?(action_name) %>
+	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
+  	<% end -%>
+		<%= error_messages_for @area, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.association :area_category, :collection => AreaCategory.all, :prompt => t("helpers.links.select", :model_name => AreaCategory.model_name.human) %>
+	  <%= f.input :order, :input_html => { :class => "span1" } %>
+	  <div class="form-actions">
+	    <button type="submit" class="btn btn-primary">
+	    	<i class="icon-save icon-large"></i>
+	    	<% if %w(new create).include?(action_name) %>
+		    	<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    	<% if %w(edit update).include?(action_name) %>
+	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
+	    	<% end -%>
+	    </button>
+	    <a href="<%= %>" class="btn">
+	    	<i class="icon-ban-circle icon-large"></i>
+	    	<b><%= t("helpers.links.cancel") %></b>
+	    </a>
+	  </div>
+  </fieldset>
+<% end %>
+

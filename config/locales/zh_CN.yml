@@ -237,6 +237,7 @@
       province: "省市"
       minority: "民族"
       place: "景点"
+      area: "模版"
       area_category: "模版分类"
       info: "信息"
       audio: "音频"
@@ -276,6 +277,9 @@
         order: "排序"
         created_at: "创建时间"
       area:
+        area_category: "模版分类"
+        area_category_id: "模版分类"
+        order: "排序"
         created_at: "创建时间"
       area_category:
         name: "名字"
@@ -416,7 +420,7 @@
       media_cover: "上传封面"
       back_list: "返回列表"
       add_map: "上传地图"
-      add_area: "添加版块"
+      add_area: "添加模版"
       add_video: "添加视频"
       add_audio: "添加音频"
       add_article: "添加文章"
