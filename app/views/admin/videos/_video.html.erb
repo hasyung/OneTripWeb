@@ -1,23 +1,24 @@
 <li class="span5">
-	<div class="name">
-		<h4><%= video.name %></h4>
-		<span class="actions">
-    <% if can? :update, Video %>
-  			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-         	edit_admin_place_video_path(video.place_id, video), 
-         	:title => t("helpers.links.edit"),
-          :rel => :tooltip %>
-    <% end %>
-    <% if can? :destroy, Video %>
-  	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-  	      admin_place_video_path(video.place_id, video),
-          :method => :delete,
-          :title => t("helpers.links.destroy"),
-          :data => { :confirm => t("helpers.messages.confirm") },
-          :rel => :tooltip %>
-    <% end %>
-		</span>
-	</div>
+  <% if %w(areas).include?(controller_name) -%>
+  	<div class="name">
+  		<span class="actions">
+      <% if can? :update, Video %>
+    			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+           	edit_admin_area_video_path(video.area_id, video), 
+           	:title => t("helpers.links.edit"),
+            :rel => :tooltip %>
+      <% end %>
+      <% if can? :destroy, Video %>
+    	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+    	      admin_area_video_path(video.area_id, video),
+            :method => :delete,
+            :title => t("helpers.links.destroy"),
+            :data => { :confirm => t("helpers.messages.confirm") },
+            :rel => :tooltip %>
+      <% end %>
+  		</span>
+  	</div>
+  <% end %>
 	<div id="jp_container_video_<%= video.id %>" class="jp-video jp-video-270p">
 		<div class="jp-type-single">
 			<div id="jquery_jplayer_video_<%= video.id %>" class="jp-jplayer"></div>

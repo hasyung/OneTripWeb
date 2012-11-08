@@ -1,0 +1,9 @@
+<% if !area.articles.blank? %>
+  <div class="control-group">
+    <% area.articles.each do |article| -%>
+      <ul>
+        <%= render :partial => "admin/articles/article", :object => article %>
+      </ul>
+    <% end -%>
+  </div>
+<% end -%>

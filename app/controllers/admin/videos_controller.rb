@@ -1,16 +1,19 @@
 class Admin::VideosController < Admin::ApplicationController
   
- 	load_and_authorize_resource :place
-	load_and_authorize_resource :through => :place
+ 	load_and_authorize_resource :area
+	load_and_authorize_resource :through => :area
  	
  	helper_method :permission
+  before_filter :find_parent_model
 
 	def new
+    @video = @area.articles.new
 	end
 
 	def create
+    @video = @area.articles.new params[:video]
 		if @video.save
-		  redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Video.model_name.human)
+		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Video.model_name.human)
 	  else
 		  render :new
 	  end
@@ -21,7 +24,7 @@ class Admin::VideosController < Admin::ApplicationController
 
 	def update
    if @video.update_attributes params[:video]
-     redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Video.model_name.human)
+     redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Video.model_name.human)
    else
      render :edit
    end
@@ -29,14 +32,19 @@ class Admin::VideosController < Admin::ApplicationController
 
 	def destroy
 		if @video.destroy
-		  redirect_to admin_place_url(@place), :notice => t("helpers.messages.destroy", :model_name => Video.model_name.human)
+		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.destroy", :model_name => Video.model_name.human)
 		else
-		  redirect_to admin_place_url(@place), :alert => t("helpers.messages.error")
+		  redirect_to admin_area_url(@area), :alert => t("helpers.messages.error")
 		end
 	end
 
 	private
 	def self.permission
   	return Video.name, "permission.controllers.admin.videos"
+  end
+  
+  def find_parent_model
+    @area = Area.find params[:area_id]
+    @model = @area.areable_type.constantize.find @area.areable_id
   end
 end

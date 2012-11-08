@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   validates :title, :area_id, :body, :presence => true
 	with_options :if => :title? do |title|
     title.validates :title, :length => { :within => 2..200 }
-    title.validates :title, :uniqueness => { :scope => :place_id }
+    title.validates :title, :uniqueness => { :scope => :area_id }
   end
   with_options :if => :order? do |order|
     order.validates :order, :numericality => 

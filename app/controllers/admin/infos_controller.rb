@@ -1,16 +1,17 @@
 class Admin::InfosController < Admin::ApplicationController
 
-	load_and_authorize_resource :place
-	load_and_authorize_resource :through => :place
+	load_and_authorize_resource :area
+	load_and_authorize_resource :through => :area
 
 	helper_method :permission
-
+  before_filter :find_parent_model
+  
 	def new
 	end
 
 	def create
 	  if @info.save
-		  redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Info.model_name.human)
+		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Info.model_name.human)
 	  else
 		  render :new
 	  end
@@ -21,7 +22,7 @@ class Admin::InfosController < Admin::ApplicationController
 
 	def update
     if @info.update_attributes params[:info]
-      redirect_to admin_place_url(@place), :notice => t("helpers.messages.edit", :model_name => Info.model_name.human)
+      redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Info.model_name.human)
     else
       render :edit
     end
@@ -29,14 +30,18 @@ class Admin::InfosController < Admin::ApplicationController
 
 	def destroy
 		if @info.destroy
-		  redirect_to admin_place_url(@place), :notice => t("helpers.messages.destroy", :model_name => Info.model_name.human)
+		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.destroy", :model_name => Info.model_name.human)
   	else
-		  redirect_to admin_place_url(@place), :alert => t("helpers.messages.error")
+		  redirect_to admin_area_url(@area), :alert => t("helpers.messages.error")
 		end
 	end
 
 	private
 	def self.permission
   	return Info.name, "permission.controllers.admin.infos"
+  end
+  def find_parent_model
+    @area = Area.find params[:area_id]
+    @model = @area.areable_type.constantize.find @area.areable_id
   end
 end

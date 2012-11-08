@@ -1,17 +1,9 @@
-<fieldset id="map">
-	<legend><%= t("helpers.links.map") %></legend>
-  <% if @area.images.blank? -%>
-  <% else -%>
-    <% @area.images.each do |image| %>
-    	<%= render :partial => "admin/images/image", :object => image %>
-    <% end %>
-  <% end %>
-	<ul class="control-group unstyled">
-    <% if @area.infos.blank? -%>
-    <% else -%>
-      <% @area.infos.each do |info| %>
-        <%= render :partial => "admin/infos/info", :object => info %>
-      <% end -%>
+<div class="control-group">
+  <% if !area.videos.blank? %>
+    <ul class="thumbnails">
+    <% area.videos.each do |video| -%>
+      <%= render :partial => "admin/videos/video", :object => video %>
     <% end -%>
-  </ul>
-</fieldset>
+    </ul>
+  <% end -%>
+</div>

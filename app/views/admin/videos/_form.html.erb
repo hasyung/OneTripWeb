@@ -1,6 +1,6 @@
 <%- model_class = Video -%>
 
-<%= simple_form_for [:admin, @place, @video], :html => { :multipart => true } do |f| %>
+<%= simple_form_for [:admin, @area, @video], :html => { :multipart => true } do |f| %>
 	<fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
@@ -9,7 +9,6 @@
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
   	<%= error_messages_for @video, :class => "control-group alert alert-error fade in", :close => :true %>
-	  <%= f.input :name, :input_html => { :class => "span-full" } %>
 	  <%= f.input :attachment, :as => :file %>
 	  <%= f.input :duration, :as => :string %>
    	<%= f.input :cover, :as => :file %>
@@ -30,7 +29,7 @@
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
-	    <a href="<%= admin_place_path(@place) %>" class="btn">
+	    <a href="<%= admin_area_path(@area) %>" class="btn">
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>

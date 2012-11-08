@@ -10,11 +10,7 @@ class Admin::AreasController < Admin::ApplicationController
 	end
 
 	def show
-		@infos = @area.infos.order_desc.created_desc
-		@videos = @area.videos.order_desc
-		@articles = @area.articles.order_desc.created_desc
-		@audios = @area.audios.order_desc.created_desc
-    @images = @area.images.order_desc.created_desc
+    @model = @area.areable_type.constantize.find @area.areable_id
 	end
 
 	def new

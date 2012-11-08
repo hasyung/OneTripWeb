@@ -11,9 +11,9 @@
 <% end -%>
 
 <%= content_for :sitemaps do -%>
-	<a href="<%= admin_places_path %>"><%= Place.model_name.human %></a>
+	<a href="<%= admin_polymorphic_area_path(@model) %>"><%= @model.name %></a>
 	<span class="divider">/</span>
-	<a href="<%= admin_place_path(@place) %>"><%= @place.name %></a>
+	<a href="<%= admin_area_path(@area) %>"><%= @area.area_category.name %></a>
 	<span class="divider">/</span>
 	<% if %w(new create).include?(action_name) -%>
 		<span class="active"><%= t("helpers.submit.create", :model => model_class.model_name.human) %></span>
@@ -28,32 +28,19 @@
 	<% if %w(new create edit update show).include?(action_name) -%>
 		<div class="btn-group">
     <% if can? :read, model_class %>
-  			<a href="<%= admin_place_path(@place) %>" class="btn">
-  				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @place.name) %></b>
+  			<a href="<%= admin_area_path(@area) %>" class="btn">
+  				<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @area.area_category.name) %></b>
   			</a>
-  			<a href="<%= admin_places_path %>" class="btn">
-  				<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
-  			</a>
-    <% end%>
-   <% if %w(show).include?(action_name) -%>
-    <% if can? :update, model_class %>
-      <a href="<%= edit_admin_place_article_path %>" class="btn">
-  				  <i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_article") %></b>
-  			  </a>
-    <% end%>
-   <% end%>
+    <% end %>
+    <% if %w(show).include?(action_name) -%>
+      <% if can? :update, model_class %>
+        <a href="<%= edit_admin_area_article_path %>" class="btn">
+    				  <i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_article") %></b>
+    			  </a>
+      <% end%>
+     <% end%>
 		</div>
 	<% end -%>
-	<div class="btn-group pull-right">
-		<div class="controls pagination-right search">
-	    <%= simple_form_for :place, :url => search_admin_places_path do |f| -%>
-	      <div class="input-append">
-	        <%= f.input_field :name, :value => nil, :placeholder => t("helpers.placeholder.search", :model => Place.model_name.human) %>
-	        <button type="submit" class="btn"><i class="icon-search"></i></button>
-	      </div>
-	    <% end -%>
-	  </div>
-	</div>
 <% end -%>
 <%= content_for :sidebar do -%>
 	<% if %w(new create edit update).include?(action_name) -%>

@@ -21,6 +21,7 @@ class Image < ActiveRecord::Base
   end
 
   # scopes
+  scope :order_desc, order("`order` DESC")
   scope :created_desc, order("created_at DESC")
 
   # Methods

@@ -1,6 +1,6 @@
 <%- model_class = Article -%>
 
-<%= simple_form_for [:admin, @place, @article] do |f| %>
+<%= simple_form_for [:admin, @area, @article] do |f| %>
 	<fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
@@ -10,9 +10,6 @@
   	<% end -%>
   	<%= error_messages_for @article, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :title, :input_html => { :class => "span-full" } %>
-	  <%= f.input :category_cd do %>
-	  	<%= f.select :category_cd, model_class.categories_for_select(:value) %>
-	  <% end -%>
 	  <%= f.input :author, :input_html => { :class => "span3" } %>
 	  <%= f.input :body, :as => :text, :input_html => { :class => "span-full" } %>
 	  <%= f.input :keywords, :input_html => { :class => "span-full" } %>
@@ -28,7 +25,7 @@
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
-	    <a href="<%= admin_place_path(@place) %>" class="btn">
+	    <a href="<%= admin_area_path(@area) %>" class="btn">
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>

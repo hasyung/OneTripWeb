@@ -13,7 +13,7 @@
 		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
 	<% end -%>
   <% if %w(show).include?(action_name) -%>
-		<%= @area.name %>
+		<%= @area.area_category.name %>
 	<% end -%>
 	<% if %w(search).include?(action_name) -%>
 		<%= t("helpers.links.search", :model => model_class.model_name.human) %>
@@ -39,7 +39,7 @@
 		<span class="active"><%= t("helpers.links.edit") %></span>
 	<% end -%>
   <% if %w(show).include?(action_name) -%>
-		<span class="active"><%= @area.name %></span>
+		<span class="active"><%= @area.area_category.name %></span>
 	<% end -%>
   	<% if %w(search).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.search", :model => model_class.model_name.human) %></span>
@@ -52,7 +52,40 @@
 	<% end -%>
   <% end -%>
 <%= content_for :toolbar do -%>
-	
+	<% if %w(show).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :update, model_class %>
+				<a href="<%= edit_admin_area_path(@area) %>" class="btn">
+					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Video %>
+				<a href="<%= new_admin_area_video_path(@area) %>" class="btn">
+					<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Audio %>
+				<a href="<%= new_admin_area_audio_path(@area) %>" class="btn">
+					<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Article %>
+				<a href="<%= new_admin_area_article_path(@area) %>" class="btn">
+					<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
+				</a>
+			<% end -%>
+			<% if can? :new, Info %>
+				<a href="<%= new_admin_area_info_path(@area) %>" class="btn">
+					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
+				</a>
+			<% end -%>
+			<% if can? :destroy, model_class %>
+				<a href="<%= admin_area_path(@area) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
+				</a>
+			<% end -%>
+		</div>
+  <% end %>
 	<% if %w(new create edit update).include?(action_name) -%>
 		<div class="btn-group">
 			<% if can? :read, model_class %>

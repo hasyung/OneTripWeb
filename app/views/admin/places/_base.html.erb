@@ -75,14 +75,14 @@
 	<% end -%>
 	<% if %w(show).include?(action_name) -%>
 		<div class="btn-group">
+    <% if can? :new, Area %>
+				<a href="<%= new_admin_place_area_path(@place) %>" class="btn">
+					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_area") %></b>
+				</a>
+			<% end -%>
 			<% if can? :update, model_class %>
 				<a href="<%= edit_admin_place_path %>" class="btn">
 					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
-				</a>
-			<% end -%>
-			<% if can? :new, Area %>
-				<a href="<%= new_admin_place_area_path(@place) %>" class="btn">
-					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_area") %></b>
 				</a>
 			<% end -%>
 	

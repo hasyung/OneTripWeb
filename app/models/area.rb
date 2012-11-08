@@ -4,6 +4,11 @@ class Area < ActiveRecord::Base
   # Associations
   belongs_to :areable, :polymorphic => true
   belongs_to :area_category
+  has_many :videos, :dependent => :destroy
+  has_many :audios, :dependent => :destroy
+  has_many :infos, :dependent => :destroy
+  has_many :articles, :dependent => :destroy
+  has_many :images, :dependent => :destroy
 
   #SimpleEnum
   as_enum :status, { :draft => 0, :publish => 1 }
@@ -17,6 +22,6 @@ class Area < ActiveRecord::Base
 
   # Scopes
   scope :created_desc, order("created_at DESC")
-  scope :order_desc, order("`order` DESC")
+  scope :order_ASC, order("`order` ASC")
 
 end

@@ -1,15 +1,14 @@
 <% if !area.blank? %>
   <li class="span5">
   	<div class="name">
-  		<h4><%= area.area_category.name %></h4>
   		<span class="actions">
-      <% if can? :update, Area %>
+      <% if can? :update, area %>
     			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
            	edit_admin_area_path(area), 
            	:title => t("helpers.links.edit"),
             :rel => :tooltip %>
       <% end %>
-      <% if can? :destroy, Area %>
+      <% if can? :destroy, area %>
     	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
     	      admin_area_path(area),
             :method => :delete,
@@ -19,5 +18,15 @@
       <% end %>
   		</span>
   	</div>
+    <% case area.area_category.style_type_cd %>
+    <% when 0 %>
+      <%= render :partial => "admin/area_categories/style_type/style_0", :locals => { :area => area } %>
+    <% when 1 %>
+      <%= render :partial => "admin/area_categories/style_type/style_1", :locals => { :area => area } %>
+    <% when 2 %>
+      <%= render :partial => "admin/area_categories/style_type/style_2", :locals => { :area => area } %>
+    <% when 3 %>
+      <%= render :partial => "admin/area_categories/style_type/style_3", :locals => { :area => area } %>
+    <% end %>
   </li>
 <% end %>

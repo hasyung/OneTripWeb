@@ -1,20 +1,22 @@
 <li>
-	<%= link_to article.title, admin_place_article_path(article.place_id, article) %>
+	<%= link_to article.title, admin_area_article_path(article.area_id, article) %>
 	<span class="create_time"><%= l article.created_at.to_date, :format => :long %></span>
-	<span class="actions">
-  <% if can? :update, Article %>
-  		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-        edit_admin_place_article_path(article.place_id, article), 
-        :title => t("helpers.links.edit"),
+  <% if %w(areas).include?(controller_name) -%>
+  	<span class="actions">
+    <% if can? :update, Article %>
+    		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+          edit_admin_area_article_path(article.area_id, article), 
+          :title => t("helpers.links.edit"),
+          :rel => :tooltip %>
+    <% end %>
+    <% if can? :destroy, Article %>
+      <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+        admin_area_article_path(article.area_id, article),
+        :method => :delete,
+        :title => t("helpers.links.destroy"),
+        :data => { :confirm => t("helpers.messages.confirm") },
         :rel => :tooltip %>
+    <% end %>
+  	</span>
   <% end %>
-  <% if can? :destroy, Article %>
-    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-      admin_place_article_path(article.place_id, article),
-      :method => :delete,
-      :title => t("helpers.links.destroy"),
-      :data => { :confirm => t("helpers.messages.confirm") },
-      :rel => :tooltip %>
-  <% end %>
-	</span>
 </li>
