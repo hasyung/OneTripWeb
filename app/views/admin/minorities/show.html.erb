@@ -1,0 +1,13 @@
+<%= render "base" %>
+<% if !@areas.blank? %>
+  <% @areas.each do |area| -%>
+    <fieldset id="#{area.area_category.name}">
+      <legend>
+        <a href="<%= admin_area_path(area) %>"><%= t("helpers.links.#{area.area_category.name}") %></a>
+      </legend>
+      <div class="control-group">
+        <%= render :partial => "admin/areas/area", :locals => { :area => area } %>
+      </div>
+    </fieldset>
+  <% end %>
+<% end -%>

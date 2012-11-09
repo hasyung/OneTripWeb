@@ -2,7 +2,7 @@
   <% if !area.audios.blank? %>
     <ul class="thumbnails">
       <li class="span5">
-        <%= render :partial => "admin/audios/audios", :locals => { :audios => audios } %>
+        <%= render :partial => "admin/audios/audios", :locals => { :audios => area.audios } %>
       </li>
     </ul>
   <% end -%>

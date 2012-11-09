@@ -7,9 +7,11 @@ class Admin::InfosController < Admin::ApplicationController
   before_filter :find_parent_model
   
 	def new
+    @info = @area.infos.new
 	end
 
 	def create
+    @info = @area.infos.new params[:info]
 	  if @info.save
 		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Info.model_name.human)
 	  else

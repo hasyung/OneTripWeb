@@ -20,13 +20,13 @@
   	</div>
     <% case area.area_category.style_type_cd %>
     <% when 0 %>
-      <%= render :partial => "admin/area_categories/style_type/style_0", :locals => { :area => area } %>
+      <%= render :partial => "admin/shared/area_types/style_0", :locals => { :area => area } %>
     <% when 1 %>
-      <%= render :partial => "admin/area_categories/style_type/style_1", :locals => { :area => area } %>
+      <%= render :partial => "admin/shared/area_types/style_1", :locals => { :area => area } %>
     <% when 2 %>
-      <%= render :partial => "admin/area_categories/style_type/style_2", :locals => { :area => area } %>
+      <%= render :partial => "admin/shared/area_types/style_2", :locals => { :area => area } %>
     <% when 3 %>
-      <%= render :partial => "admin/area_categories/style_type/style_3", :locals => { :area => area } %>
+      <%= render :partial => "admin/shared/area_types/style_3", :locals => { :area => area } %>
     <% end %>
   </li>
 <% end %>

@@ -243,6 +243,7 @@
       audio: "音频"
       video: "视频"
       article: "文章"
+      image: "封面"
       picture: "图片"
       user: "用户"
       user_profile: "用户信息"
@@ -286,6 +287,10 @@
         style_type_cd: "样式"
         description: "描述"
         created_at: "创建时间"
+      image:
+        name: "名字"
+        image: "文件"
+        order: "排序"
       info:
         var: "名字"
         value: "内容"
@@ -419,7 +424,7 @@
       continue: "继续上传"
       media_cover: "上传封面"
       back_list: "返回列表"
-      add_map: "上传地图"
+      add_image: "上传封面"
       add_area: "添加模版"
       add_video: "添加视频"
       add_audio: "添加音频"

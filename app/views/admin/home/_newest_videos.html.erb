@@ -1,11 +1,11 @@
 <div id="videos" class="well newest-videos">
-	<h6>最新添加的景区视频</h6>
+	<h6>最新添加的视频</h6>
 	<% if can? :read, Video %>
 		<ul class="nav nav-list">
 			<% @newest_videos.each do |video| -%>
 				<li>
-					<a href="<%= "#{admin_place_path(video.place_id)}#video" %>">
-						<i class="icon-film"></i><%= " #{video.place.name} - #{video.name.truncate(26)}" %>
+					<a href="<%= "#{admin_area_path(video.area_id)}#video" %>">
+						<i class="icon-film"></i><%= " #{video.area.area_category.name} " %>
 					</a>
 				</li>
 			<% end -%>

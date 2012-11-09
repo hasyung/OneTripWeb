@@ -2,13 +2,13 @@ class Image < ActiveRecord::Base
   attr_accessible :name, :image, :area_id, :order
 
    # Associations
-  belongs_to :area
+  belongs_to :area, :include => :area_category
   
   # Callbacks
   before_save :update_image_attributes
 
   # carrierwave
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, MapUploader
 
   # Validates
   validates :image, :area_id, :presence => true
@@ -19,10 +19,14 @@ class Image < ActiveRecord::Base
     order.validates :order, :numericality => 
       { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 999 }
   end
+  with_options :if => :image? do |image|
+    image.validates :image, :file_size => { :maximum => 5.megabytes.to_i }
+  end
 
   # scopes
   scope :order_desc, order("`order` DESC")
   scope :created_desc, order("created_at DESC")
+  scope :newest, lambda { |count| limit(count).includes(:area) }
 
   # Methods
   def update_image_attributes

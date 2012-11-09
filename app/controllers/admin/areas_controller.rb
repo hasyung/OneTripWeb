@@ -54,7 +54,7 @@ class Admin::AreasController < Admin::ApplicationController
   
   def find_parent_model
     @model = Place.find params[:place_id] if !params[:place_id].blank?
-    @model = Minority.find params[:monority_id] if !params[:monority_id].blank?
+    @model = Minority.find params[:minority_id] if !params[:minority_id].blank?
   end
 
 end

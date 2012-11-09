@@ -2,13 +2,13 @@ class Info < ActiveRecord::Base
   attr_accessible :area_id, :var, :value, :order
 
   # Associations
-  belongs_to :area
+  belongs_to :area, :include => :area_category
 
   # Validates
-  validates :var, :value, :place_id, :presence => true
+  validates :var, :value, :area_id, :presence => true
   with_options :if => :var? do |var|
     var.validates :var, :length => { :within => 2..30 }
-    var.validates :var, :uniqueness => { :scope => :place_id }
+    var.validates :var, :uniqueness => { :scope => :area_id }
   end
   with_options :if => :value? do |value|
     value.validates :value, :length => { :within => 2..1000 }

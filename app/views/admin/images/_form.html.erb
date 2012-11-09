@@ -1,16 +1,16 @@
-<%- model_class = Info -%>
+<%- model_class = Image -%>
 
-<%= simple_form_for [:admin, @area, @info] do |f| %>
-  	<fieldset>
+<%= simple_form_for [:admin, @area, @image], :html => { :multipart => true } do |f| %>
+	<fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
   	<% end -%>
   	<% if %w(edit update).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
-  	<%= error_messages_for @info, :class => "control-group alert alert-error fade in", :close => :true %>
-	  <%= f.input :var, :input_html => { :class => "span-full" } %>
-	  <%= f.input :value, :as => :text, :input_html => { :class => "span-full" } %>
+  	<%= error_messages_for @image, :class => "control-group alert alert-error fade in", :close => :true %>
+	  <%= f.input :name, :input_html => { :class => "span-full" } %>
+	  <%= f.input :image, :as => :file %>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">

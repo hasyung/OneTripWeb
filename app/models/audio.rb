@@ -2,7 +2,7 @@ class Audio < ActiveRecord::Base
   attr_accessible :name, :area_id, :duration, :attachment, :order
 
   # Associations
-  belongs_to :area
+  belongs_to :area, :include => :area_category
 
   # Callbacks
   before_save :update_audio_attributes

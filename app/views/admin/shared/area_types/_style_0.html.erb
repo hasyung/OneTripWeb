@@ -1,0 +1,16 @@
+<div class="control-group">
+<% if area.images.blank? -%>
+<% else -%>
+  <% area.images.each do |image| %>
+  	<%= render :partial => "admin/images/image", :object => image %>
+  <% end %>
+<% end %>
+<ul>
+<% if area.infos.blank? -%>
+<% else -%>
+  <% area.infos.each do |info| %>
+    <%= render :partial => "admin/infos/info", :object => info %>
+  <% end -%>
+<% end -%>
+</ul>
+</div>

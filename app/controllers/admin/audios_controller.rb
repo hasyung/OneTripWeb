@@ -7,10 +7,11 @@ class Admin::AudiosController < Admin::ApplicationController
   before_filter :find_parent_model
 	
   def new
-		
+		@audio = @area.audios.new
 	end
 
 	def create
+    @audio = @area.audios.new params[:audio]
 		if @audio.save
 			redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Audio.model_name.human)
 		else

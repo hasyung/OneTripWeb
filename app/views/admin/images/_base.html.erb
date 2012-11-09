@@ -1,4 +1,4 @@
-<%- model_class = Audio -%>
+<%- model_class = Image -%>
 
 <%= content_for :title do -%>
 	<% if %w(new create).include?(action_name) -%>
@@ -40,8 +40,8 @@
 		<div class="well warning-bg">
 			<ul class="nav nav-list">
 			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-			  <li>音频文件只能是（mp3）等格式的。</li>
-			  <li>音频文件不得大于10M。</li>
+			  <li>封面图只能是（jpg,jpeg,gif,png）格式的。</li>
+			  <li>封面图不得大于5M。</li>
 			</ul>
 		</div>
 	<% end -%>

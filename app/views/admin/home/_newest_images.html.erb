@@ -1,0 +1,16 @@
+<div id="infos" class="well newest-infos">
+	<h6>最新添加的封面</h6>
+	<% if can? :read, Image %>
+		<ul class="nav nav-list">
+			<% @newest_images.each do |image| -%>
+				<li>
+					<a href="<%= "#{admin_area_path(image.area_id)}#image" %>">
+						<i class="icon-pushpin"></i><%= " #{image.area.area_category.name} - #{image.name.truncate(26)}" %>
+					</a>
+				</li>
+			<% end -%>
+		</ul>
+	<% else -%>
+		<p><%= t("unauthorized.index.image") %></p>
+	<% end -%>
+</div>

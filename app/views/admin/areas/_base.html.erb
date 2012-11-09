@@ -59,6 +59,11 @@
 					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
 				</a>
 			<% end -%>
+			<% if can? :new, Image %>
+				<a href="<%= new_admin_area_image_path(@area) %>" class="btn">
+					<i class="icon-picture icon-large"></i><b><%= t("helpers.links.add_image") %></b>
+				</a>
+			<% end -%>
 			<% if can? :new, Video %>
 				<a href="<%= new_admin_area_video_path(@area) %>" class="btn">
 					<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>

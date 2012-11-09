@@ -7,9 +7,11 @@ class Admin::ImagesController < Admin::ApplicationController
   before_filter :find_parent_model
 
 	def new
+    @image = @area.images.new
 	end
 
 	def create
+    @image = @area.images.new params[:image]
 		if @image.save
 		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Image.model_name.human)
 	  else

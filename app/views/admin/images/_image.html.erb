@@ -1,0 +1,22 @@
+<% if %w(areas).include?(controller_name) -%>
+  <span class="actions">
+    <%= image.name %>
+    <% if can? :update, Image %>
+    		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+          edit_admin_area_image_path(image.area_id, image), 
+          :title => t("helpers.links.edit"),
+          :rel => :tooltip %>
+    <% end %>
+    <% if can? :destroy, Image %>
+      <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+        admin_area_image_path(image.area_id, image),
+        :method => :delete,
+        :title => t("helpers.links.destroy"),
+        :data => { :confirm => t("helpers.messages.confirm") },
+        :rel => :tooltip %>
+    <% end %>
+  </span>
+ <% end %>
+<div class="control-group">
+  <%= image_tag image.image.thumb_middle.url %>
+</div>

@@ -14,6 +14,13 @@
 	      new_admin_place_path, :title => t("helpers.submit.create", :model => Place.model_name.human),
 	      :class => "btn btn-primary btn-large" %>
 		</div>
+    <% end %>
+    <% if can? :new, Minority %>
+		<div class="btn-group">
+			<%= link_to t("helpers.submit.create", :model => Minority.model_name.human), 
+	      new_admin_minority_path, :title => t("helpers.submit.create", :model => Minority.model_name.human),
+	      :class => "btn btn-primary btn-large" %>
+		</div>
 		<% end -%>
 		<% if can? :new, User %>
 		<div class="btn-group">

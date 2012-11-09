@@ -1,0 +1,161 @@
+<%- model_class = Minority -%>
+
+<%= content_for :title do -%>
+	<% if %w(index).include?(action_name) -%>
+		<%= t("helpers.links.list") %>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<%= t("helpers.submit.create", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<%= t("helpers.submit.update", :model => model_class.model_name.human) %>
+	<% end -%>
+
+	<% if %w(show).include?(action_name) -%>
+		<%= @minority.name %>
+	<% end -%>
+
+	<% if %w(search).include?(action_name) -%>
+		<%= t("helpers.links.search", :model => model_class.model_name.human) %>
+	<% end -%>
+<% end -%>
+
+<%= content_for :sitemaps do -%>
+  <% if !%w(index).include?(action_name) %>
+    	<a href="<%= admin_minorities_path %>"><%= model_class.model_name.human %></a>
+  <% else %>
+    <%= model_class.model_name.human %>
+  <% end %>
+	<span class="divider">/</span>
+	<% if %w(index).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.list") %></span>
+	<% end -%>
+
+	<% if %w(show).include?(action_name) -%>
+		<span class="active"><%= @minority.name %></span>
+	<% end -%>
+
+	<% if %w(new create).include?(action_name) -%>
+		<span class="active"><%= t("helpers.submit.create", :model => model_class.model_name.human) %></span>
+	<% end -%>
+
+	<% if %w(edit update).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.edit") %></span>
+	<% end -%>
+
+	<% if %w(search).include?(action_name) -%>
+		<span class="active"><%= t("helpers.links.search", :model => model_class.model_name.human) %></span>
+	<% end -%>
+
+	<% if %w(edit_map update_map).include?(action_name) -%>
+		<a href="<%= admin_minority_path(@minority) %>"><%= @minority.name %></a>
+		<span class="divider">/</span>
+		<span class="active"><%= t("helpers.links.add_map") %></span>
+	<% end -%>
+<% end -%>
+
+<%= content_for :toolbar do -%>
+	<% if %w(index search).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :new, model_class %>
+				<a href="<%= new_admin_minority_path %>" class="btn">
+					<i class="icon-pencil icon-large"></i>
+					<b><%= t("helpers.submit.create", :model => model_class.model_name.human) %></b>
+				</a>
+			<% end -%>
+			<% if can? :destroy, model_class %>
+				<a href="javascript:void(0);" class="btn destroy-multiple" <%= "disabled=\"disabled\"" if @minorities.blank? %>>
+					<i class="icon-trash icon-large"></i>
+					<b><%= t("helpers.links.delete_all") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<% if %w(show).include?(action_name) -%>
+		<div class="btn-group">
+    <% if can? :new, Area %>
+				<a href="<%= new_admin_minority_area_path(@minority) %>" class="btn">
+					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_area") %></b>
+				</a>
+			<% end -%>
+			<% if can? :update, model_class %>
+				<a href="<%= edit_admin_minority_path %>" class="btn">
+					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+				</a>
+			<% end -%>
+	
+			<% if can? :destroy, model_class %>
+				<a href="<%= admin_minority_path(@minority) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
+				</a>
+			<% end -%>
+		</div>
+		<% if can? :publish, Minority %>
+			<div class="btn-group">
+				<% if @minority.draft? %>
+					<a href="<%= publish_admin_minority_path(@minority, Minority.statuses.publish(true)) %>" class="btn btn-success">
+						<i class="icon-lock icon-large"></i>
+					</a>
+				<% end -%>
+				<% if @minority.publish? %>
+					<a href="<%= publish_admin_minority_path(@minority, Minority.statuses.draft(true)) %>" class="btn btn-success">
+						<i class="icon-unlock icon-large"></i>
+					</a>
+				<% end -%>
+			</div>
+		<% end -%>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_minorities_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<% if %w(new create).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_minorities_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<% if %w(edit update).include?(action_name) -%>
+		<div class="btn-group">
+			<% if can? :read, model_class %>
+				<a href="<%= admin_minority_path(@minority) %>" class="btn">
+					<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @minority.name) %></b>
+				</a>
+				<a href="<%= admin_minorities_path %>" class="btn">
+					<i class="icon-table icon-large"></i><b><%= t("helpers.links.back_list") %></b>
+				</a>
+			<% end -%>
+		</div>
+	<% end -%>
+	<div class="btn-group pull-right">
+		<div class="controls pagination-right search">
+			<% if can? :read, model_class %>
+		    <%= simple_form_for :minority, :url => search_admin_minorities_path do |f| -%>
+		      <div class="input-append">
+		        <%= f.input_field :name, :placeholder => t("helpers.placeholder.search", :model => model_class.model_name.human), :value => nil %>
+		        <button type="submit" class="btn"><i class="icon-search"></i></button>
+		      </div>
+		    <% end -%>
+	    <% end -%>
+	  </div>
+	</div>
+<% end -%>
+<%= content_for :sidebar do -%>
+	<% if %w(new create edit update).include?(action_name) -%>
+		<div class="well warning-bg">
+			<ul class="nav nav-list">
+			  <li class="nav-header"><%= t("helpers.links.tips") %></li>
+			  <li>地图只能是（jpg，png，gif）等格式的图片。</li>
+			  <li>地图不得大于10M。</li>
+			</ul>
+		</div>
+	<% end -%>
+<% end -%>

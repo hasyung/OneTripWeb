@@ -1,6 +1,6 @@
-<div id="jp_container_audio_<%= category %>" class="jp-video jp-video-270p">
+<div id="jp_container_audio" class="jp-video jp-video-270p">
 	<div class="jp-type-playlist">
-		<div id="jquery_jplayer_audio_<%= category %>" class="jp-jplayer"></div>
+		<div id="jquery_jplayer_audio" class="jp-jplayer"></div>
 		<div class="jp-gui">
 			<div class="jp-video-play">
 				<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
@@ -58,20 +58,22 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			new jPlayerPlaylist({
-				jPlayer: "#jquery_jplayer_audio_<%= category %>",
-				cssSelectorAncestor: "#jp_container_audio_<%= category %>"
+				jPlayer: "#jquery_jplayer_audio",
+				cssSelectorAncestor: "#jp_container_audio"
 			},[
 				<% audios.each_with_index do |audio, i| -%>
 					{
 						title: "<%= audio.name %>",
 						artist: "<%= audio.duration %>",
 						mp3: "<%= audio.attachment.url %>",
-      <% if can? :destroy, Audio %>
-  						delete_url: "<%= admin_place_audio_path(audio.place_id, audio) %>",
-      <% end %>
-      <% if can? :destroy, Audio %>
-  						edit_url: "<%= edit_admin_place_audio_path(audio.place_id, audio) %>"
-      <% end %>
+          <% if %w(areas).include?(controller_name) -%>
+            <% if can? :destroy, Audio %>
+        						delete_url: "<%= admin_area_audio_path(audio.area_id, audio) %>",
+            <% end %>
+            <% if can? :edit, Audio %>
+        						edit_url: "<%= edit_admin_area_audio_path(audio.area_id, audio) %>"
+            <% end %>
+          <% end %>
 					}<%= "," if i != audios.count - 1 %>
 				<% end -%>
 			], {

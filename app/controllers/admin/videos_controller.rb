@@ -7,11 +7,11 @@ class Admin::VideosController < Admin::ApplicationController
   before_filter :find_parent_model
 
 	def new
-    @video = @area.articles.new
+    @video = @area.videos.new
 	end
 
 	def create
-    @video = @area.articles.new params[:video]
+    @video = @area.videos.new params[:video]
 		if @video.save
 		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Video.model_name.human)
 	  else

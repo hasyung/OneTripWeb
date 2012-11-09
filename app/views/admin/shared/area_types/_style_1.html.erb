@@ -2,7 +2,9 @@
   <% if !area.videos.blank? %>
     <ul class="thumbnails">
     <% area.videos.each do |video| -%>
+      <li>
       <%= render :partial => "admin/videos/video", :object => video %>
+      </li>
     <% end -%>
     </ul>
   <% end -%>

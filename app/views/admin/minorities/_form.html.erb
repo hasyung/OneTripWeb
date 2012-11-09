@@ -1,6 +1,6 @@
-<%- model_class = Category -%>
+<%- model_class = Minority -%>
 
-<%= simple_form_for [:admin, @category], :html => { :class => "special-form" } do |f| %>
+<%= simple_form_for [:admin, @minority] do |f| %>
   <fieldset>
   	<% if %w(new create).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.create", :model => model_class.model_name.human) %></legend>
@@ -8,9 +8,18 @@
   	<% if %w(edit update).include?(action_name) %>
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
-		<%= error_messages_for @category, :class => "control-group alert alert-error fade in", :close => :true %>
+		<%= error_messages_for @minority, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :name, :input_html => { :class => "span-full" } %>
-	  <%= f.input :key, :input_html => { :class => "span-full" } %>
+	   <% if %w(new create).include?(action_name) %>
+		  <%= f.input :key, :input_html => { :class => "span-full" } %>
+	  <% end -%>
+	  <% if %w(edit update).include?(action_name) %>
+		  <%= f.input :key, :input_html => { :class => "span-full disabled", :disabled => true } %>
+	  <% end -%>
+	  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
+	  <%= f.input :order, :input_html => { :class => "span1" } %>
+    <%= f.input :keywords, :input_html => { :class => "span-full" } %>
+	  <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">
 	    	<i class="icon-save icon-large"></i>
@@ -21,7 +30,7 @@
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
-	    <a href="<%= admin_provinces_path %>" class="btn">
+	    <a href="<%= admin_minorities_path %>" class="btn">
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>

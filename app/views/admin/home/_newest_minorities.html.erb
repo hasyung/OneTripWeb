@@ -1,7 +1,7 @@
-<%- model_class = Place -%>
+<%- model_class = Minority -%>
 <div id="places" class="hero-unit newest-places alert-warning">
-	<h6>最新添加的景区</h6>
-	<%= simple_form_for :place do |f| -%>
+	<h6>最新添加的民族</h6>
+	<%= simple_form_for :minority do |f| -%>
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -14,18 +14,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @newest_places.each do |place| %>
+      <% @newest_minorities.each do |minority| %>
         <tr>
-          <td><a href="<%= admin_place_path(place) %>"><%= place.name %></a></td>
-          <td><%= place.key %></td>
-          <td><%= place.areas_count %></td>
-          <td><%= place.order %></td>
-          <td><%= l place.created_at.to_date, :format => :long %></td>
+          <td><a href="<%= admin_minority_path(minority) %>"><%= minority.name %></a></td>
+          <td><%= minority.key %></td>
+          <td><%= minority.areas_count %></td>
+          <td><%= minority.order %></td>
+          <td><%= l minority.created_at.to_date, :format => :long %></td>
           <td class="actions">
-            <% if can? :read, Place %>
+            <% if can? :read, Minority %>
               <%= link_to raw("<i class=\"icon-eye-open icon-large\"></i>"), 
-                          admin_place_path(place), 
-                          :title => t("helpers.links.read", :model_name => place.name),
+                          admin_minority_path(minority), 
+                          :title => t("helpers.links.read", :model_name => minority.name),
                           :rel => :tooltip %>
             <% end -%>
           </td>
