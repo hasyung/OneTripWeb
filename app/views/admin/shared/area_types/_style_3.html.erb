@@ -1,7 +1,7 @@
 <% if !area.articles.blank? %>
   <div class="control-group">
     <ul>
-    <% area.articles.each do |article| -%>
+    <% area.articles.order_desc.each do |article| -%>
       <%= render :partial => "admin/articles/article", :object => article %>
     <% end -%>
     </ul>

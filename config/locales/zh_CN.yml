@@ -424,7 +424,7 @@
       continue: "继续上传"
       media_cover: "上传封面"
       back_list: "返回列表"
-      add_image: "上传封面"
+      add_image: "添加封面"
       add_area: "添加模版"
       add_video: "添加视频"
       add_audio: "添加音频"
