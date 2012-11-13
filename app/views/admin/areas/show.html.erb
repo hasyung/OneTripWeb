@@ -1,16 +1,21 @@
 <%= render "base" %>
 <fieldset>
   <legend><%= t("helpers.links.#{ @area.area_category.name }") %></legend>
-  <li class="span5">
+  
   <% case @area.area_category.style_type_cd %>
   <% when 0 %>
+  <li class="span5">
     <%= render :partial => "admin/shared/area_types/style_0", :locals => { :area => @area } %>
+  </li>
   <% when 1 %>
+  <li class="span5">
     <%= render :partial => "admin/shared/area_types/style_1", :locals => { :area => @area } %>
+  </li>
   <% when 2 %>
+  <li class="span5">
     <%= render :partial => "admin/shared/area_types/style_2", :locals => { :area => @area } %>
+  </li>
   <% when 3 %>
     <%= render :partial => "admin/shared/area_types/style_3", :locals => { :area => @area } %>
   <% end %>
-</li>
 </fieldset>

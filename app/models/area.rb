@@ -22,6 +22,6 @@ class Area < ActiveRecord::Base
 
   # Scopes
   scope :created_desc, order("created_at DESC")
-  scope :order_ASC, order("`order` ASC")
+  scope :order_asc, order("`order` ASC")
 
 end

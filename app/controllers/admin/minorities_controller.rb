@@ -8,7 +8,7 @@ class Admin::MinoritiesController < Admin::ApplicationController
 	end
 
 	def show
-		@areas = @minority.areas.includes(:area_category, :videos, :audios, :articles, :infos, :images).order_ASC.created_desc
+		@areas = @minority.areas.includes(:area_category, :videos, :audios, :articles, :infos, :images).order_asc.created_desc
 	end
 
 	def new

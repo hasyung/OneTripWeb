@@ -9,7 +9,7 @@ class Admin::PlacesController < Admin::ApplicationController
 	end
 
 	def show
-		@areas = @place.areas.includes(:area_category, :videos, :audios, :articles, :infos, :images).order_ASC.created_desc
+		@areas = @place.areas.includes(:area_category, :videos, :audios, :articles, :infos, :images).order_asc.created_desc
 	end
 
 	def new

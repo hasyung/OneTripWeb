@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OneTripWeb</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><%= yield_for(:title, "Administrate") %> | <%= Setting.app_name %></title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "jplayer.pink.flag", :media => "all" %>
+  <%= stylesheet_link_tag "screen", :media => "all" %>
+  <%= stylesheet_link_tag "Base.new", :media => "all" %>
+  <%= yield :styles %>
   <%= javascript_include_tag "application" %>
+  <%= yield :scripts %>
   <%= csrf_meta_tags %>
 </head>
 <body>

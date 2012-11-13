@@ -30,7 +30,7 @@ class Audio < ActiveRecord::Base
 
   # Scopes
   scope :created_desc, order("created_at DESC")
-  scope :order_desc, order("`order` DESC")
+  scope :order_asc, order("`order` ASC")
   scope :newest, lambda { |count| limit(count).includes(:area) }
 
   def update_audio_attributes

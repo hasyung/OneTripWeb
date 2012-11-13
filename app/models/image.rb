@@ -24,7 +24,7 @@ class Image < ActiveRecord::Base
   end
 
   # scopes
-  scope :order_desc, order("`order` DESC")
+  scope :order_asc, order("`order` ASC")
   scope :created_desc, order("created_at DESC")
   scope :newest, lambda { |count| limit(count).includes(:area) }
 

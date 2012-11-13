@@ -36,6 +36,7 @@ class Place < ActiveRecord::Base
 
   # Scopes
   scope :created_desc, order("created_at DESC")
+  scope :order_asc, order("'order' ASC")
   scope :search_name, lambda { |name| where("ucase(`places`.`name`) like concat('%',ucase(?),'%')", name) }
   scope :newest, lambda { |count| limit(count) }
 

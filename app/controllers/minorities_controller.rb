@@ -1,0 +1,2 @@
+class MinoritiesController < ApplicationController
+end

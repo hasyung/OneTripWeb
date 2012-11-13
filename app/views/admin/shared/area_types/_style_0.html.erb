@@ -1,14 +1,14 @@
 <div class="control-group">
 <% if area.images.blank? -%>
 <% else -%>
-  <% area.images.order_desc.each do |image| %>
+  <% area.images.order_asc.each do |image| %>
   	<%= render :partial => "admin/images/image", :object => image %>
   <% end %>
 <% end %>
 <ul>
 <% if area.infos.blank? -%>
 <% else -%>
-  <% area.infos.order_desc.each do |info| %>
+  <% area.infos.order_asc.each do |info| %>
     <%= render :partial => "admin/infos/info", :object => info %>
   <% end -%>
 <% end -%>

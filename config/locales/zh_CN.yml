@@ -357,10 +357,11 @@
           style_0: "地图&信息"
           style_1: "视频"
           style_2: "音频列表"
-          style_3: "文章列表（橙点）"
+          style_3: "文章（色块）"
           style_4: "文章列表（红点）"
-          style_5: "图片&文章"
-          style_6: "视频&文章"
+          style_5: "文章列表（橙点）"
+          style_6: "图片&文章"
+          style_7: "视频&文章"
       user_profile:
         sexes:
           male: "男"

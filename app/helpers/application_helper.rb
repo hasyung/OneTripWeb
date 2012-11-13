@@ -127,4 +127,44 @@ module ApplicationHelper
     end
   end
   
+  def polymorphic_detailed_path(model,model_detailed)
+    path = ""
+    case model.class.name
+    when "Place"
+      case model_detailed.class.name
+      when "Image"
+        path = map_place_path(model.key,model_detailed.id)
+      when "Video"
+        path = video_place_path(model.key,model_detailed.id)
+      when "Audio"
+        path = audio_place_path(model.key,model_detailed.id)
+      when "Article"
+        path = article_place_path(model.key,model_detailed.id)
+      end
+    when "Minority"
+      case model_detailed.class.name
+      when "Map"
+        path = map_minority_path(model.key,model_detailed.id)
+      when "Video"
+        path = video_minority_path(model.key,model_detailed.id)
+      when "Audio"
+        path = audio_minority_path(model.key,model_detailed.id)
+      when "Article"
+        path = article_minority_path(model.key,model_detailed.id)
+      end
+    end
+    path
+  end
+  
+  def polymorphic_area_path(model)
+    path = ""
+    case model.class.name
+    when "Place"
+      path = place_path(model.key)
+    when "Minority"
+      path = minority_path(model.key)
+    end
+    path
+  end
+  
 end
