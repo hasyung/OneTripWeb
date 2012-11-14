@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessible :area_id, :duration, :attachment, :cover, :order, :cover_cache
+  attr_accessible :area_id, :duration, :attachment, :cover, :order, :cover_cache, :body
 
   # Associations
   belongs_to :area, :include => :area_category

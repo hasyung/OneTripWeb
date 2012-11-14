@@ -2,246 +2,105 @@
   <%= @model.name %>
 <% end -%>
 
-<div class="frame">
-  <div class="big-logo small">
-    <%= image_tag "index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
-  </div>
-  <div class="navigation">
-    <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
-  </div>
-  <h2 class="demo"><%= @model.name %></h2>
-  <% if !@areas.blank? %>
-    <% @areas.each_with_index do |area,count| -%>
-      <% case area.area_category.style_type_cd %>
-      <% when 0 %>
-        <div class="map data" id="A">
-          <h3><%= area.area_category.name %></h3>
-          <div class="light">
-            <h5 class="remark"><%= area.area_category.description %></h5>
-            <% if !area.images.blank? %>
-              <% area.images.order_asc.each do |image| -%>
-                <a href="<%= polymorphic_detailed_path(@model,image) %>">
-                  <%= image_tag image.image.thumb.url, :class => "smallMap", :alt => @model.name+"地图", :title => @model.name+"地图" %>
-                 </a>
-              <% end %>
+<div class="big-logo small">
+  <%= image_tag "index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<div class="navigation">
+  <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<h2 class="demo"><%= @model.name %></h2>
+<% if !@areas.blank? %>
+  <% @areas.order_asc.each_with_index do |area,count| -%>
+    <% case area.area_category.style_type_cd %>
+    <% when 0 %>
+      <%= render :partial => "shared/area_types/style_0", :locals => { :model => @model, :area => area } %>
+    <% when 1 %>
+      <%= render :partial => "shared/area_types/style_1", :locals => { :model => @model, :area => area, :count => count } %>
+    <% when 2 %>
+      <%= render :partial => "shared/area_types/style_2", :locals => { :model => @model, :area => area } %>
+    <% when 3 %>
+    <div class="choose dark data" id="title_<%= area.order %>">
+        <h3><%= area.area_category.name %></h3>
+        <h5><%= area.area_category.description %></h5>
+        <ul class="clearfix">
+          <% if !area.articles.blank? %>
+            <% if !area.articles[0].blank? %>
+              <li class="food">
+                <a href="<%= polymorphic_detailed_path(@model,area.articles[0]) %>" class="wrapper">
+                  <div class="content clearfix">
+                    <%= image_tag "index/meishi.jpg" %>
+                    <span>美食</span>					
+                  </div>
+                  <span class="english">Food</span>
+                </a>
+              </li>
+            <% else %>
+              <li class="food">
+                <a href="#" class="wrapper">
+                </a>
+              </li>
             <% end %>
-            <span class="content">点击上图查看</span>
-            <span class="prompt">大图</span>
-            <span class="content">和</span>
-            <span class="prompt">详细信息</span>
-          </div>
-        </div>
-      <% when 1 %>
-        <% if count%2 > 0 %>
-          <div class="video data dark" id="B">
-        <% else %>
-          <div class="video data" id="C">
-        <% end %>
-          <h3><%= area.area_category.name %></h3>
-          <h5 class="remark"><%= area.area_category.description %></h5>
-          <% if !area.videos.blank? %>
-            <% area.videos.order_asc.each do |video| -%>
-              <a href="<%= polymorphic_detailed_path(@model,video) %>" title="<%= area.area_category.name %>">
-              <div class="poster1" style="background-image:url(<%= video.cover.thumb_small.url %>);">
-                <%= image_tag "index/play.png", :class => "play-button", :alt => area.area_category.name, :title => area.area_category.name %>
-              </div>
-              </a>
-              <span><a class="content" href="<%= polymorphic_detailed_path(@model,video) %>">视频播放</a></span>&nbsp &nbsp
-              <span class="content">文件大小:</span>
-              <span class="prompt"><%= (video.attachment_size/(1024*1024.0)).round(2) %>M</span> &nbsp
-              <span class="content">时长:</span>
-              <span class="prompt"><%= video.duration %></span>
+            <% if !area.articles[1].blank? %>
+              <li class="shopping">
+                <a href="<%= polymorphic_detailed_path(@model,area.articles[1]) %>" class="wrapper">
+                  <div class="content clearfix">
+                    <%= image_tag "index/gouwu.jpg" %>
+                    <span>购物</span>
+                  </div>
+                  <span class="english">Shopping</span>
+                </a>
+              </li>
+            <% else %>
+              <li class="shopping">
+                <a href="#" class="wrapper">
+                </a>
+              </li>
+            <% end %>
+            <% if !area.articles[2].blank? %>
+              <li class="entertainment">
+                <a href="<%= polymorphic_detailed_path(@model,area.articles[2]) %>" class="wrapper">
+                  <div class="content clearfix">
+                    <%= image_tag "index/yule.jpg" %>
+                    <span>娱乐</span>
+                  </div>
+                  <span class="english">Entertainment</span>
+                </a>
+              </li>
+            <% else %>
+              <li class="entertainment">
+                <a href="#" class="wrapper">
+                </a>
+              </li>
+            <% end %>
+            <% if !area.articles[3].blank? %>
+              <li class="hotel">
+                <a href="<%= polymorphic_detailed_path(@model,area.articles[3]) %>" class="wrapper">
+                  <div class="content clearfix">
+                    <%= image_tag "index/zhusu.jpg" %>
+                    <span>住宿</span>
+                  </div>
+                  <span class="english">Hotel</span>
+                </a>
+              </li>
+            <% else %>
+              <li class="hotel">
+                <a href="#" class="wrapper">
+                </a>
+              </li>
             <% end %>
           <% end %>
-        </div>
-        <% when 2 %>
-          <div class="data" id="D">
-            <h3><%= area.area_category.name %></h3>
-            <div class="dark">
-              <h5 class="remark"><%= area.area_category.description %></h5>
-              <% if !area.audios.blank? %>
-                <% area.audios.order_asc.each_with_index do |audio,i| -%>
-                  <% if i == 0 || i % 2 == 0 %>
-                    <div class="dark_one" >
-                      <div class="audio_title">
-                        <span class="prompting">
-                          <% if i < 9 %>
-                            0<%= i + 1 %>.<%= audio.name %>
-                          <% else %>
-                            <%= i + 1 %>.<%= audio.name %>
-                          <% end %>
-                        </span>
-                      </div>
-                      <div class="audio_content">
-                        <span><a class="content" href="<%= polymorphic_detailed_path(@model,audio) %>">直接播放</a></span>
-                        <span class="other_1">|</span>&nbsp &nbsp
-                        <span><a class="content" href="<%= polymorphic_detailed_path(@model,audio) %>">详细介绍</a></span>
-                      </div>
-                      <span class="other_1">文件大小：<%= (audio.attachment_size/(1024*1024.0)).round(2) %>M &nbsp 时长：<%= audio.duration %></span>
-                    </div>
-                  <% else %>
-                    <div class="dark_two">
-                      <div class="audio_title">
-                        <span class="prompting">
-                          <% if i < 9 %>
-                            0<%= i + 1 %>.<%= audio.name %>
-                          <% else %>
-                            <%= i + 1 %>.<%= audio.name %>
-                          <% end %>
-                        </span>
-                      </div>
-                      <div class="audio_content">
-                        <span><a class="content" href="<%= polymorphic_detailed_path(@model,audio) %>">直接播放</a></span>
-                        <span class="other_2">|</span>&nbsp &nbsp
-                        <span><a class="content" href="<%= polymorphic_detailed_path(@model,audio) %>">详细介绍</a></span>
-                      </div>
-                      <span class="other_2">文件大小：<%= (audio.attachment_size/(1024*1024.0)).round(2) %>M &nbsp 时长：<%= audio.duration %></span>
-                    </div>
-                  <% end %>
-                <% end %>
-              <% end %>
-          </div>
-        </div>
-      <% when 3 %>
-        <div class="choose dark data" id="E">
-          <h3><%= area.area_category.name %></h3>
-          <h5><%= area.area_category.description %></h5>
-          <ul class="clearfix">
-            <% if !area.articles.blank? %>
-              <% if !area.articles[0].blank? %>
-                <li class="food">
-                  <a href="<%= polymorphic_detailed_path(@model,area.articles[0]) %>" class="wrapper">
-                    <div class="content clearfix">
-                      <%= image_tag "index/meishi.jpg" %>
-                      <span>美食</span>					
-                    </div>
-                    <span class="english">Food</span>
-                  </a>
-                </li>
-              <% else %>
-                <li class="food">
-                  <a href="#" class="wrapper">
-                    <div class="content clearfix">
-                      <span></span>					
-                    </div>
-                    <span class="english"></span>
-                  </a>
-                </li>
-              <% end %>
-              <% if !area.articles[1].blank? %>
-                <li class="shopping">
-                  <a href="<%= polymorphic_detailed_path(@model,area.articles[1]) %>" class="wrapper">
-                    <div class="content clearfix">
-                      <%= image_tag "index/gouwu.jpg" %>
-                      <span>购物</span>
-                    </div>
-                    <span class="english">Shopping</span>
-                  </a>
-                </li>
-              <% else %>
-                <li class="shopping">
-                  <a href="#" class="wrapper">
-                    <div class="content clearfix">
-                      <span></span>					
-                    </div>
-                    <span class="english"></span>
-                  </a>
-                </li>
-              <% end %>
-              <% if !area.articles[2].blank? %>
-                <li class="entertainment">
-                  <a href="<%= polymorphic_detailed_path(@model,area.articles[2]) %>" class="wrapper">
-                    <div class="content clearfix">
-                      <%= image_tag "index/yule.jpg" %>
-                      <span>娱乐</span>
-                    </div>
-                    <span class="english">Entertainment</span>
-                  </a>
-                </li>
-              <% else %>
-                <li class="entertainment">
-                  <a href="#" class="wrapper">
-                    <div class="content clearfix">
-                      <span></span>					
-                    </div>
-                    <span class="english"></span>
-                  </a>
-                </li>
-              <% end %>
-              <% if !area.articles[3].blank? %>
-                <li class="hotel">
-                  <a href="<%= polymorphic_detailed_path(@model,area.articles[3]) %>" class="wrapper">
-                    <div class="content clearfix">
-                      <%= image_tag "index/zhusu.jpg" %>
-                      <span>住宿</span>
-                    </div>
-                    <span class="english">Hotel</span>
-                  </a>
-                </li>
-              <% else %>
-                <li class="hotel">
-                  <a href="#" class="wrapper">
-                    <div class="content clearfix">
-                      <span></span>					
-                    </div>
-                    <span class="english"></span>
-                  </a>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-          </div>
-      <% when 4 %>
-        <% if count%2 > 0 %>
-          <div class="data" id="F">
-        <% else %>
-          <div class="data" id="G">
-        <% end %>
-          <h3><%= area.area_category.name %></h3>
-          <div class="light">
-            <h5 class="remark"><%= area.area_category.description %></h5>
-            <% if !area.articles.blank? %>
-              <% area.articles.order_asc.each_with_index do |article,i| -%>
-                <% if i == 0 %>
-                  <div class="stories stories_top clearfix">
-                <% else %>
-                  <div class="stories clearfix">
-                <% end %>
-                  <span class="tab">●</span>
-                  <a href="<%= polymorphic_detailed_path(@model,article) %>" title="<%= article.title %>">【<%= truncate(article.title, :length => 15, :separator => ' ')%>】</a>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      <% when 5 %>
-        <div class="data" id="H">
-          <h3 class="other"><%= area.area_category.name %></h3>
-          <div class="light">
-            <h5 class="remark"><%= area.area_category.description %></h5>
-              <% if !area.articles.blank? %>
-                <% area.articles.order_asc.each_with_index do |article,i| -%>
-                  <% if i == 0 %>
-                    <div class="stories stories_top clearfix">
-                  <% else %>
-                    <div class="stories clearfix">
-                  <% end %>
-                  <span class="tab_2">●</span>
-                  <a class="article" href="<%= polymorphic_detailed_path(@model,article) %>"><%= truncate(article.title, :length => 15, :separator => ' ')%></a>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+        </ul>
+      </div>
+    <% when 4 %>
+      <%= render :partial => "shared/area_types/style_4", :locals => { :model => @model, :area => area, :count => count } %>
+    <% when 5 %>
+      <%= render :partial => "shared/area_types/style_5", :locals => { :model => @model, :area => area, :count => count } %>
     <% end %>
-  <% end -%>
-  <div class="data" id="I">
-    <div class="feedback">
-      <a class="feedback" href="/feedback.htm" title="意见反馈">请将您的意见反馈给我们 &nbsp >></a>
-    </div>
-  </div>
-  <div class="data" id="J">
-    <span class="other_2">Copyright &nbsp © &nbsp 壹旅游 2011-2012</span>
+  <% end %>
+<% end -%>
+<div class="data" id="feedback">
+  <div class="feedback">
+    <a class="feedback" href="/feedback.htm" title="意见反馈">请将您的意见反馈给我们 &nbsp >></a>
   </div>
 </div>
+

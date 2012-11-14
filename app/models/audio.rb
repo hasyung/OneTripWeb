@@ -1,5 +1,5 @@
 class Audio < ActiveRecord::Base
-  attr_accessible :name, :area_id, :duration, :attachment, :order
+  attr_accessible :name, :area_id, :duration, :attachment, :order, :body
 
   # Associations
   belongs_to :area, :include => :area_category

@@ -2,7 +2,7 @@ class AreaCategory < ActiveRecord::Base
 	attr_accessible :name, :description, :style_type_cd
 
   # Associations
-  belongs_to :area
+  belongs_to :area, :dependent => :destroy
   
   #SimpleEnum
   as_enum :style_type, { :style_0 => 0, :style_1 => 1, :style_2 => 2, :style_3 => 3, :style_4 => 4, :style_5 => 5, :style_6 => 6,:style_7 => 7 }
@@ -10,7 +10,7 @@ class AreaCategory < ActiveRecord::Base
   # Validates
   validates :name, :style_type, :presence => true
 	with_options :if => :name? do |name|
-    name.validates :name, :length => { :within => 2..100 }
+    name.validates :name, :length => { :within => 2..20 }
     name.validates :name, :uniqueness => true
   end
   with_options :if => :description? do |description|

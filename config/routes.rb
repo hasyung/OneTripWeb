@@ -14,6 +14,12 @@ OneTripWeb::Application.routes.draw do
   match '/places/:url/audios/:id' => 'audios#show', :as => "audio_place"
   match '/places/:url/articles/:id' => 'articles#show', :as => "article_place"
   
+  match '/minorities/:url' => 'minorities#show', :as => "minority"
+  match '/minorities/:url/map/:id' => 'images#show', :as => "map_minority"
+  match '/minorities/:url/videos/:id' => 'videos#show', :as => "video_minority"
+  match '/minorities/:url/audios/:id' => 'audios#show', :as => "audio_minority"
+  match '/minorities/:url/articles/:id' => 'articles#show', :as => "article_minority"
+  
   namespace :admin do
     root :to => 'home#index'
     

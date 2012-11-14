@@ -1,0 +1,82 @@
+<div class="data light" id="title_<%= area.order %>">
+  <h3 class="minority"><%= area.area_category.name %></h3>
+  
+  <% area.videos.order_asc.each do |video| -%>
+    <div id="jp_container_<%= video.id %>" class="jp-video jp-video-360p">
+      <div class="jp-type-single">
+        <div id="jquery_jplayer_<%= video.id %>" class="jp-jplayer"></div>
+        <div id="jp-gui" class="jp-gui">
+          <div class="jp-video-play">
+            <a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
+          </div>
+          <div class="jp-interface">
+            <div class="jp-progress">
+              <div class="jp-seek-bar">
+                <div class="jp-play-bar"></div>
+              </div>
+            </div>
+            <div class="jp-current-time"></div>
+            <div class="jp-duration"></div>
+            <div class="jp-controls-holder">
+              <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <span class="content">文件大小:</span>
+      <span class="prompt"><%= (video.attachment_size/(1024*1024.0)).round(2) %>M</span>
+      <span class="content">时长:</span>
+      <span class="prompt"><%= video.duration %></span>
+  </div>
+  <% end %>
+  
+  <% if !area.articles.blank? %>
+    <% area.articles.order_asc.each_with_index do |article,i| -%>
+      <% if i == 0 %>
+        <div class="stories stories_top clearfix">
+      <% else %>
+        <div class="stories clearfix">
+      <% end %>
+        <span class="tab">●</span>
+        <a class="article" href="<%= polymorphic_detailed_path(model,article) %>">
+          <%= truncate(article.title, :length => 15, :separator => ' ')%>
+        </a>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= content_for :scripts do -%>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      <% area.videos.order_asc.each do |video| %>
+        $("#jquery_jplayer_<%= video.id %>").jPlayer({
+          ready: function () {
+            $(this).jPlayer("setMedia", {
+            m4v: "<%= video.attachment.url %>",
+            poster:"<%= video.cover.url %>"
+            });
+          },
+          swfPath: "/Js",
+          supplied: "m4v,ogv",
+          wmode:"window",
+          solution:"html,flash",
+          preload:"none",
+          size: {
+          width: "250px",
+          height: "150px"
+          },
+          cssSelectorAncestor: "#jp_container_<%= video.id %>"
+        }); 
+        $("#jquery_jplayer_<%= video.id %>").bind($.jPlayer.event.play, function() { 
+          $(this).jPlayer("pauseOthers");
+        });
+      <% end %>
+    });
+  </script>
+<% end -%>

@@ -1,0 +1,17 @@
+<div class="map data" id="A">
+  <h3><%= area.area_category.name %></h3>
+  <div class="light">
+    <h5 class="remark"><%= area.area_category.description %></h5>
+    <% if !area.images.blank? %>
+      <% area.images.order_asc.each do |image| -%>
+        <a href="<%= polymorphic_detailed_path(model,image) %>">
+          <%= image_tag image.image.thumb.url, :class => "smallMap", :alt => model.name+"地图", :title => model.name+"地图" %>
+         </a>
+      <% end %>
+    <% end %>
+    <span class="content">点击上图查看</span>
+    <span class="prompt">大图</span>
+    <span class="content">和</span>
+    <span class="prompt">详细信息</span>
+  </div>
+</div>

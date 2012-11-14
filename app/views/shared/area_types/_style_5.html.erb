@@ -1,0 +1,19 @@
+
+<div class="data" id="title_<%= area.order %>">
+  <h3 class="other"><%= area.area_category.name %></h3>
+  <div class="light">
+    <h5 class="remark"><%= area.area_category.description %></h5>
+      <% if !area.articles.blank? %>
+        <% area.articles.order_asc.each_with_index do |article,i| -%>
+          <% if i == 0 %>
+            <div class="stories stories_top clearfix">
+          <% else %>
+            <div class="stories clearfix">
+          <% end %>
+          <span class="tab_2">●</span>
+          <a class="article" href="<%= polymorphic_detailed_path(model,article) %>"><%= truncate(article.title, :length => 15, :separator => ' ')%></a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

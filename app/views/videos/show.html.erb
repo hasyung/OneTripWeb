@@ -1,0 +1,69 @@
+<%= content_for :title do -%>
+	<% if !@video.blank? -%>
+		<%= @area.area_category.name %>
+	<% end -%>
+<% end -%>
+
+<div class="small-logo clearfix">
+  <a href="<%= polymorphic_area_path(@model) %>">返回上一页</a>
+  <%= image_tag "index/small.logo.png", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<div class="video">
+			<h2><%= @area.area_category.name %></h2>
+			<div id="jp_container_1" class="jp-video jp-video-360p">
+				<div class="jp-type-single">
+					<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+					<div id="jp-gui" class="jp-gui">
+						<div class="jp-video-play">
+							<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
+						</div>
+						<div class="jp-interface">
+							<div class="jp-progress">
+								<div class="jp-seek-bar">
+									<div class="jp-play-bar"></div>
+								</div>
+							</div>
+							<div class="jp-current-time"></div>
+							<div class="jp-duration"></div>
+							<div class="jp-controls-holder">
+								<ul class="jp-controls">
+									<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+									<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				<% if !@video.body.blank? %>
+  			<div class="article">
+  				<%= @video.body.html_safe %>
+  			</div>
+      <% end %>
+			<div class="back_to"><a href="<%= polymorphic_area_path(@model) %>">返回上一页</a></div>
+		</div>
+    
+<%= content_for :scripts do -%>
+  <script type="text/javascript">
+    $(document).ready(function(){
+			$("#jquery_jplayer_1").jPlayer({
+				ready: function () {
+					$(this).jPlayer("setMedia", {
+						m4v: "<%= @video.attachment.url %>",
+						poster:"<%= @video.cover.url %>"
+					});
+				},
+				swfPath: "/Js",
+				supplied: "m4v,ogv",
+				wmode:"window",
+				solution:"html,flash",
+				preload:"none",
+				size: {
+					width: "250px",
+					height: "150px"
+				},
+				cssSelectorAncestor: "#jp_container_1"
+			});
+		});
+  </script>
+<% end -%>
