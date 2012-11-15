@@ -1,7 +1,9 @@
-<div class="map data" id="A">
+<div class="map data" id="title_<%= area.order %>">
   <h3><%= area.area_category.name %></h3>
   <div class="light">
-    <h5 class="remark"><%= area.area_category.description %></h5>
+    <% if !area.area_category.description.blank? %>
+      <h5 class="remark"><%= area.area_category.description %></h5>
+    <% end %>
     <% if !area.images.blank? %>
       <% area.images.order_asc.each do |image| -%>
         <a href="<%= polymorphic_detailed_path(model,image) %>">

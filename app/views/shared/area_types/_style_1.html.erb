@@ -1,10 +1,12 @@
 <% if count%2 > 0 %>
-  <div class="video data dark" id="B">
+  <div class="video data dark" id="title_<%= area.order %>">
 <% else %>
-  <div class="video data" id="C">
+  <div class="video data" id="title_<%= area.order %>">
 <% end %>
   <h3><%= area.area_category.name %></h3>
-  <h5 class="remark"><%= area.area_category.description %></h5>
+  <% if !area.area_category.description.blank? %>
+    <h5 class="remark"><%= area.area_category.description %></h5>
+  <% end %>
   <% if !area.videos.blank? %>
     <% area.videos.order_asc.each do |video| -%>
       <a href="<%= polymorphic_detailed_path(model,video) %>" title="<%= area.area_category.name %>">
