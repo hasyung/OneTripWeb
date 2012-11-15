@@ -1,5 +1,5 @@
 class Area < ActiveRecord::Base
-  attr_accessible :areable_id, :areable_type, :area_category_id, :order
+  attr_accessible :areable_id, :areable_type, :area_category_id, :order, :description
 
   # Associations
   belongs_to :areable, :polymorphic => true
@@ -18,6 +18,9 @@ class Area < ActiveRecord::Base
   with_options :if => :order? do |order|
     order.validates :order, :numericality => 
       { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 999 }
+  end
+  with_options :if => :description? do |description|
+  	description.validates :description, :length => { :within => 2..1000 }
   end
 
   # Scopes
