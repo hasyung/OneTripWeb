@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106084435) do
+ActiveRecord::Schema.define(:version => 20121115014139) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(:version => 20121106084435) do
   end
 
   create_table "areas", :force => true do |t|
-    t.integer  "areable_id",                      :null => false
-    t.string   "areable_type",                    :null => false
-    t.integer  "area_category_id",                :null => false
-    t.integer  "order",            :default => 0
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.integer  "areable_id",                                      :null => false
+    t.string   "areable_type",                                    :null => false
+    t.integer  "area_category_id",                                :null => false
+    t.integer  "order",                            :default => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.string   "description",      :limit => 1000
   end
 
   create_table "articles", :force => true do |t|

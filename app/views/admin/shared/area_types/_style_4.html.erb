@@ -1,0 +1,32 @@
+<div class="control-group">
+  <% if !area.videos.blank? %>
+    <ul class="thumbnails">
+    <% area.videos.order_asc.each do |video| -%>
+      <li>
+      <%= render :partial => "admin/videos/video", :object => video %>
+      </li>
+    <% end -%>
+    </ul>
+  <% end -%>
+</div>
+
+<% if area.images.blank? -%>
+<% else -%>
+  <% area.images.order_asc.each do |image| %>
+  	<%= render :partial => "admin/images/image", :object => image %>
+  <% end %>
+<% end %>
+
+<% if area.description.blank? -%>
+  <h5><%= area.description %></h5>
+<% end %>
+
+<% if !area.articles.blank? %>
+  <div class="control-group">
+    <ul>
+    <% area.articles.order_asc.each do |article| -%>
+      <%= render :partial => "admin/articles/article", :object => article %>
+    <% end -%>
+    </ul>
+  </div>
+<% end -%>
