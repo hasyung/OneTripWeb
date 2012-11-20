@@ -22,7 +22,7 @@
 	    		<b><%= t("helpers.submit.update", :model => model_class.model_name.human) %></b>
 	    	<% end -%>
 	    </button>
-	    <a href="<%= %>" class="btn">
+	    <a href="<%= admin_polymorphic_area_path(@model) %>" class="btn">
 	    	<i class="icon-ban-circle icon-large"></i>
 	    	<b><%= t("helpers.links.cancel") %></b>
 	    </a>

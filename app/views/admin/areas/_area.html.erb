@@ -1,40 +1,30 @@
 <% if !area.blank? %>
-  <li class="span5">
-  	<div class="name">
-  		<span class="actions">
-      <% if can? :update, area %>
-    			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
-           	edit_admin_area_path(area), 
-           	:title => t("helpers.links.edit"),
-            :rel => :tooltip %>
-      <% end %>
-      <% if can? :destroy, area %>
-    	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
-    	      admin_area_path(area),
-            :method => :delete,
-            :title => t("helpers.links.destroy"),
-            :data => { :confirm => t("helpers.messages.confirm") },
-            :rel => :tooltip %>
-      <% end %>
-  		</span>
-  	</div>
-    <% case area.area_category.style_type_cd %>
-    <% when 0 %>
-      <%= render :partial => "admin/shared/area_types/style_0", :locals => { :area => area } %>
-    <% when 1 %>
-      <%= render :partial => "admin/shared/area_types/style_1", :locals => { :area => area } %>
-    <% when 2 %>
-      <%= render :partial => "admin/shared/area_types/style_2", :locals => { :area => area } %>
-    <% when 3 %>
-      <%= render :partial => "admin/shared/area_types/style_3", :locals => { :area => area } %>
-    <% when 4 %>
-      <%= render :partial => "admin/shared/area_types/style_4", :locals => { :area => area } %>
-    <% when 5 %>
-      <%= render :partial => "admin/shared/area_types/style_4", :locals => { :area => area } %>
-    <% when 6 %>
-      <%= render :partial => "admin/shared/area_types/style_4", :locals => { :area => area } %>
-    <% when 7 %>
-      <%= render :partial => "admin/shared/area_types/style_4", :locals => { :area => area } %>
-    <% end %>
-  </li>
+    <li class="span3 area_index">
+      <div class="other">
+        <span class="name"><%= area.area_category.name %></span>
+    		<span class="actions">
+        <% if can? :update, area %>
+      			<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
+             	edit_admin_area_path(area), 
+             	:title => t("helpers.links.edit"),
+              :rel => :tooltip %>
+        <% end %>
+        <% if can? :destroy, area %>
+      	    <%= link_to raw("<i class=\"icon-trash icon-large\"></i>"),
+      	      admin_area_path(area),
+              :method => :delete,
+              :title => t("helpers.links.destroy"),
+              :data => { :confirm => t("helpers.messages.confirm") },
+              :rel => :tooltip %>
+        <% end %>
+    		</span>
+    	</div>
+    	<a href="<%= admin_area_path(area) %>" class="thumbnail">
+        <% if area.areable_type == "Minority" && area.area_category.style_type_cd ==1 %>
+          <%= image_tag "area/#{area.area_category.style_type_cd}_other.jpg" %>
+        <% else %>
+    		  <%= image_tag "area/#{area.area_category.style_type_cd}.jpg" %>
+        <% end %>
+    	</a>
+    </li>
 <% end %>

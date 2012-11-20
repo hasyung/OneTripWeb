@@ -84,7 +84,7 @@ h5 {
 	padding-top: 2px;
 	padding-bottom: 10px;
 }
-#title_5 h5,#title_6 h5,#title_7 h5,#feedback h5{
+#title_5 h5,#title_6 h5,#title_7 h5,#title_8 h5,#feedback h5{
 	padding-bottom:0;
 	margin-bottom:10px;
 }
@@ -265,18 +265,18 @@ h5.remark{
 	font-size:12px;
 }
 
-#title_4 ul {
+#choose ul {
 	list-style-type: none;
 	width: 100%;
 	margin: 0 auto 20px auto;
 	padding-left: 0;
 }
-#title_4 ul li {
+#choose ul li {
 	padding-top: 20px;
 	width: 50%;
 	float: left;
  }
-#title_4 li a {
+#choose li a {
   height:66px;
 	width: 100%;
 	padding-bottom: 5px;
@@ -286,46 +286,46 @@ h5.remark{
 	text-decoration:none;
 	display:block;
 }
-#title_4 .content img{
+#choose .content img{
 	padding-top:10px;
 	margin-left: 10px;
 	float: left;
 }
-#title_4 .content span{
+#choose .content span{
 	display: block;
 	float: left;
 	margin-left: 10px;
 	padding-top:14px;
 }
-#title_4 span.english{
+#choose span.english{
 	font-size:14px;
 	margin-left: 10px;
 }
-#title_4 li.food {
+#choose li.food {
 	background: #e75428;
 }
-#title_4 li.food a {
+#choose li.food a {
 	background: #ec7b59;
 }
 
-#title_4 li.shopping {
+#choose li.shopping {
 	background: #aa2525;
 }
-#title_4 li.shopping a {
+#choose li.shopping a {
 	background: #ce4646;
 }
 
-#title_4 li.entertainment {
+#choose li.entertainment {
 	background: #372b3d;
 }
-#title_4 li.entertainment a {
+#choose li.entertainment a {
 	background: #524757;
 }
 
-#title_4 li.hotel {
+#choose li.hotel {
 	background: #6a9187;
 }
-#title_4 li.hotel a {
+#choose li.hotel a {
 	background: #a7c5bd;
 }
 

@@ -316,28 +316,8 @@ legend {
 	}
 	.thumbnail {
 		position: relative;
-		span.name {
-			display: block;
-			position: absolute;
-			top: 11px;
-			left: -1px;
-			color: #333;
-			background: #fff;
-			border: 1px solid #ccc;
-			font-size: 14px;
-			padding: 4px;
-			-webkit-border-top-right-radius: 4px;
-			-webkit-border-bottom-right-radius: 4px;
-			-moz-border-radius-topright: 4px;
-			-moz-border-radius-bottomright: 4px;
-			border-top-right-radius: 4px;
-			border-bottom-right-radius: 4px;
-		}
-		&:hover {
-			span.name {
-				border-color: #08C;
-			}
-		}
+    margin-top:8px;
+		
 		img {
 			min-height: 141px;
 			max-height: 141px;
@@ -346,6 +326,13 @@ legend {
 	}
 	.other {
 		margin-top: 10px;
+    span.name {
+			color: #333;
+			background: #fff;
+			font-size: 14px;
+			padding-bottom: 14px;
+      margin-right:6px;
+		}
 		a {
 			color: #ccc;
 			&:hover {
@@ -504,6 +491,41 @@ legend {
 			margin-top: 0;
 		}
 	}
+}
+
+/* 模版详细显示页面 */
+#areas-show {
+  .control-group{
+  .actions{
+    font-size: 14px;
+    font-weight: bold;
+     a {
+					display: inline-block;
+					height: 15px;
+          color:#999;
+					line-height: 20px;
+					text-decoration: none;
+					&:hover {
+						color: #049cdb;
+					}
+				}
+  }
+   img{
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  ul {
+			margin-top: 10px;
+      li {
+			border-bottom: 1px dotted #ccc;
+			margin-top: 10px;
+			padding-bottom: 3px;
+			.value {
+				margin-bottom: 5px;
+			}
+		}
+  }
+}
 }
 
 /* sidebar 边栏 */
@@ -820,6 +842,12 @@ fieldset {
 		.newest-places {
 			padding: 9px;
 			border: 1px solid #FBEED5;
+      thead{
+      color:black;
+      }
+      h6{
+          margin-bottom:8px;
+        }
 			.thumbnails {
 				margin-top: 5px;
 				margin-bottom: 0;

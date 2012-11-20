@@ -19,82 +19,11 @@
     <% when 2 %>
       <%= render :partial => "shared/area_types/style_2", :locals => { :model => @model, :area => area } %>
     <% when 3 %>
-    <div class="choose dark data" id="title_<%= area.order %>">
-        <h3><%= area.area_category.name %></h3>
-        <h5><%= area.area_category.description %></h5>
-        <ul class="clearfix">
-          <% if !area.articles.blank? %>
-            <% if !area.articles[0].blank? %>
-              <li class="food">
-                <a href="<%= polymorphic_detailed_path(@model,area.articles[0]) %>" class="wrapper">
-                  <div class="content clearfix">
-                    <%= image_tag "index/meishi.jpg" %>
-                    <span>美食</span>					
-                  </div>
-                  <span class="english">Food</span>
-                </a>
-              </li>
-            <% else %>
-              <li class="food">
-                <a href="#" class="wrapper">
-                </a>
-              </li>
-            <% end %>
-            <% if !area.articles[1].blank? %>
-              <li class="shopping">
-                <a href="<%= polymorphic_detailed_path(@model,area.articles[1]) %>" class="wrapper">
-                  <div class="content clearfix">
-                    <%= image_tag "index/gouwu.jpg" %>
-                    <span>购物</span>
-                  </div>
-                  <span class="english">Shopping</span>
-                </a>
-              </li>
-            <% else %>
-              <li class="shopping">
-                <a href="#" class="wrapper">
-                </a>
-              </li>
-            <% end %>
-            <% if !area.articles[2].blank? %>
-              <li class="entertainment">
-                <a href="<%= polymorphic_detailed_path(@model,area.articles[2]) %>" class="wrapper">
-                  <div class="content clearfix">
-                    <%= image_tag "index/yule.jpg" %>
-                    <span>娱乐</span>
-                  </div>
-                  <span class="english">Entertainment</span>
-                </a>
-              </li>
-            <% else %>
-              <li class="entertainment">
-                <a href="#" class="wrapper">
-                </a>
-              </li>
-            <% end %>
-            <% if !area.articles[3].blank? %>
-              <li class="hotel">
-                <a href="<%= polymorphic_detailed_path(@model,area.articles[3]) %>" class="wrapper">
-                  <div class="content clearfix">
-                    <%= image_tag "index/zhusu.jpg" %>
-                    <span>住宿</span>
-                  </div>
-                  <span class="english">Hotel</span>
-                </a>
-              </li>
-            <% else %>
-              <li class="hotel">
-                <a href="#" class="wrapper">
-                </a>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
+      <%= render :partial => "shared/area_types/style_3", :locals => { :model => @model, :area => area, :articles => area.articles.order_asc } %>
     <% when 4 %>
       <%= render :partial => "shared/area_types/style_4", :locals => { :model => @model, :area => area, :count => count } %>
     <% when 5 %>
-      <%= render :partial => "shared/area_types/style_5", :locals => { :model => @model, :area => area, :count => count } %>
+      <%= render :partial => "place", :locals => { :model => @model, :area => area, :count => count } %>
     <% end %>
   <% end %>
 <% end -%>

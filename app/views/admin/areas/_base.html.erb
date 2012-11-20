@@ -22,12 +22,18 @@
 
 <%= content_for :sitemaps do -%>
   <% if !%w(index).include?(action_name) %>
+    	<a href="<%= admin_polymorphic_path(@model) %>"><%= @model.class.model_name.human %></a>
+  <% else %>
+    <%= model_class.model_name.human %>
+  <% end %>
+	<span class="divider">/</span>
+  <% if !%w(index).include?(action_name) %>
   <a href="<%= admin_polymorphic_area_path(@model) %>"><%= @model.name %></a>
   <% else %>
     <%= @model.name %>
   <% end %>
 	<span class="divider">/</span>
-	<% if %w(index).include?(action_name) -%>
+	<% if %w(index ).include?(action_name) -%>
 		<span class="active"><%= t("helpers.links.list") %></span>
 	<% end -%>
 
@@ -36,7 +42,7 @@
 	<% end -%>
 
 	<% if %w(edit update).include?(action_name) -%>
-		<span class="active"><%= t("helpers.links.edit") %></span>
+		<span class="active"><%= t("helpers.submit.update", :model => model_class.model_name.human) %></span>
 	<% end -%>
   <% if %w(show).include?(action_name) -%>
 		<span class="active"><%= @area.area_category.name %></span>
@@ -54,9 +60,19 @@
 <%= content_for :toolbar do -%>
 	<% if %w(show).include?(action_name) -%>
 		<div class="btn-group">
+      <% if can? :read, Place %>
+				<a href="<%= admin_polymorphic_area_path(@model) %>" class="btn">
+					<i class="icon-share-alt icon-large"></i><b><%= t("helpers.links.back_place", :place_name => @model.name) %></b>
+				</a>
+			<% end -%>
 			<% if can? :update, model_class %>
 				<a href="<%= edit_admin_area_path(@area) %>" class="btn">
 					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+				</a>
+			<% end -%>
+      <% if can? :destroy, model_class %>
+				<a href="<%= admin_area_path(@area) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
 				</a>
 			<% end -%>
 			<% if can? :new, Image %>
@@ -82,11 +98,6 @@
 			<% if can? :new, Info %>
 				<a href="<%= new_admin_area_info_path(@area) %>" class="btn">
 					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
-				</a>
-			<% end -%>
-			<% if can? :destroy, model_class %>
-				<a href="<%= admin_area_path(@area) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
-					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
 				</a>
 			<% end -%>
 		</div>

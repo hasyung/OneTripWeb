@@ -20,7 +20,7 @@ class Admin::AreasController < Admin::ApplicationController
 	def create
     @area = @model.areas.new params[:area]
 		if @area.save
-			redirect_to generation_area_path(@area), :notice => t("helpers.messages.new", :model_name => Area.model_name.human)
+			render :action => "show", :notice => t("helpers.messages.new", :model_name => Area.model_name.human)
 		else
 			render :new
 		end
@@ -33,7 +33,7 @@ class Admin::AreasController < Admin::ApplicationController
 	def update
     @model = @area.areable_type.constantize.find @area.areable_id
     if @area.update_attributes params[:area]
-    	redirect_to generation_area_path(@area), :notice => t("helpers.messages.edit", :model_name => Area.model_name.human)
+    	render :action => "show", :notice => t("helpers.messages.edit", :model_name => Area.model_name.human)
     else
     	render :action => "edit"
     end

@@ -50,6 +50,7 @@ OneTripWeb::Application.routes.draw do
     resources :places do
       post 'search', :on => :collection
       post 'destroies', :on => :collection
+      get 'page/:page', :action => :show, :on => :member
       get 'page/:page', :action => :index, :on => :collection
       get 'publish/:status', :action => :publish, :on => :member, :as => :publish
       resources :areas, :except => [:index]
