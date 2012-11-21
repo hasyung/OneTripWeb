@@ -7,18 +7,16 @@
   <% if !area.area_category.description.blank? %>
     <h5 class="remark"><%= area.area_category.description %></h5>
   <% end %>
-  <% if !area.videos.blank? %>
-    <% area.videos.order_asc.each do |video| -%>
-      <a href="<%= polymorphic_detailed_path(model,video) %>" title="<%= area.area_category.name %>">
-      <div class="poster1" style="background-image:url(<%= video.cover.thumb_small.url %>);">
-        <%= image_tag "index/play.png", :class => "play-button", :alt => area.area_category.name, :title => area.area_category.name %>
-      </div>
-      </a>
-      <span><a class="content" href="<%= polymorphic_detailed_path(model,video) %>">视频播放</a></span>&nbsp &nbsp
-      <span class="content">文件大小:</span>
-      <span class="prompt"><%= (video.attachment_size/(1024*1024.0)).round(2) %>M</span> &nbsp
-      <span class="content">时长:</span>
-      <span class="prompt"><%= video.duration %></span>
-    <% end %>
+  <% area.videos.order_asc.each do |video| -%>
+  <a href="<%= polymorphic_detailed_path(model,video) %>" title="<%= area.area_category.name %>">
+  <div class="poster1" style="background-image:url(<%= video.cover.thumb_small.url %>);">
+    <%= image_tag "index/play.png", :class => "play-button", :alt => area.area_category.name, :title => area.area_category.name %>
+  </div>
+  </a>
+  <span><a class="content" href="<%= polymorphic_detailed_path(model,video) %>">视频播放</a></span>&nbsp &nbsp
+  <span class="content">文件大小:</span>
+  <span class="prompt"><%= (video.attachment_size/(1024*1024.0)).round(2) %>M</span> &nbsp
+  <span class="content">时长:</span>
+  <span class="prompt"><%= video.duration %></span>
   <% end %>
 </div>

@@ -4,12 +4,10 @@
     <% if !area.area_category.description.blank? %>
       <h5 class="remark"><%= area.area_category.description %></h5>
     <% end %>
-    <% if !area.images.blank? %>
-      <% area.images.order_asc.each do |image| -%>
-        <a href="<%= polymorphic_detailed_path(model,image) %>">
-          <%= image_tag image.image.thumb.url, :class => "smallMap", :alt => model.name+"地图", :title => model.name+"地图" %>
-         </a>
-      <% end %>
+    <% area.images.order_asc.each do |image| -%>
+      <a href="<%= polymorphic_detailed_path(model,image) %>">
+        <%= image_tag image.image.thumb.url, :class => "smallMap", :alt => model.name+"地图", :title => model.name+"地图" %>
+      </a>
     <% end %>
     <span class="content">点击上图查看</span>
     <span class="prompt">大图</span>
