@@ -844,6 +844,13 @@ fieldset {
 			border: 1px solid #FBEED5;
       thead{
       color:black;
+      background:#ccc;
+      }
+      tbody td{
+        a.title{
+        display:block;
+        text-align:left;
+        }
       }
       h6{
           margin-bottom:8px;

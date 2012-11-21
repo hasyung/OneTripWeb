@@ -81,14 +81,14 @@
 				</a>
 			<% end -%>
 			<% if can? :update, model_class %>
-				<a href="<%= edit_admin_place_path %>" class="btn">
-					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit") %></b>
+				<a href="<%= edit_admin_place_path(@place) %>" class="btn">
+					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_place", :place_name => @place.name) %></b>
 				</a>
 			<% end -%>
 	
 			<% if can? :destroy, model_class %>
 				<a href="<%= admin_place_path(@place) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
-					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy") %></b>
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy_place", :place_name => @place.name) %></b>
 				</a>
 			<% end -%>
 		</div>

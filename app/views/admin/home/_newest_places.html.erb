@@ -16,7 +16,7 @@
     <tbody>
       <% @newest_places.each do |place| %>
         <tr>
-          <td><a href="<%= admin_place_path(place) %>"><%= place.name %></a></td>
+          <td><a class= "title" href="<%= admin_place_path(place) %>"><%= place.name %></a></td>
           <td><%= place.key %></td>
           <td><%= place.areas_count %></td>
           <td><%= place.order %></td>

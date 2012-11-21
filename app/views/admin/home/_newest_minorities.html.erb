@@ -16,7 +16,7 @@
     <tbody>
       <% @newest_minorities.each do |minority| %>
         <tr>
-          <td><a href="<%= admin_minority_path(minority) %>"><%= minority.name %></a></td>
+          <td><a  class= "title" href="<%= admin_minority_path(minority) %>"><%= minority.name %></a></td>
           <td><%= minority.key %></td>
           <td><%= minority.areas_count %></td>
           <td><%= minority.order %></td>

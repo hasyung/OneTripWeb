@@ -62,7 +62,11 @@
 			</div>
 		</div>
 	</div>
-
+  <% if !video.body.blank? %>
+    <div class="article">
+      <%= video.body.html_safe %>
+    </div>
+  <% end %>
 </li>
 <%= content_for :scripts do -%>
 	<script type="text/javascript">
