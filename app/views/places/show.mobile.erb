@@ -1,0 +1,35 @@
+<%= content_for :title do -%>
+  <%= @model.name %>
+<% end -%>
+
+<div class="big-logo small">
+  <%= image_tag "index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<div class="navigation">
+  <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<h2 class="demo"><%= @model.name %></h2>
+<% if !@areas.blank? %>
+  <% @areas.order_asc.each_with_index do |area,count| -%>
+    <% case area.area_category.style_type_cd %>
+    <% when 0 %>
+      <%= render :partial => "shared/area_types/style_0", :locals => { :model => @model, :area => area } %>
+    <% when 1 %>
+      <%= render :partial => "shared/area_types/style_1", :locals => { :model => @model, :area => area, :count => count } %>
+    <% when 2 %>
+      <%= render :partial => "shared/area_types/style_2", :locals => { :model => @model, :area => area } %>
+    <% when 3 %>
+      <%= render :partial => "shared/area_types/style_3", :locals => { :model => @model, :area => area, :articles => area.articles.order_asc } %>
+    <% when 4 %>
+      <%= render :partial => "shared/area_types/style_4", :locals => { :model => @model, :area => area, :count => count } %>
+    <% when 5 %>
+      <%= render :partial => "shared/area_types/style_5", :locals => { :model => @model, :area => area, :count => count } %>
+    <% end %>
+  <% end %>
+<% end -%>
+<div class="data" id="feedback">
+  <div class="feedback">
+    <a class="feedback" href="/feedback.htm" title="意见反馈">请将您的意见反馈给我们 &nbsp >></a>
+  </div>
+</div>
+

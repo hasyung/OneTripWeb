@@ -1,5 +1,5 @@
-<div class="data light" id="title_<%= area.order %>">
-  <h3><%= area.area_category.name %></h3>
+<div class="data" id="title_<%= area.order %>">
+  <h3 class="other"><%= area.area_category.name %></h3>
   <% if !area.area_category.description.blank? %>
     <h5 class="remark"><%= area.area_category.description %></h5>
   <% end %>
@@ -10,12 +10,12 @@
       <% else %>
         <div class="stories clearfix">
       <% end %>
-        <span class="tab">●</span>
+        <span class="tab_2">●</span>
         <a class="article" href="<%= polymorphic_detailed_path(model,article) %>">
           <% if count%2 > 0 %>
             【<%= truncate(article.title, :length => 15, :separator => ' ')%>】
           <% else %>
-            【<%= truncate(article.title, :length => 15, :separator => ' ')%>】
+            <%= truncate(article.title, :length => 15, :separator => ' ')%>
           <% end %>
         </a>
       </div>

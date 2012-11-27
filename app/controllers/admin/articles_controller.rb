@@ -10,10 +10,16 @@ class Admin::ArticlesController < Admin::ApplicationController
 	end
 
 	def new
-     @article = @area.articles.new
+    if !@area.area_category.decide_purview(Article)
+      redirect_to admin_area_url(@area)
+    end
+    @article = @area.articles.new
 	end
 
 	def create
+    if !@area.area_category.decide_purview(Article)
+      redirect_to admin_area_url(@area)
+    end
     @article = @area.articles.new params[:article]
 		if @article.save
 			redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Article.model_name.human)
@@ -23,9 +29,15 @@ class Admin::ArticlesController < Admin::ApplicationController
 	end
 
 	def edit
+    if !@area.area_category.decide_purview(Article)
+      redirect_to admin_area_url(@area)
+    end
 	end
 
 	def update
+    if !@area.area_category.decide_purview(Article)
+      redirect_to admin_area_url(@area)
+    end
 		if @article.update_attributes params[:article]
     	redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Article.model_name.human)
     else

@@ -1,5 +1,6 @@
 /*
-*= require_jplayer.pink.flag
-*= require_screen
-*= require_Base.new
+ *= require jplayer.pink.flag
+ *= require screen
+ *= require base.new
+ *= require_self
  */

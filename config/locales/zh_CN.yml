@@ -285,6 +285,7 @@
         description: "描述"
       area_category:
         name: "名字"
+        category_cd: "分类"
         style_type_cd: "样式"
         description: "描述"
         created_at: "创建时间"
@@ -365,6 +366,9 @@
           style_5: "文章列表（橙点）"
           style_6: "图片&文章"
           style_7: "视频&文章"
+        categories:
+          place: "景点"
+          minority: "民族"
       user_profile:
         sexes:
           male: "男"
@@ -436,14 +440,8 @@
       add_info: "添加信息"
       edit_info: "修改信息"
       back_place: "返回%{place_name}"
-      edit_place: "修改%{place_name}"
-      destroy_place: "删除%{place_name}"
-      back_minority: "返回%{minority_name}"
-      edit_minority: "修改%{minority_name}"
-      destroy_minority: "删除%{minority_name}"
-      back_area: "返回%{area_name}"
-      edit_area: "修改%{area_name}"
-      destroy_area: "删除%{area_name}"
+      edit_place: "修改%{model}"
+      destroy_place: "删除%{model}"
       add_place: "添加景区"
       read_place: "查看景区"
       edit_article: "修改文章"
@@ -516,6 +514,7 @@
         order: "大于0小于999，只能是数字。"
       area_category:
         name: "必填，20个字符以内，名字必须唯一。"
+        category_cd: "必选，用以确定类型。"
         style_type_cd: "必选，生成的样式。"
         description: "选填，100个字符以内。"
       area:

@@ -8,6 +8,7 @@
       <tr>
         <th class="select-all"><%= check_box_tag "select_all" %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
+         <th><%= model_class.human_attribute_name(:category_cd) %></th>
         <th><%= model_class.human_attribute_name(:style_type_cd) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
         <th class="actions"><%= t("helpers.links.action") %></th>
@@ -20,6 +21,7 @@
             <%= check_box_tag "area_category_ids[]", area_category.id, false, :id => "area_category_#{area_category.id}" %>
           </td>
           <td><%= area_category.name %></td>
+          <td><%= t("activerecord.enums.area_category.categories.#{model_class.categories.key(area_category.category_cd)}") %></td>
           <td><%= t("activerecord.enums.area_category.style_types.#{model_class.style_types.key(area_category.style_type_cd)}") %></td>
           <td><%= l area_category.created_at.to_date, :format => :long %></td>
           <td class="actions">

@@ -10,6 +10,9 @@
   	<% end -%>
 		<%= error_messages_for @area_category, :class => "control-group alert alert-error fade in", :close => :true %>
 	  <%= f.input :name, :input_html => { :class => "span-full" } %>
+     <%= f.input :category_cd do %>
+	  	<%= f.select :category_cd, model_class.categories_for_select(:value) %>
+	  <% end -%>
     <%= f.input :style_type_cd do %>
 	  	<%= f.select :style_type_cd, model_class.style_types_for_select(:value) %>
 	  <% end -%>

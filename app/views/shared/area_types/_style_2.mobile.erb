@@ -1,0 +1,43 @@
+ <div class="data" id="title_<%= area.order %>">
+    <h3><%= area.area_category.name %></h3>
+    <div class="dark">
+      <% if !area.area_category.description.blank? %>
+        <h5 class="remark"><%= area.area_category.description %></h5>
+      <% end %>
+      <% if !area.audios.blank? %>
+        <% area.audios.order_asc.each_with_index do |audio,i| -%>
+          <% if i == 0 || i % 2 == 0 %>
+            <div class="dark_one" >
+          <% else %>
+            <div class="dark_two">
+          <% end %>
+              <div class="audio_title">
+                <span class="prompting">
+                  <% if i < 9 %>
+                    0<%= i + 1 %>.<%= audio.name %>
+                  <% else %>
+                    <%= i + 1 %>.<%= audio.name %>
+                  <% end %>
+                </span>
+              </div>
+              <div class="audio_content">
+                <span><a class="content" href="<%= polymorphic_detailed_path(model,audio) %>">直接播放</a></span>
+                <% if i == 0 || i % 2 == 0 %>                  
+                  <span class="other_1">
+                <% else %>
+                  <span class="other_2">
+                <% end %>
+                  |</span>&nbsp &nbsp
+                <span><a class="content" href="<%= polymorphic_detailed_path(model,audio) %>">详细介绍</a></span>
+              </div>
+              <% if i == 0 || i % 2 == 0 %>                  
+                <span class="other_1">
+              <% else %>
+                <span class="other_2">
+              <% end %>
+                文件大小：<%= (audio.attachment_size/(1024*1024.0)).round(2) %>M &nbsp 时长：<%= audio.duration %></span>
+            </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>

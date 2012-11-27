@@ -5,30 +5,21 @@
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:key) %></th>
-        <th><%= model_class.human_attribute_name(:areas_count) %></th>
-        <th><%= model_class.human_attribute_name(:order) %></th>
+        <th class="name"><%= model_class.human_attribute_name(:name) %></th>
+        <th class="key"><%= model_class.human_attribute_name(:key) %></th>
+        <th class="middle"><%= model_class.human_attribute_name(:areas_count) %></th>
+        <th class="middle"><%= model_class.human_attribute_name(:order) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
-        <th class="actions"><%= t("helpers.links.action") %></th>
       </tr>
     </thead>
     <tbody>
       <% @newest_minorities.each do |minority| %>
         <tr>
-          <td><a  class= "title" href="<%= admin_minority_path(minority) %>"><%= minority.name %></a></td>
-          <td><%= minority.key %></td>
-          <td><%= minority.areas_count %></td>
-          <td><%= minority.order %></td>
+          <td class="name"><a  class= "title" href="<%= admin_minority_path(minority) %>"><%= minority.name %></a></td>
+          <td class="key"><%= minority.key %></td>
+          <td class="middle"><%= minority.areas_count %></td>
+          <td class="middle"><%= minority.order %></td>
           <td><%= l minority.created_at.to_date, :format => :long %></td>
-          <td class="actions">
-            <% if can? :read, Minority %>
-              <%= link_to raw("<i class=\"icon-eye-open icon-large\"></i>"), 
-                          admin_minority_path(minority), 
-                          :title => t("helpers.links.read", :model_name => minority.name),
-                          :rel => :tooltip %>
-            <% end -%>
-          </td>
         </tr>
       <% end %>
     </tbody>

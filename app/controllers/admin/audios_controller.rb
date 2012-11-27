@@ -7,10 +7,16 @@ class Admin::AudiosController < Admin::ApplicationController
   before_filter :find_parent_model
 	
   def new
+    if !@area.area_category.decide_purview(Audio)
+      redirect_to admin_area_url(@area)
+    end
 		@audio = @area.audios.new
 	end
 
 	def create
+    if !@area.area_category.decide_purview(Audio)
+      redirect_to admin_area_url(@area)
+    end
     @audio = @area.audios.new params[:audio]
 		if @audio.save
 			redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Audio.model_name.human)
@@ -20,10 +26,15 @@ class Admin::AudiosController < Admin::ApplicationController
 	end
 
 	def edit
-		
+		 if !@area.area_category.decide_purview(Audio)
+      redirect_to admin_area_url(@area)
+    end
 	end
 
 	def update
+    if !@area.area_category.decide_purview(Audio)
+      redirect_to admin_area_url(@area)
+    end
     if @audio.update_attributes params[:audio]
     	redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Audio.model_name.human)
     else

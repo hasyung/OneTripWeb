@@ -1,0 +1,23 @@
+<%= content_for :title do -%>
+  <%= @model.name %>
+<% end -%>
+
+<div class="big-logo small">
+  <%= image_tag "index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<div class="navigation">
+  <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+</div>
+<h2 class="minorities"><%= @model.name %></h2>
+<% if !@areas.blank? %>
+  <% @areas.order_asc.each_with_index do |area,count| -%>
+    <% case area.area_category.style_type_cd %>
+    <% when 1 %>
+      <%= render :partial => "shared/area_types/style_1_info", :locals => { :model => @model, :area => area } %>
+    <% when 7 %>
+      <%= render :partial => "shared/area_types/style_7", :locals => { :model => @model, :area => area } %>
+    <% when 6 %>
+      <%= render :partial => "shared/area_types/style_6", :locals => { :model => @model, :area => area } %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -7,10 +7,16 @@ class Admin::InfosController < Admin::ApplicationController
   before_filter :find_parent_model
   
 	def new
+    if !@area.area_category.decide_purview(Info)
+      redirect_to admin_area_url(@area)
+    end
     @info = @area.infos.new
 	end
 
 	def create
+    if !@area.area_category.decide_purview(Info)
+      redirect_to admin_area_url(@area)
+    end
     @info = @area.infos.new params[:info]
 	  if @info.save
 		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Info.model_name.human)
@@ -20,9 +26,15 @@ class Admin::InfosController < Admin::ApplicationController
 	end
 
 	def edit
+    if !@area.area_category.decide_purview(Info)
+      redirect_to admin_area_url(@area)
+    end
 	end
 
 	def update
+    if !@area.area_category.decide_purview(Info)
+      redirect_to admin_area_url(@area)
+    end
     if @info.update_attributes params[:info]
       redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Info.model_name.human)
     else

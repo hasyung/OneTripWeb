@@ -1,6 +1,6 @@
 <%= content_for :title do -%>
-	<% if !@video.blank? -%>
-		<%= @area.area_category.name %>
+	<% if !@audio.blank? -%>
+		<%= @audio.name %>
 	<% end -%>
 <% end -%>
 
@@ -9,11 +9,12 @@
   <%= image_tag "index/small.logo.png", :alt => Setting.app_name, :title => Setting.app_name %>
 </div>
 <div class="video">
-			<h2><%= @area.area_category.name %></h2>
+			<h2><%= @audio.name %></h2>
+			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 			<div id="jp_container_1" class="jp-video jp-video-360p">
 				<div class="jp-type-single">
 					<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-					<div id="jp-gui" class="jp-gui">
+					<div class="jp-gui">
 						<div class="jp-video-play">
 							<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
 						</div>
@@ -35,9 +36,9 @@
 					</div>
 				</div>
 			</div>
-				<% if !@video.body.blank? %>
+      <% if !@audio.body.blank? %>
   			<div class="article">
-  				<%= @video.body.html_safe %>
+  				<%= @audio.body.html_safe %>
   			</div>
       <% end %>
 			<div class="back_to"><a href="<%= polymorphic_area_path(@model) %>">返回上一页</a></div>
@@ -49,36 +50,12 @@
 			$("#jquery_jplayer_1").jPlayer({
 				ready: function () {
 					$(this).jPlayer("setMedia", {
-						m4v: "<%= @video.attachment.url %>",
-						poster:"<%= @video.cover.url %>"
+						mp3:"<%= @audio.attachment.url %>"
 					});
 				},
-				play: function() {
-					$(this).jPlayer("pauseOthers");
-				},
-				repeat: function(event) {
-					if(event.jPlayer.options.loop) {
-						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
-						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerRepeat", function() {
-							$(this).jPlayer("play");
-						});
-					} else {
-						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
-						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerNext", function() {
-							$("#jquery_jplayer_1").jPlayer("play", 0);
-						});
-					}
-				},
-				swfPath: "/Js",
-				supplied: "m4v,ogv",
-				wmode:"window",
-				solution:"html,flash",
-				preload:"none",
-				size: {
-					width: "250px",
-					height: "150px"
-				},
-				cssSelectorAncestor: "#jp_container_1"
+				swfPath: "js",
+				supplied: "mp3",
+				wmode: "window"
 			});
 		});
   </script>

@@ -67,35 +67,35 @@
 			<% end -%>
 			<% if can? :update, model_class %>
 				<a href="<%= edit_admin_area_path(@area) %>" class="btn">
-					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_area", :area_name => @area.area_category.name) %></b>
+					<i class="icon-edit icon-large"></i><b><%= t("helpers.links.edit_place", :model => model_class.model_name.human) %></b>
 				</a>
 			<% end -%>
       <% if can? :destroy, model_class %>
 				<a href="<%= admin_area_path(@area) %>" class="btn" data-confirm="<%= t("helpers.messages.confirm") %>" data-method="delete">
-					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy_area", :area_name => @area.area_category.name) %></b>
+					<i class="icon-trash icon-large"></i><b><%= t("helpers.links.destroy_place", :model => model_class.model_name.human) %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Image %>
+			<% if (can? :new, Image) && @area.area_category.decide_purview(Image) %>
 				<a href="<%= new_admin_area_image_path(@area) %>" class="btn">
 					<i class="icon-picture icon-large"></i><b><%= t("helpers.links.add_image") %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Video %>
+			<% if (can? :new, Video) && @area.area_category.decide_purview(Video) %>
 				<a href="<%= new_admin_area_video_path(@area) %>" class="btn">
 					<i class="icon-film icon-large"></i><b><%= t("helpers.links.add_video") %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Audio %>
+			<% if (can? :new, Audio) && @area.area_category.decide_purview(Audio) %>
 				<a href="<%= new_admin_area_audio_path(@area) %>" class="btn">
 					<i class="icon-volume-up icon-large"></i><b><%= t("helpers.links.add_audio") %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Article %>
+			<% if (can? :new, Article) && @area.area_category.decide_purview(Article) %>
 				<a href="<%= new_admin_area_article_path(@area) %>" class="btn">
 					<i class="icon-book icon-large"></i><b><%= t("helpers.links.add_article") %></b>
 				</a>
 			<% end -%>
-			<% if can? :new, Info %>
+			<% if (can? :new, Info) && @area.area_category.decide_purview(Info) %>
 				<a href="<%= new_admin_area_info_path(@area) %>" class="btn">
 					<i class="icon-pushpin icon-large"></i><b><%= t("helpers.links.add_info") %></b>
 				</a>

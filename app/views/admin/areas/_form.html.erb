@@ -9,8 +9,12 @@
 	  	<legend><%= t("helpers.submit.update", :model => model_class.model_name.human) %></legend>
   	<% end -%>
 		<%= error_messages_for @area, :class => "control-group alert alert-error fade in", :close => :true %>
-	  <%= f.association :area_category, :collection => AreaCategory.all, :prompt => t("helpers.links.select", :model_name => AreaCategory.model_name.human) %>
-	  <%= f.input :order, :input_html => { :class => "span1" } %>
+    <% if @model.class.name == "Place" %>
+	    <%= f.association :area_category, :collection => AreaCategory.place, :prompt => t("helpers.links.select", :model_name => AreaCategory.model_name.human) %>
+	  <% elsif @model.class.name == "Minority" %>
+      <%= f.association :area_category, :collection => AreaCategory.minority, :prompt => t("helpers.links.select", :model_name => AreaCategory.model_name.human) %>
+    <% end %>
+    <%= f.input :order, :input_html => { :class => "span1" } %>
     <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
 	  <div class="form-actions">
 	    <button type="submit" class="btn btn-primary">

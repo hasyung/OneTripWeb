@@ -740,6 +740,10 @@ fieldset {
 	}
 }
 
+#areas-show li.content{
+  margin-left:160px;
+}
+
 /* 文章详细内容 */
 #articles-show {
   .article {
@@ -842,6 +846,16 @@ fieldset {
 		.newest-places {
 			padding: 9px;
 			border: 1px solid #FBEED5;
+      .name{
+        width:250px;
+        text-align:left;
+      }
+      .middle{
+        text-align:center;
+      }
+      .key{
+        width:80px;
+      }
       thead{
       color:black;
       background:#ccc;

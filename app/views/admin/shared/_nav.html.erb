@@ -8,12 +8,12 @@
 <% end -%>
 
 <% if can? :read, Place %>
-	<li <%= "class=active" if controller_name == "places" %>>
+	<li <%= "class=active" if controller_name == "places" || (@area.areable_type.constantize == Place if !@area.blank? ) %>>
 		<%= link_to Place.model_name.human, admin_places_path, :title => Place.model_name.human %>
 	</li>
 <% end -%>
 <% if can? :read, Minority %>
-	<li <%= "class=active" if controller_name == "minorities" %>>
+	<li <%= "class=active" if controller_name == "minorities" || (@area.areable_type.constantize == Minority if !@area.blank? ) %>>
 		<%= link_to Minority.model_name.human, admin_minorities_path, :title => Minority.model_name.human %>
 	</li>
 <% end -%>

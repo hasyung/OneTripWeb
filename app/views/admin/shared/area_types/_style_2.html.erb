@@ -1,9 +1,7 @@
 <div class="control-group">
   <% if !area.audios.blank? %>
     <ul class="thumbnails">
-      <li class="span5">
-        <%= render :partial => "admin/audios/audios", :locals => { :audios => area.audios } %>
-      </li>
+      <%= render :partial => "admin/audios/audios", :locals => { :audios => area.audios } %>
     </ul>
   <% end -%>
 </div>

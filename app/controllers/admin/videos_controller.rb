@@ -7,10 +7,16 @@ class Admin::VideosController < Admin::ApplicationController
   before_filter :find_parent_model
 
 	def new
+    if !@area.area_category.decide_purview(Video)
+      redirect_to admin_area_url(@area)
+    end
     @video = @area.videos.new
 	end
 
 	def create
+    if !@area.area_category.decide_purview(Video)
+      redirect_to admin_area_url(@area)
+    end
     @video = @area.videos.new params[:video]
 		if @video.save
 		  redirect_to admin_area_url(@area), :notice => t("helpers.messages.new", :model_name => Video.model_name.human)
@@ -20,9 +26,15 @@ class Admin::VideosController < Admin::ApplicationController
 	end
 
 	def edit
+    if !@area.area_category.decide_purview(Video)
+      redirect_to admin_area_url(@area)
+    end
 	end
 
 	def update
+    if !@area.area_category.decide_purview(Video)
+      redirect_to admin_area_url(@area)
+    end
    if @video.update_attributes params[:video]
      redirect_to admin_area_url(@area), :notice => t("helpers.messages.edit", :model_name => Video.model_name.human)
    else
