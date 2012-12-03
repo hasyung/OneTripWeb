@@ -32,26 +32,26 @@ OneTripWeb::Application.routes.draw do
       post 'search', :on => :collection
       match 'setting' => "users#setting", :on => :member, :via => [:get, :put]
       get 'permission', :on => :member
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
     end
 
     resources :roles do 
       post 'destroies', :on => :collection
       post 'search', :on => :collection
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
     end
     
     resources :provinces do
       post 'search', :on => :collection
       post 'destroies', :on => :collection
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
     end
     
     resources :places do
       post 'search', :on => :collection
       post 'destroies', :on => :collection
       get 'page/:page', :action => :show, :on => :member
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
       get 'publish/:status', :action => :publish, :on => :member, :as => :publish
       resources :areas, :except => [:index]
     end
@@ -59,7 +59,7 @@ OneTripWeb::Application.routes.draw do
     resources :minorities do
       post 'search', :on => :collection
       post 'destroies', :on => :collection
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
       get 'publish/:status', :action => :publish, :on => :member, :as => :publish
       resources :areas, :except => [:index]
     end
@@ -75,7 +75,7 @@ OneTripWeb::Application.routes.draw do
     resources :area_categories, :except => :show do
       post 'search', :on => :collection
       post 'destroies', :on => :collection
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', :action => :search, :on => :collection
     end
     
     resources :pictures
