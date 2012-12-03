@@ -1,4 +1,4 @@
 
 //= require jquery
-//= require jquery/jplayer/jquery.jplayer.min
+//= require jquery/jplayer/jquery.jplayer
 //= require browser

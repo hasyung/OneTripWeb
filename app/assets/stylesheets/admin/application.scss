@@ -510,11 +510,11 @@ legend {
 					}
 				}
   }
-   img{
+   img.images{
     margin-top:10px;
     margin-bottom:10px;
   }
-  ul {
+  .base{
 			margin-top: 10px;
       li {
 			border-bottom: 1px dotted #ccc;
@@ -526,6 +526,14 @@ legend {
 		}
   }
 }
+}
+
+#areas-show .control-group .jp-toggles li{
+  border-bottom: none;
+  margin-top: 0;
+}
+#areas-show .control-group .jp-controls li{
+  border-bottom: none;
 }
 
 /* sidebar 边栏 */

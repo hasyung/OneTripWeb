@@ -1,6 +1,6 @@
 <div class="control-group">
   <% if !area.videos.blank? %>
-    <ul class="thumbnails">
+    <ul class="base">
     <% area.videos.order_asc.each do |video| -%>
       <li>
       <%= render :partial => "admin/videos/video", :object => video %>
@@ -23,7 +23,7 @@
 
 <% if !area.articles.blank? %>
   <div class="control-group">
-    <ul>
+    <ul class="base">
     <% area.articles.order_asc.each do |article| -%>
       <%= render :partial => "admin/articles/article", :object => article %>
     <% end -%>

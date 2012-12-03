@@ -8,7 +8,7 @@ OneTripWeb::Application.routes.draw do
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => 'admin/sessions' }
   
-  	
+  match '/places/:url' => 'places#show', :as => "place"
   match '/places/:url/map/:id' => 'images#show', :as => "map_place"
   match '/places/:url/videos/:id' => 'videos#show', :as => "video_place"
   match '/places/:url/audios/:id' => 'audios#show', :as => "audio_place"

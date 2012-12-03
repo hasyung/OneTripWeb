@@ -1,2 +1,3 @@
-//= require jquery/jplayer/jquery.jplayer
-//= require jquery/jplayer/jplayer.playlist
+
+//= require jquery/jplayer/jquery.jplayer.min
+//= require jquery/jplayer/jplayer.playlist.min

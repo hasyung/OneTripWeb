@@ -152,7 +152,7 @@
 			}
 		});
 	};
-	
+
 	$.jPlayer.timeFormat = {
 		showHour: false,
 		showMin: true,
@@ -456,9 +456,9 @@
 		},
 		_init: function() {
 			var self = this;
-			
+
 			this.element.empty();
-			
+
 			this.status = $.extend({}, this.status); // Copy static to unique instance.
 			this.internal = $.extend({}, this.internal); // Copy static to unique instance.
 
@@ -467,13 +467,13 @@
 			this.formats = []; // Array based on supplied string option. Order defines priority.
 			this.solutions = []; // Array based on solution string option. Order defines priority.
 			this.require = {}; // Which media types are required: video, audio.
-			
+
 			this.htmlElement = {}; // DOM elements created by jPlayer
 			this.html = {}; // In _init()'s this.desired code and setmedia(): Accessed via this[solution], where solution from this.solutions array.
 			this.html.audio = {};
 			this.html.video = {};
 			this.flash = {}; // In _init()'s this.desired code and setmedia(): Accessed via this[solution], where solution from this.solutions array.
-			
+
 			this.css = {};
 			this.css.cs = {}; // Holds the css selector strings
 			this.css.jq = {}; // Holds jQuery selectors. ie., $(css.cs.method)
@@ -598,7 +598,7 @@
 			this.internal.poster.jq.bind("click.jPlayer", function() {
 				self._trigger($.jPlayer.event.click);
 			});
-			
+
 			// Generate the required media elements
 			this.html.audio.available = false;
 			if(this.require.audio) { // If a supplied format is audio
@@ -666,7 +666,7 @@
 
 			// Set up the css selectors for the control and feedback entities.
 			this._cssSelectorAncestor(this.options.cssSelectorAncestor);
-			
+
 			// If neither html nor flash are being used by this browser, then media playback is not possible. Trigger an error event.
 			if(!(this.html.used || this.flash.used)) {
 				this._error( {
@@ -730,7 +730,7 @@
 				this.element.append(htmlObj);
 				this.internal.flash.jq = $(htmlObj);
 			}
-			
+
 			// Add the HTML solution if being used.
 			if(this.html.used) {
 
@@ -818,7 +818,7 @@
 			this.element.removeData("jPlayer"); // Remove jPlayer data
 			this.element.unbind(".jPlayer"); // Remove all event handlers created by the jPlayer constructor
 			this.element.empty(); // Remove the inserted child elements
-			
+
 			delete this.instances[this.internal.instance]; // Clear the instance on the static instance object
 		},
 		enable: function() { // Plan to implement
@@ -884,7 +884,7 @@
 			// Create the event listeners
 			// Only want the active entity to affect jPlayer and bubble events.
 			// Using entity.gate so that object is referenced and gate property always current
-			
+
 			mediaElement.addEventListener("progress", function() {
 				if(entity.gate) {
 					self._getHtmlStatus(mediaElement);
@@ -1028,7 +1028,7 @@
 				sp = 100;
 				cpr = cpa;
 			}
-			
+
 			if(override) {
 				ct = 0;
 				cpr = 0;
@@ -1261,7 +1261,7 @@
 			this.flash.active = false;
 		},
 		setMedia: function(media) {
-		
+
 			/*	media[format] = String: URL of format. Must contain all of the supplied option's video or audio formats.
 			 *	media.poster = String: Video poster URL.
 			 *	media.subtitles = String: * NOT IMPLEMENTED * URL of subtitles SRT file
@@ -1312,7 +1312,7 @@
 							}
 							self.status.video = false;
 						}
-						
+
 						supported = true;
 						return false; // Exit $.each
 					}
@@ -1989,7 +1989,7 @@
 		},
 		_html_pause: function(time) {
 			var self = this;
-			
+
 			if(time > 0) { // We do not want the stop() command, which does pause(0), causing a load operation.
 				this._html_load(); // Loads if required and clears any delayed commands.
 			} else {
