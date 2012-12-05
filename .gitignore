@@ -18,4 +18,3 @@ config/thin.yml
 .DS_store
 .redcar
 public/uploads
-app/assets
