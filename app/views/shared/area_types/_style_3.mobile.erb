@@ -6,7 +6,7 @@
       <% if !articles[i].blank? %>
         <% case i %>
         <% when 0 %>
-          <li class="food">
+          <li class="choose_<%= i %>">
             <a href="<%= polymorphic_detailed_path(@model,articles[0]) %>" class="wrapper">
               <div class="content clearfix">
                 <%= image_tag "index/meishi.jpg" %>
@@ -16,7 +16,7 @@
             </a>
           </li>
         <% when 1 %>
-          <li class="shopping">
+          <li class="choose_<%= i %>">
             <a href="<%= polymorphic_detailed_path(@model,articles[1]) %>" class="wrapper">
               <div class="content clearfix">
                 <%= image_tag "index/gouwu.jpg" %>
@@ -26,7 +26,7 @@
             </a>
           </li>
         <% when 2 %>
-          <li class="entertainment">
+          <li class="choose_<%= i %>">
             <a href="<%= polymorphic_detailed_path(@model,articles[2]) %>" class="wrapper">
               <div class="content clearfix">
                 <%= image_tag "index/yule.jpg" %>
@@ -36,7 +36,7 @@
             </a>
           </li>
         <% when 3 %>
-          <li class="hotel">
+          <li class="choose_<%= i %>">
             <a href="<%= polymorphic_detailed_path(@model,articles[3]) %>" class="wrapper">
               <div class="content clearfix">
                 <%= image_tag "index/zhusu.jpg" %>
@@ -47,10 +47,10 @@
           </li>
         <% end %>
       <% else %>
-          <li class="hotel">
-            <a href="#" class="wrapper">
-            </a>
-          </li>
+        <li class="choose_<%= i %>">
+          <a href="#" class="wrapper">
+          </a>
+        </li>
       <% end %>
     <% end %>
   </ul>

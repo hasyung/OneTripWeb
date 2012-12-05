@@ -305,31 +305,31 @@ h5.remark{
 	font-size:14px;
 	margin-left: 10px;
 }
-#choose li.food {
+#choose li.choose_0 {
 	background: #e75428;
 }
-#choose li.food a {
+#choose li.choose_0 a {
 	background: #ec7b59;
 }
 
-#choose li.shopping {
+#choose li.choose_1 {
 	background: #aa2525;
 }
-#choose li.shopping a {
+#choose li.choose_1 a {
 	background: #ce4646;
 }
 
-#choose li.entertainment {
+#choose li.choose_2 {
 	background: #372b3d;
 }
-#choose li.entertainment a {
+#choose li.choose_2 a {
 	background: #524757;
 }
 
-#choose li.hotel {
+#choose li.choose_3 {
 	background: #6a9187;
 }
-#choose li.hotel a {
+#choose li.choose_3 a {
 	background: #a7c5bd;
 }
 
