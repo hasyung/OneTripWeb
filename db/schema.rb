@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122063725) do
+ActiveRecord::Schema.define(:version => 20121205040457) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20121122063725) do
     t.integer  "order",                   :default => 0
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "body"
+    t.text     "body"
   end
 
   create_table "images", :force => true do |t|
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20121122063725) do
     t.integer  "order",                   :default => 0
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "body"
+    t.text     "body"
   end
 
 end

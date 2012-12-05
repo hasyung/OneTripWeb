@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0,  <%= %w(images).include?(controller_name) ? "maximum-scale=4.0, user-scalable=yes" : "maximum-scale=1.0, user-scalable=no" %>">
-  <title><%= yield_for(:title, "Administrate") %> | <%= Setting.app_name %></title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= yield :styles %>
-  <%= javascript_include_tag "application" %>
-  <%= yield :scripts %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class="frame">
-  <%= yield %>
-  
-  <div class = "data" id= "copyright">
-    <span class= "other_2">Copyright &nbsp © &nbsp 壹旅游 2011-2012</span>
-  </div>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  <%= %w(images).include?(controller_name) ? "maximum-scale=4.0, user-scalable=yes" : "maximum-scale=1.0, user-scalable=no" %>">
+    <title><%= yield_for(:title, "Administrate") %> | <%= Setting.app_name %></title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= yield :styles %>
+    <%= javascript_include_tag "application" %>
+    <%= yield :scripts %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="frame">
+      <%= yield %>
+      
+      <div class = "data" id= "copyright">
+        <span class= "other_2">Copyright &nbsp © &nbsp 壹旅游 2011-2012 &nbsp version:<%= OneTripWeb::VERSION %></span>
+      </div>
+    </div>
+  </body>
 </html>

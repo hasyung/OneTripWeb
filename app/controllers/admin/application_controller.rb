@@ -15,6 +15,7 @@ class Admin::ApplicationController < ApplicationController
 	  @current_ability ||= AdminAbility.new(current_user)
 	end
   
+  private
   def generation_area_path(area)
     path = ""
     case area.areable_type

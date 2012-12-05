@@ -59,7 +59,7 @@
     <% audios.order_asc.each_with_index do |audio, i| -%>
       <% if !audio.body.blank? %>
         <div class="article">
-          <h4><%= i %>.<%= audio.name %></h4>
+          <h4><%= i + 1 %>.<%= audio.name %></h4>
           <%= audio.body.html_safe %>
         </div>
       <% end %>
@@ -75,7 +75,7 @@
 			},[
 				<% audios.each_with_index do |audio, i| -%>
 					{
-						title: "<%= audio.name %>",
+						title: "<%= i + 1 %>.<%= audio.name %>",
 						artist: "<%= audio.duration %>",
 						mp3: "<%= audio.attachment.url %>",
       <% if can? :destroy, Audio %>

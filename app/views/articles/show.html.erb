@@ -12,8 +12,8 @@
   <h2><%= @article.title %></h2>
   
   <% if !@article.author.blank? %>
-    <p class="author"><%= @article.author %></p>
-  <% end -%>  
+    <p class="author">作者：<%= @article.author %></p>
+  <% end -%>
   <div class="content">
     <%= @article.body.html_safe %>
   </div>

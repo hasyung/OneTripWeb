@@ -20,9 +20,11 @@ class Video < ActiveRecord::Base
   with_options :if => :attachment? do |attachment|
     attachment.validates :attachment, :file_size => { :maximum => 100.megabytes.to_i }
   end
-  
   with_options :if => :cover? do |cover|
     cover.validates :cover, :file_size => { :maximum => 10.megabytes.to_i }
+  end
+  with_options :if => :body? do |body|
+  	body.validates :body, :length => { :within => 2..5000 }
   end
 
   # Carrierwave

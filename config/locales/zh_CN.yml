@@ -690,13 +690,17 @@
     controllers:
       all: "所有模块"
       admin:
-        articles: "景区文章模块"
-        audios: "景区音频模块"
-        videos: "景区视频模块"
+        articles: "文章模块"
+        audios: "音频模块"
+        videos: "视频模块"
+        areas:  "模板模块"
+        area_categories: "模板分类模块"
+        images: "封面模块"
         places: "景区模块"
+        minorities: "民族模块"
         provinces: "省市模块"
         roles: "用户角色模块"
-        infos: "景区信息模块"
+        infos: "信息模块"
         users: "用户模块"
         settings: "设置模块"
     actions:

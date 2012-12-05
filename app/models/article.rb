@@ -23,6 +23,9 @@ class Article < ActiveRecord::Base
   with_options :if => :author? do |author|
   	author.validates :author, :length => { :within => 2..50 }
   end
+  with_options :if => :body? do |body|
+  	body.validates :body, :length => { :within => 2..5000 }
+  end
 
   # Scopes
   scope :created_desc, order("created_at DESC")

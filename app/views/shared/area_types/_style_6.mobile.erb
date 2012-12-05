@@ -6,7 +6,7 @@
    <% if !area.images.blank? %>
       <% area.images.order_asc.each do |image| -%>
         <div class="costumes">
-          <%= image_tag image.image.url, :class => "smallMap", :alt => model.name, :title => model.name %>
+          <%= image_tag image.image.url, :class => "smallMap", :alt => image.name, :title => image.name %>
         </div>
       <% end %>
     <% end %>
