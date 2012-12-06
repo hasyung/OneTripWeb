@@ -7,6 +7,9 @@ OneTripWeb::Application.routes.draw do
              :path_names => { :sign_in => 'login', :sign_out => 'logout' },
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => 'admin/sessions' }
+  resources :home, :only => [:about, :feedback]
+  get '/about' => 'home#about', :as => 'about'
+  get '/feedback' => 'home#feedback', :as => 'feedback'
   
   match '/places/:url' => 'places#show', :as => "place"
   match '/places/:url/map/:id' => 'images#show', :as => "map_place"

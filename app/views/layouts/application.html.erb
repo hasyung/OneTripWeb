@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,  <%= %w(images).include?(controller_name) ? "maximum-scale=4.0, user-scalable=yes" : "maximum-scale=1.0, user-scalable=no" %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><%= yield_for(:title, "Administrate") %> | <%= Setting.app_name %></title>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= yield :styles %>
@@ -15,7 +15,8 @@
       <%= yield %>
       
       <div class = "data" id= "copyright">
-        <span class= "other_2">Copyright &nbsp © &nbsp 壹旅游 2011-2012 &nbsp 版本:<%= OneTripWeb::VERSION %></span>
+        <span class= "other_2">Copyright &nbsp © &nbsp 壹旅游 2011-2012</span>
+        <span class= "other_2">版本:<%= OneTripWeb::VERSION %></span>
       </div>
     </div>
   </body>

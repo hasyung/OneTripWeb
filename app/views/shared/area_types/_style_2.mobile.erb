@@ -1,4 +1,4 @@
- <div class="data" id="title_<%= area.order %>">
+ <div class="audio" id="title_<%= area.order %>">
     <h3><%= area.area_category.name %></h3>
     <div class="dark">
       <% if !area.area_category.description.blank? %>
@@ -14,7 +14,7 @@
               <div class="audio_title">
                 <span class="prompting">
                   <% if i < 9 %>
-                    0 <%= i + 1 %>.<%= audio.name %>
+                    0<%= i + 1 %>.<%= audio.name %>
                   <% else %>
                     <%= i + 1 %>.<%= audio.name %>
                   <% end %>
