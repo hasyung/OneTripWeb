@@ -348,7 +348,7 @@
         app_name: "网站名称"
         app_keywords: "网站关键字"
         app_description: "网站描述"
-        admin_page_size: "列表分页数"
+        admin_page_size: "分页数"
       permission:
         
     enums:
@@ -366,6 +366,7 @@
           style_5: "文章列表（橙点）"
           style_6: "图片&文章"
           style_7: "视频&文章"
+          style_8: "儿童故事"
         categories:
           place: "景点"
           minority: "民族"

@@ -5,7 +5,7 @@ class AreaCategory < ActiveRecord::Base
   belongs_to :area, :dependent => :destroy
   
   #SimpleEnum
-  as_enum :style_type, { :style_0 => 0, :style_1 => 1, :style_2 => 2, :style_3 => 3, :style_4 => 4, :style_5 => 5, :style_6 => 6,:style_7 => 7 }
+  as_enum :style_type, { :style_0 => 0, :style_1 => 1, :style_2 => 2, :style_3 => 3, :style_4 => 4, :style_5 => 5, :style_6 => 6, :style_7 => 7, :style_8 => 8 }
   as_enum :category, { :place => 0, :minority => 1 }
 
   # Validates
@@ -36,7 +36,7 @@ class AreaCategory < ActiveRecord::Base
         result = true
       end
     when "Audio"
-      if self.style_type_cd == 2
+      if self.style_type_cd == 2 || self.style_type_cd == 8
         result = true
       end
     when "Info"

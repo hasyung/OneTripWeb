@@ -40,6 +40,13 @@
         <p class="help-block">用一些话来形容一下你的网站吧！100字内。<span class="error"></span></p>
       </div>
     </div>
+    <div class="control-group string required">
+      <label class="string required control-label" for="admin_admin_PageSize"><%= t("activerecord.attributes.setting.admin_page_size") %><abbr title="required">*</abbr></label>
+      <div class="controls">
+        <input class="string required span-full" id="admin_admin_PageSize" name="setting[admin_PageSize]" required="required" size="50" type="text" value="<%= Setting.admin_PageSize %>"/>
+        <p class="help-block">列表分页大小。<span class="error"></span></p>
+      </div>
+    </div>
 
   	  <div class="form-actions">
   	    <button type="submit" class="btn btn-primary">

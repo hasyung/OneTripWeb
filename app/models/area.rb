@@ -2,7 +2,7 @@ class Area < ActiveRecord::Base
   attr_accessible :areable_id, :areable_type, :area_category_id, :order, :description
 
   # Associations
-  belongs_to :areable, :polymorphic => true
+  belongs_to :areable, :polymorphic => true, :counter_cache => true
   belongs_to :area_category
   has_many :videos, :dependent => :destroy
   has_many :audios, :dependent => :destroy

@@ -9,6 +9,7 @@ class Admin::SettingsController < Admin::ApplicationController
 				Setting.app_name = params[:setting][:app_name]
 				Setting.app_keywords = params[:setting][:app_keywords]
 				Setting.app_description = params[:setting][:app_description]
+       Setting.admin_PageSize = params[:setting][:admin_PageSize]
 			end
 			redirect_to :admin_root, :notice => t("helpers.messages.setting")
     end

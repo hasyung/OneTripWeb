@@ -5,7 +5,7 @@ class Admin::ProvincesController < Admin::ApplicationController
 	helper_method :permission
 
 	def index
-		@provinces = @provinces.page(params[:page]).per(1)
+		@provinces = @provinces.page(params[:page]).per(Setting.admin_PageSize)
 	end
 
 	def new
@@ -61,7 +61,7 @@ class Admin::ProvincesController < Admin::ApplicationController
 			redirect_to :admin_provinces, :alert => t("helpers.messages.search_error")
 			return
 		else
-			@provinces = @provinces.search_name(params[:province][:name]).page(params[:page]).per(1)
+			@provinces = @provinces.search_name(params[:province][:name]).page(params[:page]).per(Setting.admin_PageSize)
 		end
 		render :action => "index"
 	end
