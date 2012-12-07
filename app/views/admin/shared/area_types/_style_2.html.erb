@@ -1,6 +1,6 @@
 <div class="control-group">
   <% if !area.audios.blank? %>
-    <ul class="thumbnails">
+    <ul class="base">
       <%= render :partial => "admin/audios/audios", :locals => { :audios => area.audios } %>
     </ul>
   <% end -%>

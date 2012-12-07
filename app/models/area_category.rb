@@ -9,7 +9,7 @@ class AreaCategory < ActiveRecord::Base
   as_enum :category, { :place => 0, :minority => 1 }
 
   # Validates
-  validates :name, :style_type, :presence => true
+  validates :name, :style_type_cd, :category_cd, :presence => true
 	with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..20 }
     name.validates :name, :uniqueness => true

@@ -1,7 +1,7 @@
 <li class="info_<%= info.id %>">
-	<div class="var"><%= info.var %>
-    <% if %w(areas).include?(controller_name) -%>
-    	<span class="actions">
+  <% if %w(areas).include?(controller_name) -%>
+    <div class="var"><span class="actions">
+      <%= info.var %>
       <% if can? :update, Article %>
       		<%= link_to raw("<i class=\"icon-edit icon-large\"></i>"), 
             edit_admin_area_info_path(info.area_id, info), 

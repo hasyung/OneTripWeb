@@ -495,40 +495,52 @@ legend {
 
 /* 模版详细显示页面 */
 #areas-show {
-  .control-group{
-  .actions{
-    font-size: 14px;
-    font-weight: bold;
-     a {
-					display: inline-block;
-					height: 15px;
-          color:#999;
-					line-height: 20px;
-					text-decoration: none;
-					&:hover {
-						color: #049cdb;
-					}
-				}
-  }
-   img.images{
+  .control-group {
+    .span5 {
+      margin-left:25px;
+      margin-right:25px;
+      width:482px;
+    }
+    .actions {
+      display:inline-block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom:5px;
+      a {
+        margin-top:5px;
+        margin-bottom:-10px;
+        display: inline-block;
+        height: 15px;
+        color:#999;
+        line-height: 20px;
+        text-decoration: none;
+        &:hover {
+          color: #049cdb;
+        }
+      }
+    }
+   img.images {
     margin-top:10px;
     margin-bottom:10px;
-  }
-  .base{
-			margin-top: 10px;
+    }
+    .base {
+      margin-top: 10px;
+      list-style-type:none;
       li {
-			border-bottom: 1px dotted #ccc;
-			margin-top: 10px;
-			padding-bottom: 3px;
-			.value {
-				margin-bottom: 5px;
-			}
-		}
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 3px;
+        .value {
+          margin-bottom: 5px;
+        }
+        .content{
+          margin-top:20px;
+        }
+      }
+    }
   }
-}
 }
 
-#areas-show .control-group .jp-toggles li{
+#areas-show .control-group .jp-toggles li {
   border-bottom: none;
   margin-top: 0;
 }
