@@ -1,13 +1,13 @@
 OneTripWeb::Application.routes.draw do
   
-  get "admin/images"
-
   devise_for :users,
              :path => "",
              :path_names => { :sign_in => 'login', :sign_out => 'logout' },
              :skip => [:passwords, :registrations],
              :controllers => { :sessions => 'admin/sessions' }
+  
   resources :home, :only => [:about, :feedback]
+  
   get '/about' => 'home#about', :as => 'about'
   get '/feedback' => 'home#feedback', :as => 'feedback'
   

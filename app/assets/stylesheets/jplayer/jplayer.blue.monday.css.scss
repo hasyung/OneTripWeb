@@ -17,11 +17,7 @@
 div.jp-audio,
 div.jp-video {
 
-	/* Edit the font-size to counteract inherited font sizing.
-	 * Eg. 1.25em = 1 / 0.8em
-	 */
-
-	font-size:1em; /* 1.25em for testing in site pages */ /* No parent CSS that can effect the size in the demos ZIP */
+	font-size:1em;
 
 	font-family:Verdana, Arial, sans-serif;
 	line-height:1.6;
@@ -40,23 +36,22 @@ div.jp-video-360p {
 	width:640px;
 }
 div.jp-video-full {
-	/* Rules for IE6 (full-screen) */
 	width:480px;
 	height:270px;
-	/* Rules for IE7 (full-screen) - Otherwise the relative container causes other page items that are not position:static (default) to appear over the video/gui. */
-	position:static !important; position:relative
+	position:static !important; 
+  position:relative;
 }
 
 div.jp-video-full div.jp-jplayer {
 	top: 0;
 	left: 0;
-	position: fixed !important; position: relative; /* Rules for IE6 (full-screen) */
+	position: fixed !important; position: relative;
 	overflow: hidden;
 	z-index:1000;
 }
 
 div.jp-video-full div.jp-gui {
-	position: fixed !important; position: static; /* Rules for IE6 (full-screen) */
+	position: fixed !important; position: static;
 	top: 0;
 	left: 0;
 	width:100%;
@@ -65,7 +60,7 @@ div.jp-video-full div.jp-gui {
 }
 
 div.jp-video-full div.jp-interface {
-	position: absolute !important; position: relative; /* Rules for IE6 (full-screen) */
+	position: absolute !important; position: relative;
 	bottom: 0;
 	left: 0;
 	z-index:1000;
@@ -96,7 +91,7 @@ div.jp-controls-holder {
 	margin:0 auto;
 	position: relative;
 	overflow:hidden;
-	top:-8px; /* This negative value depends on the size of the text in jp-currentTime and jp-duration */
+	top:-8px;
 }
 
 div.jp-interface ul.jp-controls {
@@ -449,7 +444,7 @@ div.jp-video-play {
 	left:0;
 	width:100%;
 	cursor:pointer;
-	background-color:rgba(0,0,0,0); /* Makes IE9 work with the active area over the whole video area. IE6/7/8 only have the button as active area. */
+	background-color:rgba(0,0,0,0);
 }
 div.jp-video-270p div.jp-video-play {
 	height:270px;
@@ -534,7 +529,7 @@ ul.jp-toggles li a {
 	width:25px;
 	height:18px;
 	text-indent:-9999px;
-	line-height:100%; /* need this for IE6 */
+	line-height:100%;
 }
 
 a.jp-full-screen {
