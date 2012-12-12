@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
 	attr_accessible :title, :area_id, :keywords, :description, :author, :body, :order
 
   # Associations
-  belongs_to :area, :include => :area_category
+  belongs_to :area, :include => :area_category, :counter_cache => true
 
   # Validates
   validates :title, :area_id, :body, :presence => true

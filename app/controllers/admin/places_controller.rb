@@ -17,8 +17,8 @@ class Admin::PlacesController < Admin::ApplicationController
 	end
 
 	def create
-		if @place.save
-      @place.transaction do
+		if @place.transaction do
+        @place.save
         AreaCategory.places.each do |area_category|
           @area = Area.new :area_category_id => area_category.id, :order => area_category.order
           @place.areas << @area

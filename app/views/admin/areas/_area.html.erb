@@ -18,7 +18,7 @@
               :rel => :tooltip %>
         <% end %>
     		</span>
-        <% if area.images.blank? && area.infos.blank? && area.videos.blank? && area.audios.blank? && area.articles.blank? %>
+        <% if area.images_count == 0 && area.infos_count == 0 && area.videos_count == 0 && area.audios_count == 0 && area.articles_count == 0 %>
           <span class="total">无数据</span>
         <% end %>
     	</div>

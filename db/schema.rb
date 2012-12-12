@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212040220) do
+ActiveRecord::Schema.define(:version => 20121212094628) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(:version => 20121212040220) do
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
     t.string   "description",      :limit => 1000
+    t.integer  "videos_count",                     :default => 0
+    t.integer  "audios_count",                     :default => 0
+    t.integer  "images_count",                     :default => 0
+    t.integer  "infos_count",                      :default => 0
+    t.integer  "articles_count",                   :default => 0
   end
 
   add_index "areas", ["areable_type", "areable_id", "area_category_id"], :name => "index_areas_on_areable_type_and_areable_id_and_area_category_id", :unique => true

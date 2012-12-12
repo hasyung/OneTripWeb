@@ -16,8 +16,8 @@ class Admin::MinoritiesController < Admin::ApplicationController
 	end
 
 	def create
-		if @minority.save
-      @minority.transaction do
+		if @minority.transaction do
+        @minority.save
         AreaCategory.minorities.each do |area_category|
           @area = Area.new :area_category_id => area_category.id, :order => area_category.order
           @minority.areas << @area

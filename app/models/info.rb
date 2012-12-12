@@ -2,7 +2,7 @@ class Info < ActiveRecord::Base
   attr_accessible :area_id, :var, :value, :order
 
   # Associations
-  belongs_to :area, :include => :area_category
+  belongs_to :area, :include => :area_category, :counter_cache => true
 
   # Validates
   validates :var, :value, :area_id, :presence => true
