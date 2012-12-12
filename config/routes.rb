@@ -11,17 +11,19 @@ OneTripWeb::Application.routes.draw do
   get '/about' => 'home#about', :as => 'about'
   get '/feedback' => 'home#feedback', :as => 'feedback'
   
-  match '/places/:url' => 'places#show', :as => "place"
-  match '/places/:url/map/:id' => 'images#show', :as => "map_place"
-  match '/places/:url/videos/:id' => 'videos#show', :as => "video_place"
-  match '/places/:url/audios/:id' => 'audios#show', :as => "audio_place"
-  match '/places/:url/articles/:id' => 'articles#show', :as => "article_place"
+  resources :places, :only => :show do
+    resources :images, :path => "/map", :only => :show
+    resources :videos, :only => :show
+    resources :audios, :only => :show
+    resources :articles, :only => :show
+  end
   
-  match '/minorities/:url' => 'minorities#show', :as => "minority"
-  match '/minorities/:url/map/:id' => 'images#show', :as => "map_minority"
-  match '/minorities/:url/videos/:id' => 'videos#show', :as => "video_minority"
-  match '/minorities/:url/audios/:id' => 'audios#show', :as => "audio_minority"
-  match '/minorities/:url/articles/:id' => 'articles#show', :as => "article_minority"
+  resources :minorities, :only => :show do
+    resources :images, :path => "/map", :only => :show
+    resources :videos, :only => :show
+    resources :audios, :only => :show
+    resources :articles, :only => :show
+  end
   
   namespace :admin do
     root :to => 'home#index'
