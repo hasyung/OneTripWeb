@@ -1,5 +1,5 @@
 class AreaCategory < ActiveRecord::Base
-	attr_accessible :name, :description, :style_type_cd, :category_cd
+	attr_accessible :name, :description, :style_type_cd, :category_cd, :order
 
   # Associations
   belongs_to :area, :dependent => :destroy
@@ -21,8 +21,8 @@ class AreaCategory < ActiveRecord::Base
   # Scopes
   scope :created_desc, order("created_at DESC")
   scope :search_name, lambda { |name| where("ucase(`area_categories`.`name`) like concat('%',ucase(?),'%')", name) }
-  scope :place, where(:category_cd => AreaCategory.place)
-  scope :minority, where(:category_cd => AreaCategory.minority)
+  scope :places, where(:category_cd => AreaCategory.place)
+  scope :minorities, where(:category_cd => AreaCategory.minority)
   
   def decide_purview(model)
     result = false

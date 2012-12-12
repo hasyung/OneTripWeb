@@ -1,6 +1,6 @@
 class Minority < ActiveRecord::Base
   include FriendlyId
-  attr_accessible :name, :key, :keywords, :description, :order, :province_id
+  attr_accessible :name, :key, :keywords, :description, :order, :province_id, :subtitle
 
   # Associations
   belongs_to :province, :counter_cache => true
@@ -28,6 +28,9 @@ class Minority < ActiveRecord::Base
   end
   with_options :if => :description? do |description|
     description.validates :description, :length => { :within => 2..1000 }
+  end
+  with_options :if => :subtitle? do |subtitle|
+    subtitle.validates :subtitle, :length => { :within => 2..100 }
   end
   with_options :if => :order? do |order|
     order.validates :order, :numericality => 

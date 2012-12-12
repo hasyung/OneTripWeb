@@ -19,6 +19,7 @@ class Admin::AreasController < Admin::ApplicationController
 
 	def create
     @area = @model.areas.new params[:area]
+    @area.order = @area.area_category.order
 		if @area.save
 			redirect_to admin_area_path(@area), :notice => t("helpers.messages.new", :model_name => Area.model_name.human)
 		else
@@ -32,6 +33,7 @@ class Admin::AreasController < Admin::ApplicationController
 
 	def update
     @model = @area.areable_type.constantize.find @area.areable_id
+    @area.order = @area.area_category.order
     if @area.update_attributes params[:area]
     	redirect_to admin_area_path(@area), :notice => t("helpers.messages.edit", :model_name => Area.model_name.human)
     else
