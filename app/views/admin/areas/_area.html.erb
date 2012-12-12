@@ -18,9 +18,12 @@
               :rel => :tooltip %>
         <% end %>
     		</span>
+        <% if area.images_count == 0 && area.infos_count == 0 && area.videos_count == 0 && area.audios_count == 0 && area.articles_count == 0 %>
+          <span class="total">无数据</span>
+        <% end %>
     	</div>
     	<a href="<%= admin_area_path(area) %>" class="thumbnail">
-        <% if area.areable_type == "Minority" && area.area_category.style_type_cd ==1 %>
+        <% if area.areable_type == "Minority" && area.area_category.style_type_cd == 1 %>
           <%= image_tag "area/#{area.area_category.style_type_cd}_other.jpg" %>
         <% else %>
     		  <%= image_tag "area/#{area.area_category.style_type_cd}.jpg" %>

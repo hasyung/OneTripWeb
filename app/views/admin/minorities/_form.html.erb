@@ -18,6 +18,7 @@
 	  <% end -%>
 	  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
+	  <%= f.input :subtitle, :input_html => { :class => "span-full" } %>
     <%= f.input :keywords, :input_html => { :class => "span-full" } %>
 	  <%= f.input :description, :as => :text, :input_html => { :class => "span-full" } %>
 	  <div class="form-actions">

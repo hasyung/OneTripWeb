@@ -13,6 +13,7 @@
      <%= f.input :category_cd do %>
 	  	<%= f.select :category_cd, model_class.categories_for_select(:value) %>
 	  <% end -%>
+    <%= f.input :order, :input_html => { :class => "span1" } %>
     <%= f.input :style_type_cd do %>
 	  	<%= f.select :style_type_cd, model_class.style_types_for_select(:value) %>
 	  <% end -%>

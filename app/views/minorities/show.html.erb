@@ -8,7 +8,13 @@
 <div class="navigation">
   <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
 </div>
-<h2 class="minorities"><%= @model.name %></h2>
+<div class="title">
+  <h2 class="minorities"><%= @model.name %></h2>
+  <% if @model.subtitle.present? %>
+    <span class="subtitle"><%= @model.subtitle %></span>
+  <% end %>
+</div>
+
 <% if !@areas.blank? %>
   <% @areas.order_asc.each_with_index do |area,count| -%>
     <% case area.area_category.style_type_cd %>

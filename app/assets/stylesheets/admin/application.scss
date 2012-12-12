@@ -333,6 +333,13 @@ legend {
 			padding-bottom: 14px;
       margin-right:6px;
 		}
+    .total{
+      display:inline-block;
+      float:right;
+      margin-right:8px;
+      color:red;
+      font-size:12px;
+    }
 		a {
 			color: #ccc;
 			&:hover {

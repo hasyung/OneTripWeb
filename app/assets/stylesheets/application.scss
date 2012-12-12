@@ -100,7 +100,7 @@ h2 {
   margin-top:15px;
   text-align:center;
 }
-h2.demo, h2.minorities {
+h2.demo {
   margin:0;
   padding-top:25px;
   padding-bottom:25px;
@@ -111,11 +111,28 @@ h2.demo, h2.minorities {
 h2.demo {
   background-color:#8b8b8b;
 }
-h2.minorities {
+div.title {
   background-color:#ff0606;
   background-image:url("/assets/index/minorities.title.jpg");
   background-repeat:no-repeat;
   background-position:center 0;
+  padding-bottom:25px;
+}
+h2.minorities {
+  margin:0;
+  padding-top:25px;
+  color:white;
+  font-size:32px;
+  font-family:"黑体";
+}
+span.subtitle {
+  display:block;
+  text-align:center;
+  margin-left:5px;
+  margin-right:5px;
+  font-size: 16px;
+  font-weight: bold;
+  color:white;
 }
 h3 {
   font-weight:bold;
@@ -365,7 +382,8 @@ a.feedback {
   margin-right:-5px;
 }
 div.jp-video ul.jp-controls {
-  width: 140px;
+  width: 120px;
+  padding-right:2px;
 }
 .jp-video {
   width:250px;
@@ -418,7 +436,7 @@ div.jp-type-single  .jp-stop:hover {
 	background: url("/assets/jplayer/jplayer.pink.flag.jpg") -118px -80px no-repeat;
 }
 div.jp-video ul.jp-controls {
-  margin:0 0 0 59px;
+  margin:0 0 0 63px;
 }
 
 /* Map & Info */

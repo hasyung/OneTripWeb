@@ -22,6 +22,9 @@ class Area < ActiveRecord::Base
   with_options :if => :description? do |description|
   	description.validates :description, :length => { :within => 2..1000 }
   end
+  with_options :if => :area_category_id? do |area_category_id|
+  	area_category_id.validates :area_category_id, :uniqueness => { :scope => [:areable_type, :areable_id] }
+  end
 
   # Scopes
   scope :created_desc, order("created_at DESC")

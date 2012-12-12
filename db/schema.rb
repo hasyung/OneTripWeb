@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205040457) do
+ActiveRecord::Schema.define(:version => 20121212094628) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121205040457) do
     t.datetime "updated_at",                                   :null => false
     t.integer  "style_type_cd",                 :default => 0
     t.integer  "category_cd",                   :default => 0
+    t.integer  "order",                         :default => 0
   end
 
   create_table "areas", :force => true do |t|
@@ -30,7 +31,14 @@ ActiveRecord::Schema.define(:version => 20121205040457) do
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
     t.string   "description",      :limit => 1000
+    t.integer  "videos_count",                     :default => 0
+    t.integer  "audios_count",                     :default => 0
+    t.integer  "images_count",                     :default => 0
+    t.integer  "infos_count",                      :default => 0
+    t.integer  "articles_count",                   :default => 0
   end
+
+  add_index "areas", ["areable_type", "areable_id", "area_category_id"], :name => "index_areas_on_areable_type_and_areable_id_and_area_category_id", :unique => true
 
   create_table "articles", :force => true do |t|
     t.integer  "area_id",                                   :null => false
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20121205040457) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.string   "slug",                                       :null => false
+    t.string   "subtitle",    :limit => 100
   end
 
   add_index "minorities", ["key"], :name => "index_minorities_on_key", :unique => true

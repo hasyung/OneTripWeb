@@ -2,7 +2,7 @@ class Image < ActiveRecord::Base
   attr_accessible :name, :image, :area_id, :order
 
    # Associations
-  belongs_to :area, :include => :area_category
+  belongs_to :area, :include => :area_category, :counter_cache => true
   
   # Callbacks
   before_save :update_image_attributes
