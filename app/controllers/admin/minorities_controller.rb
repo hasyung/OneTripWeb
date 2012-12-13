@@ -79,9 +79,9 @@ class Admin::MinoritiesController < Admin::ApplicationController
 		@minority.status = params[:status].to_s.to_sym
 		if @minority.save
 			if @minority.publish?
-				redirect_to :admin_minorities, :notice => t("helpers.messages.publish")
+				redirect_to :admin_minorities, :notice => t("helpers.messages.publish_minority")
 			else
-				redirect_to :admin_minorities, :notice => t("helpers.messages.draft")
+				redirect_to :admin_minorities, :notice => t("helpers.messages.draft_minority")
 			end
 		else
 			redirect_to :admin_minorities, :alert => t("helpers.messages.error")

@@ -468,7 +468,9 @@
       not_edit_admin: "你没有权限修改该类型的用户。"
       not_new_admin: "你没有权限添加该类型的用户。"
       publish: "恭喜你，景区解锁成功！"
+      publish_minority: "恭喜你，民族解锁成功！"
       draft: "你已经将该景区转为锁定模式。"
+      draft_minority: "你已经将该民族转为锁定模式。"
       setting: "你已经成功保存设置！"
   views:
     pagination:

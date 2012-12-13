@@ -133,24 +133,24 @@ module ApplicationHelper
     when "Place"
       case model_detailed.class.name
       when "Image"
-        path = map_place_path(model.key,model_detailed.id)
+        path = place_image_path(model.key,model_detailed.id)
       when "Video"
-        path = video_place_path(model.key,model_detailed.id)
+        path = place_video_path(model.key,model_detailed.id)
       when "Audio"
-        path = audio_place_path(model.key,model_detailed.id)
+        path = place_audio_path(model.key,model_detailed.id)
       when "Article"
-        path = article_place_path(model.key,model_detailed.id)
+        path = place_article_path(model.key,model_detailed.id)
       end
     when "Minority"
       case model_detailed.class.name
       when "Map"
-        path = map_minority_path(model.key,model_detailed.id)
+        path = minority_image_path(model.key,model_detailed.id)
       when "Video"
-        path = video_minority_path(model.key,model_detailed.id)
+        path = minority_video_path(model.key,model_detailed.id)
       when "Audio"
-        path = audio_minority_path(model.key,model_detailed.id)
+        path = minority_audio_path(model.key,model_detailed.id)
       when "Article"
-        path = article_minority_path(model.key,model_detailed.id)
+        path = minority_article_path(model.key,model_detailed.id)
       end
     end
     path
