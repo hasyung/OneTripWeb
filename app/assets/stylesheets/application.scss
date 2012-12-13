@@ -144,13 +144,19 @@ h3 {
   text-align:center;
   background-color:#a2201a;
 }
-h3.minority {
+h3.minority, h3.place {
   padding-top:5px;
   margin-bottom:20px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 h3.other {
   background: #E75428;
   color: white;
+}
+h3.minority, h3.place, h3.other, #feedback {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 h4 {
   margin-left:10px;
