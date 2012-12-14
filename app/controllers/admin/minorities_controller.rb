@@ -16,18 +16,18 @@ class Admin::MinoritiesController < Admin::ApplicationController
 	end
 
 	def create
-		if @minority.transaction do
-        @minority.save
+    @minority.transaction do
+      if @minority.save
         AreaCategory.minorities.each do |area_category|
           @area = Area.new :area_category_id => area_category.id, :order => area_category.order
           @minority.areas << @area
         end
+        redirect_to admin_minority_url(@minority), :notice => t("helpers.messages.new", :model_name => Minority.model_name.human)
+      else
+        render :new
       end
-			redirect_to admin_minority_url(@minority), :notice => t("helpers.messages.new", :model_name => Minority.model_name.human)
-		else
-			render :new
-		end
-	end
+    end
+  end
 
 	def edit
 		
