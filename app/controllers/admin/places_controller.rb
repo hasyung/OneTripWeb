@@ -17,18 +17,18 @@ class Admin::PlacesController < Admin::ApplicationController
 	end
 
 	def create
-		if @place.transaction do
-        @place.save
+		@place.transaction do
+      if @place.save
         AreaCategory.places.each do |area_category|
           @area = Area.new :area_category_id => area_category.id, :order => area_category.order
           @place.areas << @area
         end
+        redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Place.model_name.human)
+      else
+        render :new
       end
-			redirect_to admin_place_url(@place), :notice => t("helpers.messages.new", :model_name => Place.model_name.human)
-		else
-			render :new
-		end
-	end
+    end
+  end
 
 	def edit
 		
