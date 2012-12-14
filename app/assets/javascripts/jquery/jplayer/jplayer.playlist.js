@@ -242,7 +242,15 @@
 
 			// The title is given next in the HTML otherwise the float:right on the free media corrupts in IE6/7
 			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + media.title + (media.artist ? " <span class='jp-artist'>by " + media.artist + "</span>" : "") + "</a>";
-			listItem += "</div></li>";
+      listItem += "</div>";
+      listItem += "<div class='actions'>";
+      if (media.edit_url !== null){
+        listItem += "<a href='" + media.edit_url + "' rel='tooltip nofollow' title='修改'><i class='icon-edit icon-large'></i></a>";
+       }
+      if (media.delete_url !== null){
+        listItem += "<a href='" + media.delete_url + "' data-confirm='您确定这样做吗？' data-method='delete' rel='tooltip nofollow' title='删除'><i class='icon-trash icon-large'></i></a>";
+       }
+      listItem += "</div></li>";
 
 			return listItem;
 		},
