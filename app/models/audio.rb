@@ -11,7 +11,7 @@ class Audio < ActiveRecord::Base
   validates :name, :area_id, :attachment, :duration, :presence => true
 	with_options :if => :name? do |name|
     name.validates :name, :length => { :within => 2..30 }
-    name.validates :name, :uniqueness => true
+    name.validates :name, :uniqueness => { :scope => :area_id }
   end
   with_options :if => :order? do |order|
     order.validates :order, :numericality => 

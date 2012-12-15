@@ -10,7 +10,7 @@
 	<div class="well warning-bg">
 		<ul class="nav nav-list">
 		  <li class="nav-header"><%= t("helpers.links.tips") %></li>
-		  <li>关键字100字内，用逗号间隔。</li>
+		  <li>关键字100字内，用半角分号间隔。</li>
 		</ul>
 	</div>
 <% end -%>
@@ -30,7 +30,7 @@
       <label class="string required control-label" for="admin_app_keywords"><%= t("activerecord.attributes.setting.app_keywords") %> <abbr title="required">*</abbr></label>
       <div class="controls">
         <input class="string required span-full" id="admin_app_keywords" name="setting[app_keywords]" required="required" size="50" type="text" value="<%= Setting.app_keywords %>"/>
-        <p class="help-block">为了优化，提供一些关键词吧！100字内。<span class="error"></span></p>
+        <p class="help-block">为了优化，提供一些关键词吧！100字内，多个中间以半角';'分割。<span class="error"></span></p>
       </div>
     </div>
     <div class="control-group string required">

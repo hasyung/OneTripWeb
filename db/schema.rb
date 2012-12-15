@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212094628) do
+ActiveRecord::Schema.define(:version => 20121215065551) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20121212094628) do
     t.integer  "category_cd",                   :default => 0
     t.integer  "order",                         :default => 0
   end
+
+  add_index "area_categories", ["name"], :name => "index_area_categories_on_name", :unique => true
 
   create_table "areas", :force => true do |t|
     t.integer  "areable_id",                                      :null => false
@@ -52,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20121212094628) do
     t.datetime "updated_at",                                :null => false
   end
 
+  add_index "articles", ["area_id", "title"], :name => "index_articles_on_area_id_and_title", :unique => true
+
   create_table "audios", :force => true do |t|
     t.integer  "area_id",                                :null => false
     t.string   "name",                                   :null => false
@@ -64,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20121212094628) do
     t.datetime "updated_at",                             :null => false
     t.text     "body"
   end
+
+  add_index "audios", ["area_id", "name"], :name => "index_audios_on_area_id_and_name", :unique => true
 
   create_table "images", :force => true do |t|
     t.integer  "area_id",                           :null => false

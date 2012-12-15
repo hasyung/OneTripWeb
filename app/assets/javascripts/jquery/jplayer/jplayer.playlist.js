@@ -216,6 +216,7 @@
 		},
 		_createListItem: function(media) {
 			var self = this;
+      console.log(media.edit_url);
 
 			// Wrap the <li> contents in a <div>
 			var listItem = "<li><div>";
@@ -244,10 +245,10 @@
 			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='1'>" + media.title + (media.artist ? " <span class='jp-artist'>by " + media.artist + "</span>" : "") + "</a>";
       listItem += "</div>";
       listItem += "<div class='actions'>";
-      if (media.edit_url !== null){
+      if (media.edit_url !== undefined){
         listItem += "<a href='" + media.edit_url + "' rel='tooltip nofollow' title='修改'><i class='icon-edit icon-large'></i></a>";
        }
-      if (media.delete_url !== null){
+      if (media.delete_url !== undefined){
         listItem += "<a href='" + media.delete_url + "' data-confirm='您确定这样做吗？' data-method='delete' rel='tooltip nofollow' title='删除'><i class='icon-trash icon-large'></i></a>";
        }
       listItem += "</div></li>";
