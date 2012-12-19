@@ -536,6 +536,22 @@ legend {
       li {
         border-bottom: 1px dotted #ccc;
         padding-bottom: 3px;
+        #jp_container_audio {
+          .jp-playlist {
+            padding-bottom:10px;
+            li{
+              font-size:13px;
+              padding-top:5px;
+              border-bottom: 1px dotted #FFF;
+              .actions {
+                position:relative;
+                display:block;
+                float:right;
+                margin-bottom:3px;
+              }
+            }
+          }
+        }
         .value {
           margin-bottom: 5px;
         }
