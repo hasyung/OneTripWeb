@@ -75,13 +75,6 @@ puts_section "Checking Package Dependencies..." do
   exit(0) if pkg_exist == false
 end
 
-# Config files
-puts_section "Configure" do
-  %w(database thin).each do |fname|
-    `cp config/#{fname}.yml.default config/#{fname}.yml`
-  end
-end
-
 puts_line "Install Gems..." do
   `bundle install`
 end
@@ -97,6 +90,10 @@ end
 puts_line "Compile All The Assets" do
   `bundle exec rake assets:clean RAILS_ENV=production`
   `bundle exec rake assets:precompile RAILS_ENV=production`
+end
+
+puts_line "Restart Thin Server" do
+  `thin -C config/thin.yml restart`
 end
 
 puts ""
