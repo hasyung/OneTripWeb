@@ -15,6 +15,7 @@ class Minority < ActiveRecord::Base
   # Validates
   validates :name, :key, :province_id, :presence => true
 	 with_options :if => :name? do |name|
+    name.validates :name, :format => { :with => /^[\u2E80-\uFE4F]+$/ }
     name.validates :name, :length => { :within => 2..30 }
     name.validates :name, :uniqueness => true
   end
