@@ -216,7 +216,6 @@
 		},
 		_createListItem: function(media) {
 			var self = this;
-      console.log(media.edit_url);
 
 			// Wrap the <li> contents in a <div>
 			var listItem = "<li><div>";
