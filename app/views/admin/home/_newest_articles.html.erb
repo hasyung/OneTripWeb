@@ -5,7 +5,7 @@
 			<% @newest_articles.each do |article| -%>
 				<li>
 					<a href="<%= admin_area_article_path(article.area_id, article) %>">
-						<i class="icon-book"></i><%= " #{article.area.area_category.name} - #{article.title.truncate(26)}" %>
+						<i class="icon-book"></i><%= " #{article.area.area_category.name} - #{article.title.truncate(22)}" %>
 					</a>
 				</li>
 			<% end -%>

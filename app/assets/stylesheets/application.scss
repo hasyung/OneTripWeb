@@ -146,9 +146,11 @@ h3 {
 }
 h3.minority, h3.place {
   padding-top:5px;
-  margin-bottom:20px;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
+}
+h3.minority {
+  margin-bottom:20px;
 }
 h3.other {
   background: #E75428;
