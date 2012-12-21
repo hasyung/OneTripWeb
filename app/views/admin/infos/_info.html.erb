@@ -22,7 +22,7 @@
   <% info.value.split("/n").each do |part| %>
     <div class="value">
       <% if info.var.include?( "官网" ) %>
-        <a href="http://<%= part %>" target="_blank"><%= part %></a>
+        <a href="<%= part %>" target="_blank"><%= part %></a>
       <% else %>
         <%= part %>
       <% end %>

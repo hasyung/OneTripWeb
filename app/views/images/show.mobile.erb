@@ -11,13 +11,15 @@
   <p class="font18">两指捏合缩放图片</p>
   <% @area.infos.order_asc.each do |info| %>
     <h6 class="item"><%= info.var %>：</h6>
-    <p class="infor">
-    <% if info.var.include?( "官网" ) %>
-      <a href="http://<%= info.value %>" target="_blank"><%= info.value %></a>
-    <% else %>
-      <%= info.value %>
+    <% info.value.split("/n").each do |part| %>
+      <p class="infor">
+        <% if info.var.include?( "官网" ) %>
+          <a href="<%= part %>" target="_blank"><%= part %></a>
+        <% else %>
+          <%= part %>
+        <% end %>
+      </p>
     <% end %>
-    </p>
   <% end %>
   <div class="back_to"><a href="<%= polymorphic_area_path(@model) %>">返回上一页</a></div>
 </div>
