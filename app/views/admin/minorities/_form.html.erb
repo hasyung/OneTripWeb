@@ -16,6 +16,7 @@
 	  <% if %w(edit update).include?(action_name) %>
 		  <%= f.input :key, :input_html => { :class => "span-full disabled", :disabled => true } %>
 	  <% end -%>
+    <%= f.input :image_title, :as => :file %>
 	  <%= f.association :province, :collection => Province.all, :prompt => t("helpers.links.select", :model_name => Province.model_name.human) %>
 	  <%= f.input :order, :input_html => { :class => "span1" } %>
 	  <%= f.input :subtitle, :input_html => { :class => "span-full" } %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215065551) do
+ActiveRecord::Schema.define(:version => 20121221092443) do
 
   create_table "area_categories", :force => true do |t|
     t.string   "name",          :limit => 50,                  :null => false
@@ -94,18 +94,21 @@ ActiveRecord::Schema.define(:version => 20121215065551) do
   add_index "infos", ["area_id", "var"], :name => "index_infos_on_area_id_and_var", :unique => true
 
   create_table "minorities", :force => true do |t|
-    t.integer  "province_id",                                :null => false
-    t.string   "name",        :limit => 50,                  :null => false
-    t.string   "key",         :limit => 30,                  :null => false
-    t.integer  "areas_count",                 :default => 0
-    t.string   "keywords",    :limit => 100
-    t.string   "description", :limit => 1000
-    t.integer  "order",                       :default => 0
-    t.integer  "status_cd",                   :default => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.string   "slug",                                       :null => false
-    t.string   "subtitle",    :limit => 100
+    t.integer  "province_id",                                             :null => false
+    t.string   "name",                     :limit => 50,                  :null => false
+    t.string   "key",                      :limit => 30,                  :null => false
+    t.integer  "areas_count",                              :default => 0
+    t.string   "keywords",                 :limit => 100
+    t.string   "description",              :limit => 1000
+    t.integer  "order",                                    :default => 0
+    t.integer  "status_cd",                                :default => 0
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.string   "slug",                                                    :null => false
+    t.string   "subtitle",                 :limit => 100
+    t.string   "image_title"
+    t.integer  "image_title_size",                         :default => 0
+    t.string   "image_title_content_type"
   end
 
   add_index "minorities", ["key"], :name => "index_minorities_on_key", :unique => true

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class MapUploader < CarrierWave::Uploader::Base
+class MinorityTitleUploader < CarrierWave::Uploader::Base
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   
@@ -22,15 +22,7 @@ class MapUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   version :default do
-    process :resize_to_limit => [800, 500]
-  end
-
-  version :thumb do
-    process :resize_to_limit => [250, 141]
-  end
-
-  version :thumb_middle do
-    process :resize_to_limit => [478, 280]
+    process :resize_to_limit => [1024, 90]
   end
 
   def extension_white_list

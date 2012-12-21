@@ -3,18 +3,27 @@
 <% end -%>
 
 <div class="big-logo small">
-  <%= image_tag "index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+  <a href="<%= special_minorities_path %>">
+    <%= image_tag "/assets/index/logo.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+  </a>
+</div>
+<div class="title_minorities">
+  <%= image_tag "/assets/index/minorities.png", :alt => Setting.app_name, :title => Setting.app_name %>
 </div>
 <div class="navigation">
-  <%= image_tag "index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
+  <%= image_tag "/assets/index/navigation.jpg", :alt => Setting.app_name, :title => Setting.app_name %>
 </div>
-<div class="title"></div>
-<h3 class="tag clearfix">
-  <% @model.subtitle.split(";").each do |part| %>
-    <span class="tag">◎</span>
-    <span class="character"><%= part %></span>
-  <% end %>
-</h3>
+<% if @model.image_title.present? %>
+  <div class="title" style="background-image:url(<%= @model.image_title.url %>);"></div>
+<% end %>
+<% if @model.subtitle.present? %>
+  <h3 class="tag clearfix">
+    <% @model.subtitle.split(";").each do |part| %>
+      <span class="tag">◎</span>
+      <span class="character"><%= part %></span>
+    <% end %>
+  </h3>
+<% end %>
 
 <% if !@areas.blank? %>
   <% @areas.order_asc.each_with_index do |area,count| -%>
