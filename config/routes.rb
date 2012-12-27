@@ -18,7 +18,8 @@ OneTripWeb::Application.routes.draw do
     resources :articles, :only => :show
   end
   
-  resources :minorities, :only => :show do
+  resources :minorities, :only => [:show, :special] do
+    get 'special' => 'minorities#special', :on => :collection
     resources :images, :path => "/map", :only => :show
     resources :videos, :only => :show
     resources :audios, :only => :show

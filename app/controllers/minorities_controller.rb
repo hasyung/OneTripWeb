@@ -6,4 +6,7 @@ class MinoritiesController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
   end
+  
+  def special
+  end
 end

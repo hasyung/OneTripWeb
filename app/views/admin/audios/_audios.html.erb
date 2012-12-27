@@ -71,7 +71,7 @@
 				jPlayer: "#jquery_jplayer_audio",
 				cssSelectorAncestor: "#jp_container_audio"
 			},[
-				<% audios.each_with_index do |audio, i| -%>
+				<% audios.order_asc.each_with_index do |audio, i| -%>
 					{
 						title: "<%= i + 1 %>.<%= audio.name %>",
 						artist: "<%= audio.duration %>",

@@ -19,11 +19,13 @@
     	</span>
     <% end %>
   </div>
-  <div class="value">
-    <% if info.var.include?( "官网" ) %>
-      <a href="http://<%= info.value %>" target="_blank"><%= info.value %></a>
-    <% else %>
-      <%= info.value %>
-    <% end %>
-  </div>
+  <% info.value.split("/n").each do |part| %>
+    <div class="value">
+      <% if info.var.include?( "官网" ) %>
+        <a href="<%= part %>" target="_blank"><%= part %></a>
+      <% else %>
+        <%= part %>
+      <% end %>
+    </div>
+  <% end %>
 </li>
