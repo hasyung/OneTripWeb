@@ -463,7 +463,7 @@
       destroy: "恭喜你，已成功删除%{model_name}！"
       destroy_multiple: "恭喜你，你已经成功删除了%{count}个%{model_name}!"
       error: "操作失败了，请联系管理员！"
-      confirm: "您确定删除吗？"
+      confirm: "您确定要删除吗？"
       search_error: "你没有提供任何要搜索的数据！"
       selected_error: "操作失败，你没有选择任何项！"
       not_edit_admin: "你没有权限修改该类型的用户。"

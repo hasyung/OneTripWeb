@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
   before_save :update_image_attributes
 
   # carrierwave
-  mount_uploader :image, VideoCoverUploader
+  mount_uploader :image, MapUploader
 
   # Validates
   validates :image, :area_id, :presence => true
