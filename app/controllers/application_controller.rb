@@ -4,7 +4,4 @@ class ApplicationController < ActionController::Base
 
   # mobile-fu
   has_mobile_fu
-
-  
-
 end

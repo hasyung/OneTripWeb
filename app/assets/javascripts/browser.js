@@ -1,4 +1,4 @@
-﻿;(function(){
+﻿(function(){
 	jQuery.fn.checkbrowser = function(){
 		this.each(function(){ 
 			var deviceAgent = navigator.userAgent.toLowerCase();	
