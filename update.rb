@@ -84,7 +84,7 @@ puts_line "Database Update..." do
 end
 
 puts_line "Clear logs" do
-  `bundle exec rake log:clear RAILS_ENV=production  -q -s`
+  `bundle exec rake log:clear RAILS_ENV=production -q -s`
 end
 
 puts_line "Compile All The Assets" do
