@@ -57,25 +57,11 @@
 				play: function() {
 					$(this).jPlayer("pauseOthers");
 				},
-				repeat: function(event) {
-					if(event.jPlayer.options.loop) {
-						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
-						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerRepeat", function() {
-							$(this).jPlayer("play");
-						});
-					} else {
-						$(this).unbind(".jPlayerRepeat").unbind(".jPlayerNext");
-						$(this).bind($.jPlayer.event.ended + ".jPlayer.jPlayerNext", function() {
-							$("#jquery_jplayer_1").jPlayer("play", 0);
-						});
-					}
-				},
 				swfPath: "/Js",
 				supplied: "m4v,ogv",
 				wmode:"window",
 				solution:"html,flash",
 				preload:"none",
-				loop:"false",
 				size: {
 					width: "250px",
 					height: "150px"
