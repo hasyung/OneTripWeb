@@ -49,9 +49,16 @@ p {
 .dark {
   background-color:#e6e6e6;
 }
-a {
+a { 
   color: #06C;
-}
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  blur:expression(this.blur());
+} 
+a:focus { 
+  outline: none;
+  -webkit-appearance: none;
+} 
 
 /* 页头 */
 .big-logo {
