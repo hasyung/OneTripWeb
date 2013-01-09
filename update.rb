@@ -80,16 +80,16 @@ puts_line "Install Gems..." do
 end
 
 puts_line "Database Update..." do
-  `bundle exec rake db:migrate RAILS_ENV=production`
+  `bundle exec rake db:migrate RAILS_ENV=production -q -s`
 end
 
 puts_line "Clear logs" do
-  `bundle exec rake log:clear RAILS_ENV=production`
+  `bundle exec rake log:clear RAILS_ENV=production  -q -s`
 end
 
 puts_line "Compile All The Assets" do
-  `bundle exec rake assets:clean RAILS_ENV=production`
-  `bundle exec rake assets:precompile RAILS_ENV=production`
+  `bundle exec rake assets:clean RAILS_ENV=production  -q -s`
+  `bundle exec rake assets:precompile RAILS_ENV=production  -q -s`
 end
 
 puts_line "Restart Thin Server" do
