@@ -6,51 +6,61 @@
       <% if !articles[i].blank? %>
         <% case i %>
         <% when 0 %>
-          <li class="choose_<%= i %>">
-            <a href="<%= polymorphic_detailed_path(@model,articles[0]) %>" class="wrapper">
-              <div class="content clearfix">
-                <%= image_tag "index/meishi.jpg" %>
-                <span>美食</span>					
+          <a href="<%= polymorphic_detailed_path(@model,articles[0]) %>" class="wrapper">
+            <li class="choose_<%= i %>">
+              <div class="front">
+                <div class="content clearfix">
+                  <%= image_tag "index/meishi.jpg" %>
+                  <span>美食</span>					
+                </div>
+                <span class="english">Food</span>
               </div>
-              <span class="english">Food</span>
-            </a>
-          </li>
+            </li>
+          </a>
         <% when 1 %>
-          <li class="choose_<%= i %>">
-            <a href="<%= polymorphic_detailed_path(@model,articles[1]) %>" class="wrapper">
-              <div class="content clearfix">
-                <%= image_tag "index/gouwu.jpg" %>
-                <span>购物</span>
+          <a href="<%= polymorphic_detailed_path(@model,articles[1]) %>" class="wrapper">
+            <li class="choose_<%= i %>">
+              <div class="front">
+                <div class="content clearfix">
+                  <%= image_tag "index/gouwu.jpg" %>
+                  <span>购物</span>
+                </div>
+                <span class="english">Shopping</span>
               </div>
-              <span class="english">Shopping</span>
-            </a>
-          </li>
+            </li>
+          </a>
         <% when 2 %>
-          <li class="choose_<%= i %>">
-            <a href="<%= polymorphic_detailed_path(@model,articles[2]) %>" class="wrapper">
-              <div class="content clearfix">
-                <%= image_tag "index/yule.jpg" %>
-                <span>娱乐</span>
+          <a href="<%= polymorphic_detailed_path(@model,articles[2]) %>" class="wrapper">
+            <li class="choose_<%= i %>">
+              <div class="front">
+                <div class="content clearfix">
+                  <%= image_tag "index/yule.jpg" %>
+                  <span>娱乐</span>
+                </div>
+                <span class="english">Entertainment</span>
               </div>
-              <span class="english">Entertainment</span>
-            </a>
-          </li>
+            </li>
+          </a>
         <% when 3 %>
-          <li class="choose_<%= i %>">
-            <a href="<%= polymorphic_detailed_path(@model,articles[3]) %>" class="wrapper">
-              <div class="content clearfix">
-                <%= image_tag "index/zhusu.jpg" %>
-                <span>住宿</span>
-              </div>
-              <span class="english">Hotel</span>
-            </a>
-          </li>
+          <a href="<%= polymorphic_detailed_path(@model,articles[3]) %>" class="wrapper">
+            <li class="choose_<%= i %>">
+              <div class="front">
+                <div class="content clearfix">
+                  <%= image_tag "index/zhusu.jpg" %>
+                  <span>住宿</span>
+                </div>
+                <span class="english">Hotel</span>
+              </div> 
+            </li>
+          </a>
         <% end %>
       <% else %>
-        <li class="choose_<%= i %>">
-          <a href="#" class="wrapper">
-          </a>
-        </li>
+        <div class="nothing">
+          <li class="choose_<%= i %>">
+            <div class="front">
+            </div>
+          </li>
+        </div>
       <% end %>
     <% end %>
   </ul>
